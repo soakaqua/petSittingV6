@@ -54,9 +54,9 @@
 	<!--
 	<a href="proprio/modifierAnnonce">Modifier une annoncee</a> <br/><br/>
 	-->
-	<a href="proprio/publierAnnonce">Publier une annonce</a> <br/><br/>
-	<a href="proprio/validerSitter">Valider un sitter</a> <br/><br/>
-	<a href="proprio/noterS">Noter un sitter</a> <br/><br/>	
+	<a href="publierAnnonce">Publier une annonce</a> <br/><br/>
+	<a href="validerSitter">Valider un sitter</a> <br/><br/>
+	<a href="noterS">Noter un sitter</a> <br/><br/>	
 	<a href="accueil">Accueil</a> <br/><br/>
 	<a href="#deco">Me deconnecter </a> <br/><br/>
 </div> 
