@@ -33,27 +33,25 @@ public class ProprioController {
 	
 	@Autowired
 	AnnonceService annonceService;
+
 	
 	@GetMapping("/consulterAnnonces")
-	public String reditectConsulterAnnonces(Proprio proprio, Model model) {	
-		Integer numC = proprio.getNumC();
-		model.addAttribute("proprio",proprio);
-		model.addAttribute("annonces", annonceRepository.selectAnnonceByProprio(proprio.getNumC()));
+	public String reditectConsulterAnnonces(Integer numC, Model model) {	
+		model.addAttribute("numC",numC);
+		model.addAttribute("annonces", annonceRepository.selectAnnonceByProprio(numC));
 		return "auth/proprio/consulterAnnonces";
 	}
 	
 	@GetMapping("/modifierAnnonce")
-	public String reditectModifierAnnonce(Proprio proprio, Model model) {
-		Integer numC = proprio.getNumC();
+	public String reditectModifierAnnonce(Integer numC, Model model) {
 		model.addAttribute("numC",numC);
 		return "auth/proprio/modifierAnnonce";
 	}
 	
 	@GetMapping("/publierAnnonce")
-	public String reditectPublierAnnonce(Proprio proprio, Model model) {
-		Integer numC = proprio.getNumC();
-		model.addAttribute("numC",numC);
+	public String reditectPublierAnnonce(Integer numC, Model model, Annonce annonce) {
 		model.addAttribute("annonce",new Annonce());
+		model.addAttribute("numC",numC);
 		return "auth/proprio/publierAnnonce";
 	}
 
