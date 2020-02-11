@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import petSitting.frontBoot.model.Annonce;
+import petSitting.frontBoot.model.Proprio;
 import petSitting.frontBoot.repositories.AnnonceRepository;
 import petSitting.frontBoot.repositories.CompteRepository;
 import petSitting.frontBoot.services.AnnonceService;
@@ -34,23 +35,26 @@ public class ProprioController {
 	AnnonceService annonceService;
 	
 	@GetMapping("/consulterAnnonces")
-	public String reditectConsulterAnnonces(Integer numC, Model model) {	
-		model.addAttribute("numC",numC);
-		model.addAttribute("annonces", annonceRepository.selectAnnonceByProprio(numC));
-		return "proprio/consulterAnnonces";
+	public String reditectConsulterAnnonces(Proprio proprio, Model model) {	
+		Integer numC = proprio.getNumC();
+		model.addAttribute("proprio",proprio);
+		model.addAttribute("annonces", annonceRepository.selectAnnonceByProprio(proprio.getNumC()));
+		return "auth/proprio/consulterAnnonces";
 	}
 	
 	@GetMapping("/modifierAnnonce")
-	public String reditectModifierAnnonce(Integer numC, Model model) {
+	public String reditectModifierAnnonce(Proprio proprio, Model model) {
+		Integer numC = proprio.getNumC();
 		model.addAttribute("numC",numC);
-		return "proprio/modifierAnnonce";
+		return "auth/proprio/modifierAnnonce";
 	}
 	
 	@GetMapping("/publierAnnonce")
-	public String reditectPublierAnnonce(Integer numC, Model model) {
-		model.addAttribute("annonce",new Annonce());
+	public String reditectPublierAnnonce(Proprio proprio, Model model) {
+		Integer numC = proprio.getNumC();
 		model.addAttribute("numC",numC);
-		return "proprio/publierAnnonce";
+		model.addAttribute("annonce",new Annonce());
+		return "auth/proprio/publierAnnonce";
 	}
 
 	@GetMapping("/delete")
