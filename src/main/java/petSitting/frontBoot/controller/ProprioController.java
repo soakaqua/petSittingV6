@@ -68,7 +68,7 @@ public class ProprioController {
 			Annonce a=null;
 			if(opt.isPresent()) {
 				a=opt.get();
-				a.setNumC((Integer)session.getAttribute("numC"));
+				a.getProprio().setNumC((Integer)session.getAttribute("numC"));
 				a.setStatut(0);
 				annonceService.save(a);
 				}
@@ -81,7 +81,7 @@ public class ProprioController {
 		if(br.hasErrors())
 			{return "proprio/modifierAnnonce";}
 		else {
-			annonce.setNumC((Integer)session.getAttribute("numC"));
+			annonce.getProprio().setNumC((Integer)session.getAttribute("numC"));
 			annonce.setStatut(0);
 			annonceService.save(annonce);
 			return "redirect:/proprio/consulterAnnonces?numC="+session.getAttribute("numC"); 

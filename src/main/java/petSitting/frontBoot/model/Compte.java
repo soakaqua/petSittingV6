@@ -26,7 +26,7 @@ public class Compte {
 	@Column(name ="mail", length = 50)
 	private String mail;
 	@Column(name ="statut", length = 1)
-	private int statut;
+	private Integer statut;
 	@Column(name ="nom", length = 50)
 	private String nom;
 	@Column(name ="prenom", length = 50)
@@ -83,10 +83,10 @@ public class Compte {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-	public int getStatut() {
+	public Integer getStatut() {
 		return statut;
 	}
-	public void setStatut(int statut) {
+	public void setStatut(Integer statut) {
 		this.statut = statut;
 	}
 	

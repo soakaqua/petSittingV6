@@ -23,8 +23,8 @@ import javax.persistence.NamedQuery;
 
 
 @NamedQueries
-({@NamedQuery(name="Annonce.selectAnnonceByProprio",query="select distinct p from Annonce p where p.numC=?1"),
-@NamedQuery(name="Annonce.afficherAnnoncesTerminees",query="select p from Annonce p where p.statut=1 and p.numC=?1"),
+({@NamedQuery(name="Annonce.selectAnnonceByProprio",query="select distinct a from Annonce a left join fetch a.proprio prop where prop.numC=?1"),
+@NamedQuery(name="Annonce.afficherAnnoncesTerminees",query="select distinct a from Annonce a left join fetch a.proprio prop where a.statut=1 and prop.numC=?1"),
 @NamedQuery(name="Annonce.selectAllWithStatut0",query="select a from Annonce a where a.statut=0"),
 @NamedQuery(name="Annonce.selectAnnonceBySitter",query="select distinct a from Annonce a left join fetch a.reponse rep where rep.key.sitter.numC=?1")
 //,@NamedQuery(name="Annonce.selectNoteSitter",query="select distinct noteS from Sitter s left join fetch s.annonce ann where ann.key.numC=?1"),
@@ -53,9 +53,6 @@ public class Annonce {
 	@Column
 	private Integer statut;
 	
-	@Column
-	private Integer numC;
-	
 	@Column(name="key")
 	@OneToMany(mappedBy="key.annonce") //fausse erreur. Coonexion virtuelle, ne modifie pas la table
 	private Set<Annonce_Service> annonce_service;
@@ -66,7 +63,7 @@ public class Annonce {
 	
 	@ManyToOne
 	private Proprio proprio;
-
+	
 	@Version
 	private int version;
 	
@@ -74,12 +71,12 @@ public class Annonce {
 		
 	}
 	
-	public Annonce(String titre, String message, Integer numC, Set<Annonce_Service> listService) {
+	public Annonce(String titre, String message, Proprio proprio, Set<Annonce_Service> listService) {
 		this.titre = titre;
 		this.message = message;
 		this.statut = 0;
-		this.numC = numC;
 		this.annonce_service = null;
+		this.proprio = proprio;
 	}
 	
 	public Annonce(Integer numA, String titre, String message, Set<Annonce_Service> listService) {
@@ -90,7 +87,7 @@ public class Annonce {
 		this.annonce_service = null;
 	} 
 
-	public Annonce(Integer numA, String titre, String message, Double noteP, Double noteS, int statut, Integer numC,
+	public Annonce(Integer numA, String titre, String message, Double noteP, Double noteS, int statut, Proprio proprio, 
 			Set<Annonce_Service>  annonce_service) {
 		this.numA = numA;
 		this.titre = titre;
@@ -98,9 +95,10 @@ public class Annonce {
 		this.noteP = noteP;
 		this.noteS = noteS;
 		this.statut = 0;
-		this.numC = numC;
 		this.annonce_service = null;
+		this.proprio = proprio;
 	}
+
 
 	public Integer getNumA() {
 		return numA;
@@ -150,22 +148,30 @@ public class Annonce {
 		this.statut = statut;
 	}
 
-	public Integer getNumC() {
-		return numC;
-	}
-
-	public void setNumC(Integer numC) {
-		this.numC = numC;
-	}
-
-	public Set<Annonce_Service>  getListService() {
+	public Set<Annonce_Service> getAnnonce_service() {
 		return annonce_service;
 	}
 
-	public void setListService(Set<Annonce_Service>  annonce_service) {
+	public void setAnnonce_service(Set<Annonce_Service> annonce_service) {
 		this.annonce_service = annonce_service;
 	}
-	
+
+	public Set<Reponse> getReponse() {
+		return reponse;
+	}
+
+	public void setReponse(Set<Reponse> reponse) {
+		this.reponse = reponse;
+	}
+
+	public Proprio getProprio() {
+		return proprio;
+	}
+
+	public void setProprio(Proprio proprio) {
+		this.proprio = proprio;
+	}
+
 	public int getVersion() {
 		return version;
 	}
@@ -173,7 +179,6 @@ public class Annonce {
 	public void setVersion(int version) {
 		this.version = version;
 	}
-
 
 	@Override
 	public int hashCode() {
