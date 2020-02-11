@@ -32,7 +32,7 @@ public class AnnonceService2 {
 			annonceEnBase.setMessage((c.getMessage()!=null)?c.getMessage():annonceEnBase.getMessage());
 			annonceEnBase.setNoteP((c.getNoteP()!=null)?c.getNoteP():annonceEnBase.getNoteP());
 			annonceEnBase.setNoteS((c.getNoteS()!=null)?c.getNoteS():annonceEnBase.getNoteS());
-			annonceEnBase.setNumC((c.getNumA()!=null)?c.getNumC():annonceEnBase.getNumC());
+			annonceEnBase.setProprio((c.getProprio()!=null)?c.getProprio():annonceEnBase.getProprio());
 //			annonceEnBase.setAnnonce_service((c.getNumC()!=null)?c.getAnnonce_service():annonceEnBase.getAnnonce_service());
 			annonceRepository.save(annonceEnBase);
 			return annonceEnBase;
@@ -118,7 +118,7 @@ public class AnnonceService2 {
 	
 	
 	public void publierServiceAnnonce(Annonce a, Set<Annonce_Service> annonce_service) { //probleme avec services
-		a.setListService(annonce_service);
+		a.setAnnonce_service(annonce_service);
 		
 		//save a 
 //		a= save(a);

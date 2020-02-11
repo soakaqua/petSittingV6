@@ -17,6 +17,8 @@ import javax.persistence.Version;
 @Table(name ="compte")
 @SequenceGenerator(name = "seqCompte", sequenceName = "seq_compte",initialValue = 100, allocationSize = 1)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) // 1 table ! ajouter discriminatorColumn et discriminatorValue dans classes filles
+@NamedQueries
+({@NamedQuery(name="Compte.selectCompteByMail",query="select distinct c from Compte c where c.mail=?1")})
 public class Compte {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqCompte")

@@ -13,18 +13,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter{
 	
-//	@Autowired
-//	DataSource dataSource;
 	
-//	@Autowired
-//	private UserDetailsService userDetailsService;
+	@Autowired
+	private UserDetailsService userDetailsService;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
 	//AUCUNE AUTHORISATION (POUR TESTER D'AUTRES TRUCS)
-		http.csrf().disable();
-		http.authorizeRequests().anyRequest().permitAll();
+//		http.csrf().disable();
+//		http.authorizeRequests().anyRequest().permitAll();
 		
 	//AUTHENTIFICATION PAR LOGIN/PWD	
 //		http.csrf().disable();
@@ -32,9 +30,14 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
 	
 	//FERMETURE DES AUTHORISATIONS
 		
-//	//authorisations de l'admin
-//		http.authorizeRequests().antMatchers("/auth/admin/**").hasAnyRole("ADMIN").
-//			and().formLogin().loginPage("/login").
+//	//authorisations de connection
+//		http.csrf().disable();
+
+		http.authorizeRequests().antMatchers("/auth/proprio/**").hasAnyRole("proprio").
+		and().authorizeRequests().antMatchers("/auth/sitter/**").hasAnyRole("sitter").
+		and().authorizeRequests().antMatchers("/auth/**").authenticated().
+		and().formLogin().loginPage("/**").permitAll();
+
 //	//les url suivants obligent à être authentifié
 //			and().authorizeRequests().antMatchers("/auth/**").authenticated().
 //			and().formLogin().loginPage("/login").permitAll().
@@ -46,29 +49,18 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
 	@Override //methode qui permet de dire comment on s'authentifie
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		
-		// POUR FAIRE DU WEB : OPTIONS DE SECURITE
-		
-	//METHODE 1 : authentification en mémoire -------------------------------------------------------------------------
-		
-//		auth.inMemoryAuthentication().withUser("singleton").password("{noop}pwd").roles("MAIRE");  
-		
-	//METHODE 2 : passer par une requête sql (jdbc) -------------------------------------------------------------------
-		
-//		auth.jdbcAuthentication()
-//		.dataSource(dataSource) //datasource : définit la base de donnée à ut 
-//		.usersByUsernameQuery("select username, password, enable from login where username=?") //users : récupère les infos de l'utilisateur
-//		.authoritiesByUsernameQuery("select username, role from roles where username=?") ; //authoriries : roles de l'utilisateur (souvent plusieurs)
+
 		
 	//METHODE 3 : passer par un service géré par Spring ---------------------------------------------------------------
 		
-//		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
-		//avec l'id, doit remonter toutes les infos utilisées pour l'identifier
-		//envoie les infos au gestionnaire d'authentification
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+//		avec l'id, doit remonter toutes les infos utilisées pour l'identifier
+//		envoie les infos au gestionnaire d'authentification
 	}
 
-//	@Bean
-//	public PasswordEncoder passwordEncoder() {
-//		return new BCryptPasswordEncoder();
-//	}
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 	
 }
