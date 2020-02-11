@@ -8,6 +8,7 @@ class FrontBootApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }
