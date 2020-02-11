@@ -1,18 +1,12 @@
 package petSitting.frontBoot.model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.EntityManager;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.Query;
-
-import org.springframework.data.jpa.repository.JpaContext;
 
 
 @Entity
@@ -28,5 +22,7 @@ public class Proprio extends Compte {
 	
 	public Proprio() {	
 	}
+	
+	
 
 }
