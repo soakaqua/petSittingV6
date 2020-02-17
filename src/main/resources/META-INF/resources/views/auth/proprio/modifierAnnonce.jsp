@@ -72,8 +72,7 @@
 	<br/><br/>
 	
 	<!-- FORMULAIRE -->	
-	<!-- -->
-	<form:form action="/petsitting/proprio/save" method="get" modelAttribute ="annonce" > 
+	<form:form action="/petsitting/proprio/save" method="get" modelAttribute="annonce" > 
 	
 			<form:hidden path="proprio.numC"/>
 			<form:hidden path="numA"/>
@@ -95,7 +94,6 @@
 					<div class="alert alert-danger"> Champ obligatoire </div>
 				</form:errors>   
 			</div>
-			
 	
 				<!-- BOUTONS DE VALIDATION OU ANNULATION -->
 			<div class="form-group">
