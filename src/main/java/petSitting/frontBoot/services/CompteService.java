@@ -19,7 +19,7 @@ public class CompteService {
 		Compte compteEnBase = null;
 		if(c.getNumC()!=null) {
 			Optional<Compte> opt = compteRepository.findById(c.getNumC());
-			compteEnBase = opt.get();
+			compteEnBase = (Compte) opt.get();
 			compteEnBase.setCp((c.getCp()!=null)?c.getCp():compteEnBase.getCp());
 			compteEnBase.setMail((c.getMail()!=null)?c.getMail():compteEnBase.getMail());
 			compteEnBase.setMdpC((c.getMdpC()!=null)?c.getMdpC():compteEnBase.getMdpC());

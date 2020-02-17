@@ -25,7 +25,7 @@ public class Compte {
 	private Integer numC;
 	@Column(name ="cp", length = 15)
 	private Integer cp;
-	@Column(name ="mdp", length = 30)
+	@Column(name ="mdp", length = 250)
 	private String mdpC;
 	@Column(name ="mail", length = 50)
 	private String mail;

@@ -12,7 +12,7 @@ public interface CompteRepository extends JpaRepository<Compte, Integer>{
 	
 	public List<Sitter> selectSittersByReponseValidee(Integer numA);
 	
-	public Optional<Compte> selectCompteByMail(String mail);
+	public List<Compte> selectCompteByMail(String mail);
 	
 	
 }

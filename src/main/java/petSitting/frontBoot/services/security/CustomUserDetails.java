@@ -24,9 +24,14 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	//permet gérer les roles d'utilisateur
+	///ATTENTION : ON ARRIVE JAMAIS ICI !!!!!!!!
+	///ATTENTION : ON ARRIVE JAMAIS ICI !!!!!!!!
+	///ATTENTION : ON ARRIVE JAMAIS ICI !!!!!!!!
+
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Set<SimpleGrantedAuthority> authorities =new HashSet<>();
 		if(compte instanceof Sitter) {
+			System.out.println("sitter pris");
 			authorities.add(new SimpleGrantedAuthority("sitter"));
 		}
 		else if (compte instanceof Proprio) {
@@ -69,7 +74,7 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		if (compte.getStatut() ==1 ) {
+		if (compte.getStatut() == 1 ) {
 			return true;
 		}
 		return false;

@@ -56,7 +56,7 @@
 
 
 		<c:choose>
-			<c:when test="${compte.getClass().simpleName == 'Admin'}">
+			<c:when test="${sessionScope.typeC == 'admin'}">
 				<p>Admin</p>
 			</c:when>
 
@@ -64,7 +64,7 @@
 
 
 
-			<c:when test="${compte.getClass().simpleName == 'Proprio'}">
+			<c:when test="${sessionScope.typeC == 'proprio'}">
 				<div id="corps" class="row">
 
 					<div id="banderole" class="col-2">
@@ -78,7 +78,6 @@
 							href="proprio?id=4">Valider un sitter</a> <br /> <br /> <a
 							href="proprio?id=5">Noter un sitter</a> <br /> <br /> <a
 							href="accueil">Me déconnecter</a> <br />
-
 
 
 					</div>
@@ -111,7 +110,7 @@
 
 
 
-			<c:when test="${compte.getClass().simpleName == 'Sitter'}">
+			<c:when test="${sessionScope.typeC == 'sitter'}">
 
 				<div id="corps" class="row">
 
