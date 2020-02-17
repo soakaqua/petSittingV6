@@ -19,8 +19,6 @@
 <link rel="stylesheet" type="text/css"
 	href="${ctx}/style/CSSpetsitting.css">
 
-<!-- Image -->
-<link rel="icon" type="image/png" href="${ctx}/image/logo.jpg" />
 
 
 <meta charset="UTF-8">
@@ -33,7 +31,9 @@
 	<div id="entete" class="row">
 
 		<div id="logoEntete" class="col-2">
-			<img height="135" width="130" src="logo.jpg" />
+			<a href="${ctx}/accueil"> <img height="135" width="130"
+				src="${ctx}/image/logo.jpg" align="left" />
+			</a> 
 		</div>
 
 		<div id="titreEntete" class="col-10">
