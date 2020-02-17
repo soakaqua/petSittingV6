@@ -67,6 +67,10 @@
 
 <p> <h3> Consulter mes annonces </h3> </p> 
 
+
+	<a href="${ctx}/proprio/publierAnnonce?numC=${numC}" class="btn btn-success">Nouvelle annonce</a>
+	<br/><br/>	
+
 	Voici les annonces que vous avez publiées : <br/><br/>
 
 <c:choose>
@@ -103,9 +107,13 @@
 					
 				</c:forEach>
 			</table>
+			
+			
 	<!-- http://localhost:8080/petsitting/proprio/consulterAnnonces?numC=10 -->	
 	
 		</div>
+		
+		
 	</c:otherwise>	
 	
 </c:choose>

@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import petSitting.frontBoot.model.Annonce;
+import petSitting.frontBoot.model.Proprio;
 import petSitting.frontBoot.repositories.AnnonceRepository;
+import petSitting.frontBoot.repositories.CompteRepository;
 
 @Service
 public class AnnonceService {
@@ -14,13 +16,16 @@ public class AnnonceService {
 	@Autowired
 	private AnnonceRepository annonceRepository;
 	
+	@Autowired
+	private CompteRepository compteRepository;
+	
 //	@Autowired
 //	private ReponseRepository reponseRepository;
 	
-	public Annonce save(Annonce c) {
+	public Annonce save(Annonce c, Proprio p) {
+	
 		
-		
-		Annonce annonceEnBase = null;
+		Annonce annonceEnBase = new Annonce();
 		if(c.getNumA()!=null) {
 			Optional<Annonce> opt = annonceRepository.findById(c.getNumA());
 			annonceEnBase = opt.get();
@@ -29,8 +34,7 @@ public class AnnonceService {
 			annonceEnBase.setNoteP((c.getNoteP()!=null)?c.getNoteP():annonceEnBase.getNoteP());
 			annonceEnBase.setNoteS((c.getNoteS()!=null)?c.getNoteS():annonceEnBase.getNoteS());
 			annonceEnBase.setStatut((c.getStatut()!=null)?c.getStatut():annonceEnBase.getStatut());
-			annonceEnBase.setProprio((c.getProprio()!=null)?c.getProprio():annonceEnBase.getProprio());
-//			annonceEnBase.setAnnonce_service((c.getNumC()!=null)?c.getAnnonce_service():annonceEnBase.getAnnonce_service());
+			//annonceEnBase.setProprio((c.getProprio()!=null)?c.getProprio():annonceEnBase.getProprio());
 			annonceRepository.save(annonceEnBase);
 			return annonceEnBase;
 		}

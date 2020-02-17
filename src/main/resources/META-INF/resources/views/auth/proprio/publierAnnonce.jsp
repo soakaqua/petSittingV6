@@ -51,9 +51,6 @@
 	<h4 style="font-size:23;color:white">Menu</h4>
 	<br/>
 	<a href="proprio/consulterAnnonces">Consulter mes annonces</a> <br/><br/>
-	<!--
-	<a href="proprio/modifierAnnonce">Modifier une annoncee</a> <br/><br/>
-	-->
 	<a href="publierAnnonce">Publier une annonce</a> <br/><br/>
 	<a href="validerSitter">Valider un sitter</a> <br/><br/>
 	<a href="noterS">Noter un sitter</a> <br/><br/>	
@@ -72,7 +69,7 @@
 	<br/><br/>
 	
 	<!-- FORMULAIRE -->	
-	<form:form action="savePubli?numC=${sessionScope.numC}" method="get" modelAttribute="annonce">
+	<form:form action="savePubli?numC=${sessionScope.numC}" method="get" modelAttribute ="annonce">
 	
 			<form:hidden path="numC"/>
 			<!-- CHAMPS DE CREATTION D'ANNONCE -->
