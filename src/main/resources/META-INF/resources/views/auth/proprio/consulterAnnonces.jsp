@@ -67,7 +67,13 @@
 
 <p> <h3> Consulter mes annonces </h3> </p> 
 
-	Voici les annonces que vous avez publiées : <br/><br/>
+
+	<a href="${ctx}/proprio/publierAnnonce?numC=${numC}" class="btn btn-success">Nouvelle annonce</a>
+	<br/><br/>	
+
+	Voici les annonces que vous avez publiées : <br/>
+	(statut 0 : annonce en cours ; statut 1 : annonce terminée)
+	<br/><br/>
 
 <c:choose>
 	
@@ -93,21 +99,32 @@
 						<!-- COLONNES -->
 						<td>${a.titre}</td>
 						<td>${a.message}</td>
-	
+						
 						<td>${a.statut}</td>	
 						
 						<!-- BOUTONS -->				
-						<td><a href="${ctx}/proprio/modifierAnnonce?numA=${a.numA}&numC=${numC}" class="btn btn-primary">Modifier</a></td>
-						<td><a href="${ctx}/proprio/delete?numA=${a.numA}&numC=${numC}" class="btn btn-danger">Supprimer</a></td>									
+						<td>
+							<c:if test="${a.statut == 0}">
+								<a href="${ctx}/proprio/modifierAnnonce?numA=${a.numA}&numC=${numC}" class="btn btn-primary">Modifier</a>
+							</c:if>
+						</td>
+						<td>
+							<c:if test="${a.statut == 0}">
+								<a href="${ctx}/proprio/delete?numA=${a.numA}&numC=${numC}" class="btn btn-danger">Supprimer</a>
+							</c:if>
+						</td>	
+						<td>
+							<c:if test="${a.statut == 0}">
+								<a href="${ctx}/proprio/afficherReponses?numA=${a.numA}&numC=${numC}" class="btn btn-secondary">Afficher les réponses</a>
+							</c:if>
+						</td>	
+																
 					</tr>
 					
 				</c:forEach>
 			</table>
-	<!-- http://localhost:8080/petsitting/proprio/consulterAnnonces?numC=10 -->	
-	
-		</div>
-	</c:otherwise>	
-	
+		</div>		
+	</c:otherwise>		
 </c:choose>
 	
 </div>

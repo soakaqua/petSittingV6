@@ -16,13 +16,10 @@
 <script rel="stylesheet" src="${ctx}/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- CSS -->
-  <link rel="stylesheet" type="text/css"
+<link rel="stylesheet" type="text/css"
 	href="${ctx}/style/CSSpetsitting.css">
 
-<!-- Image -->
-<link rel="icon" type="image/png"
-	href="${ctx}/image/logo.jpg" /> 
-	
+
 	
 <meta charset="UTF-8">
 <title>PetSitting</title>
@@ -34,9 +31,9 @@
 	<div id="entete" class="row">
 
 		<div id="logoEntete" class="col-2">
-			<a href="accueil"> <img height="135" width="130"
-				src="${pageContext.request.contextPath}/logo.jpg" />
-			</a> <br /> <br />
+			<a href="${ctx}/accueil"> <img height="135" width="130"
+				src="${ctx}/image/logo.jpg" align="left" />
+			</a> 
 		</div>
 
 		<div id="titreEntete" class="col-10">

@@ -14,8 +14,6 @@ import petSitting.frontBoot.model.Sitter;
 
 public class CustomUserDetails implements UserDetails {
 
-
-
 	private Compte compte;
 
 	public CustomUserDetails(Compte compte) {
@@ -23,19 +21,18 @@ public class CustomUserDetails implements UserDetails {
 	}
 
 	@Override
-	//permet gérer les roles d'utilisateur
-	///ATTENTION : ON ARRIVE JAMAIS ICI !!!!!!!!
-	///ATTENTION : ON ARRIVE JAMAIS ICI !!!!!!!!
-	///ATTENTION : ON ARRIVE JAMAIS ICI !!!!!!!!
+	// permet gérer les roles d'utilisateur
+	/// ATTENTION : ON ARRIVE JAMAIS ICI !!!!!!!!
+	/// ATTENTION : ON ARRIVE JAMAIS ICI !!!!!!!!
+	/// ATTENTION : ON ARRIVE JAMAIS ICI !!!!!!!!
 
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		Set<SimpleGrantedAuthority> authorities =new HashSet<>();
-		if(compte instanceof Sitter) {
+		Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+		if (compte instanceof Sitter) {
 			System.out.println("sitter pris");
-			authorities.add(new SimpleGrantedAuthority("sitter"));
-		}
-		else if (compte instanceof Proprio) {
-			authorities.add(new SimpleGrantedAuthority("proprio"));
+			authorities.add(new SimpleGrantedAuthority("ROLE_sitter"));
+		} else if (compte instanceof Proprio) {
+			authorities.add(new SimpleGrantedAuthority("ROLE_proprio"));
 		}
 //		else if (compte instanceof Admin) {
 //			authorities.add(new SimpleGrantedAuthority("admin"));
@@ -74,7 +71,7 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		if (compte.getStatut() == 1 ) {
+		if (compte.getStatut() == 1) {
 			return true;
 		}
 		return false;

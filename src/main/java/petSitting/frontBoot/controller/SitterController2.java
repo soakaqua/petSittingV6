@@ -44,7 +44,7 @@ public class SitterController2 {
 		model.addAttribute("annonces", annonceRepository.selectAnnonceBySitter(numC));
 
 		model.addAttribute("reponse", sitterService.afficherReponseBySitterAndAnnonce(numC));
-		return "/sitter/afficherAnnoncesBySitter" ;	
+		return "/auth/sitter/afficherAnnoncesBySitter" ;	
 		}
 
 	
@@ -55,7 +55,7 @@ public class SitterController2 {
 		ReponsePK pk = new ReponsePK((Sitter) opt1.get(), opt2.get());
 		reponseRepository.deleteById(pk);
 		model.addAttribute("numC", pk.getSitter().getNumC());
-		return "redirect:/sitter/afficherAnnoncesBySitter";
+		return "redirect:/sitter/afficherAnnoncesBySitter?numC="+model.getAttribute("numC");
 	}
 	
 	@GetMapping("/sitter/editReponse")
@@ -68,15 +68,16 @@ public class SitterController2 {
 		
 		model.addAttribute("reponse", reponseRepository.findById(pk).get());
 		model.addAttribute("annonce", opt2.get());
-		return "/sitter/editReponse";
+		return "/auth/sitter/editReponse";
 	}
 	
 	@GetMapping("/sitter/saveReponse")
 	public String saveReponse(@ModelAttribute("reponse") Reponse reponse, Model model) {
-		
+			
 		reponseService.save(reponse);
 		model.addAttribute("numC", reponse.getKey().getSitter().getNumC());
-		return "redirect:/sitter/afficherAnnoncesBySitter";
+		return "redirect:/sitter/afficherAnnoncesBySitter?numC="+model.getAttribute("numC");
+
 		
 	}
 	

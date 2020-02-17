@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter{
@@ -29,8 +28,12 @@ public class CustomWebSecurityConfigurerAdapter extends WebSecurityConfigurerAda
 //		
 //	//authorisations de connection
 		http.csrf().disable();
-		http.authorizeRequests().antMatchers("/auth/proprio/**").hasAnyRole("proprio").
+//		and().authorizeRequests().antMatchers("/auth/sitter/**").hasAnyRole("sitter").
+		http.authorizeRequests().antMatchers("/proprio/**").hasAnyRole("proprio").
+		and().authorizeRequests().antMatchers("/auth/proprio/**").hasAnyRole("proprio").
 		and().authorizeRequests().antMatchers("/auth/sitter/**").hasAnyRole("sitter").
+		and().authorizeRequests().antMatchers("/sitter/**").hasAnyRole("sitter").
+//		and().authorizeRequests().antMatchers("/proprio/**").hasAnyRole("proprio").
 		and().authorizeRequests().antMatchers("/auth/**").authenticated().
 		and().formLogin().loginPage("/connexion").permitAll().defaultSuccessUrl("/auth/menu").
 		and().formLogin().loginPage("/**").permitAll();

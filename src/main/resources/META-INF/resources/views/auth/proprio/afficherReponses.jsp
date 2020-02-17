@@ -63,45 +63,46 @@
 
 <div id="textePrincipal" class="col-8">
 
-<p><h2> Propriétaire > Modifier une annonce </h2></p> 
+<p><h2> Propriétaire > Valider un sitter </h2></p> 
 
-<p><h3> Modifier une annonce </h3></p> 
+<p><h3> Valider un sitter </h3></p> 
 
-	Vous voulez modifier cette annonce. Veuillez remplir les champs suivants :
-	
+	Vous voulez valider un sitter pour cette annonce. Voici la liste des réponses à votre annonce :
 	<br/><br/>
 	
-	<!-- FORMULAIRE -->	
-	<form:form action="/petsitting/proprio/save" method="get" modelAttribute="annonce" > 
+<c:choose>
 	
-			<form:hidden path="proprio.numC"/>
-			<form:hidden path="numA"/>
-			<form:hidden path="version"/>
-			<!-- CHAMPS DE CREATTION D'ANNONCE -->
-			<div class="form-group">
-				<form:label path="titre">Titre</form:label>
-				<form:input path="titre" placeholder="${titre}" cssClass="form-control"/>
-				<form:errors path="titre" cssClass="alert alert-danger">
-					<div class="alert alert-danger"> Champ obligatoire </div>
-				</form:errors>   
-			</div>
+	<c:when test="${reponses.isEmpty()}">
+		<div>
+			<br/>
+			<em>Vous n'avez aucune réponse concernant cette annonce</em>
+		</div>
+	</c:when>
+
+	<c:otherwise>
+		<div>
+			<table class="table">
+				<tr>
+					<th>Message</th>
+					<th>Page du sitter</th>
+				</tr>
+				
+				<c:forEach items ="${reponses}" var="r">
+					<tr>
+						<!-- COLONNES -->
+						<td>${r.message}</td>
+						<td>page du sitter</td>	
+						
+						<!-- BOUTONS -->				
+						<td><a href="${ctx}/proprio/validerSitter?numC=${r.key.sitter.getNumC()}&numA=${r.key.annonce.getNumA()}" class="btn btn-success">Valider</a></td>								
+					</tr>
+				</c:forEach>
+			</table>
 			
-			<div class="form-group">
-				<form:label path="message">  Message</form:label>
-				<br/>
-				<form:textarea path="message" placeholder="${message}" row="5" cols="60" ></form:textarea>
-				<form:errors path="message" cssClass="alert alert-danger">
-					<div class="alert alert-danger"> Champ obligatoire </div>
-				</form:errors>   
-			</div>
-	
-				<!-- BOUTONS DE VALIDATION OU ANNULATION -->
-			<div class="form-group">
-				<button type="submit" class="btn btn-success">Valider</button>
-				<a href="${ctx}/proprio/consulterAnnonces" class="btn btn-warning">Annuler</a>
-			</div>
-			
-		</form:form>
+			<a href="${ctx}/proprio/consulterAnnonces" class="btn btn-warning">Annuler</a>
+		</div>	
+	</c:otherwise>	
+</c:choose>
 	
 </div>
 
