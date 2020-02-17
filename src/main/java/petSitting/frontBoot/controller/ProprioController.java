@@ -79,6 +79,7 @@ public class ProprioController {
 		Integer numC = (Integer) session.getAttribute("numC");
 		model.addAttribute("annonce", a);
 		// model.addAttribute("services", serviceRepository.findAll());
+		
 //		if (a.getTitre()!=null) {
 //			return "auth/proprio/modifierAnnonce";
 //		}
@@ -86,6 +87,7 @@ public class ProprioController {
 //			return "auth/proprio/publierAnnonce";
 //		}
 		return "auth/proprio/modifierAnnonce";
+		
 	}
 
 	@GetMapping("/save")

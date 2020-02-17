@@ -94,6 +94,13 @@
 					<div class="alert alert-danger"> Champ obligatoire </div>
 				</form:errors>   
 			</div>
+			
+			<div class="form-group">
+				<form:label path="annonce_service">Voici la liste des services :</form:label>
+				<form:select path="annonce_service.nomSer" cssClass="form-control">
+					<form:options items="${services}" itemValue="nomSer" itemLabel="nomSer"/>
+				</form:select>
+			</div>
 	
 				<!-- BOUTONS DE VALIDATION OU ANNULATION -->
 			<div class="form-group">

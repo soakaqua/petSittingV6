@@ -55,11 +55,11 @@ public class Annonce {
 	private Integer statut;
 	
 	@Column(name="key")
-	@OneToMany(mappedBy="key.annonce") //fausse erreur. Coonexion virtuelle, ne modifie pas la table
+	@OneToMany(mappedBy="key.annonce")
 	private Set<Annonce_Service> annonce_service;
 	
 	@Column(name="key")
-	@OneToMany(mappedBy="key.annonce") //fausse erreur. Coonexion virtuelle, ne modifie pas la table
+	@OneToMany(mappedBy="key.annonce")
 	private Set<Reponse> reponse;
 	
 	@ManyToOne
