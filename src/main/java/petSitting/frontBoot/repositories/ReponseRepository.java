@@ -13,5 +13,6 @@ public interface ReponseRepository extends JpaRepository<Reponse,ReponsePK> {
 	
 	public List<Reponse> selectReponseByNumCNumA(Integer numA, Integer numC);
 	
+	public List<Reponse> selectReponseByNumA(Integer numA);
 	
 }
