@@ -1,6 +1,5 @@
 package petSitting.frontBoot;
 
-import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,12 +17,11 @@ import petSitting.frontBoot.services.ProprioService;
 @SpringBootTest
 class FrontBootApplicationTests {
 
-<<<<<<< HEAD
 	@Test
 	void contextLoads() {
 		
 	}
-=======
+
 	@Autowired
 	private AnnonceRepository annonceRepository;
 	@Autowired
@@ -33,12 +31,8 @@ class FrontBootApplicationTests {
 	@Autowired
 	private ProprioService proprioService;
 	
-    //@Test
-    public void testSelectAllWithStatut0() {
-    	List<Annonce> list = annonceRepository.selectAnnonceByProprio(10);
-        System.out.println(list);
-    }
+  
     
->>>>>>> master
+
 
 }

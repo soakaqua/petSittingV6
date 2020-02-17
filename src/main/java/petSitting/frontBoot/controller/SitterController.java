@@ -23,60 +23,62 @@ import petSitting.frontBoot.repositories.ReponseRepository;
 import petSitting.frontBoot.services.ReponseService;
 import petSitting.frontBoot.services.SitterService;
 
-@Controller
-public class SitterController {
-	
-	@Autowired
-	SitterService sitterService;
-	
-	
-	@Autowired
-	CompteRepository compteRepository;
-	
-	@Autowired
-	AnnonceRepository annonceRepository;
-	
-	@Autowired
-	ReponseRepository reponseRepository;
-	@Autowired
-	ReponseService reponseService;
 
-	@GetMapping("sitter/postulerAnnonce") //  a changer a prés par post pour que je puisse voir l erreur par get/ce qu'on ecrit sur le navigateur , c'est l'url appelé sur le front
-	public String AfficherAnnonces(Model model) {
-		List<Annonce> annonces = annonceRepository.selectAllWithStatut0();
-		Compte sitter = new Compte();
-		Optional<Compte> opt = compteRepository.findById(3);
-		if(opt.isPresent()) {
-			sitter= opt.get();
-		}
-		Reponse reponse = new Reponse();
-		model.addAttribute("compte", (Sitter)sitter);
-		model.addAttribute("listAnnonces", annonces); //listAnnonces nom de la variable a recuperer en front , à toi de le nommer comme tu veux , annonces : la variable a mettre dand le model
-		model.addAttribute("reponse", reponse);
-		return "sitter/postulerAnnonce";// le nom de la jsp
-	}
-
-	@PostMapping("sitter/postulerAnnonce")
-	public String PostulerAnnonce(@ModelAttribute("reponse")Reponse reponse,@RequestParam(name="numA") Integer numA, @RequestParam(name="numC") Integer numC,BindingResult br,Model model) {
-		System.out.println("ttttttttttt" +reponse.getMessage());
-		Optional<Compte> opt1 = compteRepository.findById(numC);
-		Optional<Annonce> opt2 = annonceRepository.findById(numA);	
-		Compte c = new Compte();
-		Annonce a = new Annonce();
-	   if(opt1.isPresent()) {
-		    c= opt1.get();
-	   }
-	   if(opt2.isPresent()) {
-		    a = opt2.get();
-	   }
-		ReponsePK pk = new ReponsePK((Sitter) c, a);
-		Reponse s = new Reponse();
-		s.setKey(pk);
-		s.setMessage(reponse.getMessage()); 
-		reponseService.save(s);
-		return("redirect:/menu");
+	@Controller
+	public class SitterController {
 		
-	}
+		@Autowired
+		SitterService sitterService;
+		
+		
+		@Autowired
+		CompteRepository compteRepository;
+		
+		@Autowired
+		AnnonceRepository annonceRepository;
+		
+		@Autowired
+		ReponseRepository reponseRepository;
+		@Autowired
+		ReponseService reponseService;
+
+		@GetMapping("sitter/postulerAnnonce") //  a changer a prés par post pour que je puisse voir l erreur par get/ce qu'on ecrit sur le navigateur , c'est l'url appelé sur le front
+		public String AfficherAnnonces(Model model) {
+			List<Annonce> annonces = annonceRepository.selectAllWithStatut0();
+			Compte sitter = new Compte();
+			Optional<Compte> opt = compteRepository.findById(100);
+			if(opt.isPresent()) {
+				sitter= opt.get();
+			}
+			model.addAttribute("compte", (Sitter)sitter);
+			model.addAttribute("listAnnonces", annonces); //listAnnonces nom de la variable a recuperer en front , à toi de le nommer comme tu veux , annonces : la variable a mettre dand le model
+			model.addAttribute("reponse", new Reponse());
+			return "auth/sitter/postulerAnnonce";// le nom de la jsp
+		}
+		//@ModelAttribute("reponse")@RequestParam(name="numC") Integer numC,
+
+		@PostMapping("sitter/postulerAnnonce")
+		public String PostulerAnnonce(@ModelAttribute("reponse")Reponse reponse,@RequestParam(name="numA") Integer numA, @RequestParam(name="numC") Integer numC,BindingResult br,Model model) {
+			
+			Optional<Compte> opt1 = compteRepository.findById(numC);
+			Optional<Annonce> opt2 = annonceRepository.findById(numA);	
+			Compte c = new Compte();
+			Annonce a = new Annonce();
+		   if(opt1.isPresent()) {
+			    c= opt1.get();
+		   }
+		   if(opt2.isPresent()) {
+			    a = opt2.get();
+		   }
+			ReponsePK pk = new ReponsePK((Sitter) c, a);
+			reponse.setKey(pk);
+			
+			reponseService.save(reponse);
+			return("redirect:auth/menu");
+			
+		}
+
+		
 
 	@GetMapping("sitter/noterAnnonce")
 	public String afficherAnnoncesTermines (@RequestParam(name="numC") Integer numC,Model model) {
@@ -85,7 +87,7 @@ public class SitterController {
 		model.addAttribute("list", annonces);
 		model.addAttribute("annonce", new Annonce());
 		
-		return ("sitter/noterP");
+		return ("auth/sitter/noterP");
 		
 	}
 	@PostMapping("sitter/noterAnnonce")
@@ -101,7 +103,7 @@ public class SitterController {
 		a.setNoteP(annonce.getNoteP());
 		annonceRepository.save(a);
 		
-		return ("redirect:/menu");
+		return ("redirect:auth/menu");
 		
 	}
 	

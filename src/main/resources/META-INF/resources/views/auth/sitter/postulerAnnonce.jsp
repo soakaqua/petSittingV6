@@ -1,14 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
 
 <!-- bootstrap -->
 <c:set var="ctx" value="${pageContext.servletContext.contextPath}"></c:set>
@@ -19,6 +18,13 @@
 <!-- CSS -->
   <link rel="stylesheet" type="text/css"
 	href="${ctx}/style/CSSpetsitting.css">
+
+<!-- Image -->
+<link rel="icon" type="image/png"
+	href="${ctx}/image/logo.jpg" /> 
+	
+	
+<meta charset="UTF-8">
 
 
 <title>PetSitting</title>
@@ -72,32 +78,29 @@
 			<p>
 			<h3>Consulter toutes les annonces</h3>
 			</p>
-		
-         <form:form action="${ctx}/sitter/postulerAnnonce?numA=2&numC=2" method="post" modelAttribute="reponse" >
-      
-        
-			<div class="form-group">
-					Voici la liste des annonces existantes :<br> 
-					 
-					annonce : le nom de la variable : a toi de le nommer et utiliser
-                         $ : variable
- 
-						<form:select path="numA">
-   
-      <form:options items="${listAnnonces}" itemValue="numA" itemLabel="titre"/>
- </form:select>  
-					
+			<form method="post" id="afficheForm">
+				<div class="form-group">
+					Voici la liste des annonces existantes :<br> <select>
+						<c:forEach var="annonce" items="${listAnnonces}">
+
+							<option value="${annonce.numA}">${annonce.titre}</option>
+						</c:forEach>
+					</select>
+
 
 				</div>
-				
 				<div class="form-group">
 					<h3>Message</h3>
-					<form:input path="message" id="message" cssClass="form-control"/>
+					<TEXTAREA id="message" name="message" rows=4 cols=40></TEXTAREA>
 				</div>
-           <button type="submit">Postuler</button>       
-			<a href="${ctx}/sitter/postulerAnnonce" class="btn btn-warning">annuler</a>
-			
-		</form:form>
+           <div >
+                    <button type="submit" class="btn btn-info">envoyer</button>
+                    <a href="${ctx }" class="btn btn-warning">Annuler</a>
+                </div>        
+
+
+			</form>
+
 
 		</div>
 </body>
