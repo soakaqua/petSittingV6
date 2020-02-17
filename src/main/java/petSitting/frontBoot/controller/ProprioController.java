@@ -89,8 +89,7 @@ public class ProprioController {
 	}
 
 	@GetMapping("/save")
-	private String save(@ModelAttribute("annonce") @Valid Annonce annonce, BindingResult br, Model model,
-			HttpSession session) {
+	private String save(@ModelAttribute("annonce") @Valid Annonce annonce, BindingResult br, Model model, HttpSession session) {
 		Integer numC = (Integer) session.getAttribute("numC");
 		System.out.println(session.getAttribute("numC"));
 		System.out.println(annonce.getProprio());
@@ -104,10 +103,7 @@ public class ProprioController {
 				annonce.setStatut(0);
 				annonceService.save(annonce, (Proprio) p);
 			}
-
-			// return
-			// "redirect:/auth/proprio/consulterAnnonces?numC="+session.getAttribute("numC");
-			return "redirect:/auth/proprio/consulterAnnonces";
+			return "redirect:/proprio/consulterAnnonces";
 		}
 	}
 
@@ -120,18 +116,10 @@ public class ProprioController {
 	}
 	
 	@GetMapping("/validerSitter")
-	public String validerSitter(@RequestParam(name = "numA") Integer numA, Model model, HttpSession session) {
-		Integer numC = (Integer) session.getAttribute("numC");
-		Optional<Annonce> optA = annonceRepository.findById(numA);
-		Annonce a = null;
-		if (optA.isPresent()) {
-			Optional<Compte> opt = compteRepository.findById(numC);
-			Compte p = null;
-			if (opt.isPresent()) {
-				//model.addAttribute("reponses", proprioService.validerSitter((Annonce) a, (Proprio) p));
-				}
-			}
-		return "auth/proprio/consulterAnnonces";
+	public String validerSitter(@RequestParam(name = "numA") Integer numA, @RequestParam(name = "numC") Integer numC, Model model, HttpSession session) {
+		//ATTENTION ICI NUMC EST LE NUMERO DU SITTER
+		proprioService.validerSitter(numA, numC);
+		return "redirect:/proprio/consulterAnnonces";
 	}
 	
 	@GetMapping("/delete")

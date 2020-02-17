@@ -68,7 +68,6 @@
 <p><h3> Valider un sitter </h3></p> 
 
 	Vous voulez valider un sitter pour cette annonce. Voici la liste des réponses à votre annonce :
-	
 	<br/><br/>
 	
 <c:choose>
@@ -81,8 +80,7 @@
 	</c:when>
 
 	<c:otherwise>
-		<form:form action="/petsitting/proprio/validerSitter" method="get"> 
-	
+		<div>
 			<table class="table">
 				<tr>
 					<th>Message</th>
@@ -96,22 +94,14 @@
 						<td>page du sitter</td>	
 						
 						<!-- BOUTONS -->				
-						<td><a type="submit" class="btn btn-success">Valider</a></td>
-						<td><a href="${ctx}/proprio/consulterAnnonces" class="btn btn-warning">Annuler</a></td>	
-								
+						<td><a href="${ctx}/proprio/validerSitter?numC=${r.key.sitter.getNumC()}&numA=${r.key.annonce.getNumA()}" class="btn btn-success">Valider</a></td>								
 					</tr>
-					
 				</c:forEach>
 			</table>
 			
-			
-	<!-- http://localhost:8080/petsitting/proprio/consulterAnnonces?numC=10 -->	
-	
-		
-		</form:form>
-		
+			<a href="${ctx}/proprio/consulterAnnonces" class="btn btn-warning">Annuler</a>
+		</div>	
 	</c:otherwise>	
-	
 </c:choose>
 	
 </div>

@@ -69,22 +69,42 @@ public class ProprioService {
 		annonceRepository.save(a);
 	} 
 
-	public void supprReponsesRefusees(Annonce a, Proprio proprio) {
-		Integer numC = proprio.getNumC();
-		Integer numA = a.getNumA();
-		System.out.println(reponseRepository);
+	
+	public void supprReponsesRefusees(Integer numA, Integer numC) {
 		List<Reponse> reponses = reponseRepository.selectReponsesRefusees(numA, numC);
 		for (int i=0; i<reponses.size(); i++)  
 			{reponseRepository.deleteById(reponses.get(i).getKey()); }
 	}
 
-	public void validerSitter(Annonce a, Proprio proprio) {
-		Integer numC = proprio.getNumC();
-		Integer numA = a.getNumA();		
-		a.setStatut(1);
-		annonceRepository.save(a);
-		proprioService.supprReponsesRefusees(a, proprio);
+	public void validerSitter(Integer numA, Integer numC) {		
+		Optional<Annonce> optA = annonceRepository.findById(numA);
+		Annonce a = null;
+		if (optA.isPresent()) { 
+			a = optA.get();
+			a.setStatut(1);
+			annonceRepository.save(a);
+			proprioService.supprReponsesRefusees(numA, numC);
+		}
 	}
+	
+	
+	
+//	public void supprReponsesRefusees(Annonce a, Proprio proprio) {
+//		Integer numC = proprio.getNumC();
+//		Integer numA = a.getNumA();
+//		System.out.println(reponseRepository);
+//		List<Reponse> reponses = reponseRepository.selectReponsesRefusees(numA, numC);
+//		for (int i=0; i<reponses.size(); i++)  
+//			{reponseRepository.deleteById(reponses.get(i).getKey()); }
+//	}
+//
+//	public void validerSitter(Annonce a, Proprio proprio) {
+//		Integer numC = proprio.getNumC();
+//		Integer numA = a.getNumA();		
+//		a.setStatut(1);
+//		annonceRepository.save(a);
+//		proprioService.supprReponsesRefusees(a, proprio);
+//	}
 //
 //	public int noterS(Double noteS, Annonce a, Sitter s) {
 //		//daoAnnonce.selectSittersByReponseValidee(a);
