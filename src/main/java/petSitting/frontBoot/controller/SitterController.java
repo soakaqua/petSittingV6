@@ -112,6 +112,9 @@ public class SitterController {
 		model.addAttribute("compte", sitter);
 		return ("/auth/menu");
 	}
+	
+	
+	
 	//@PostMapping("/saveEleve")
 	//public String saveEleve(@ModelAttribute("personne")@Valid Eleve personne,BindingResult br, Model model) {
 //		return save (personne,br, model); 
