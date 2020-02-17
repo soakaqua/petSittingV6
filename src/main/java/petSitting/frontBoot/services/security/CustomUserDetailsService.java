@@ -1,7 +1,6 @@
 package petSitting.frontBoot.services.security;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,7 +13,7 @@ import petSitting.frontBoot.model.Sitter;
 import petSitting.frontBoot.repositories.CompteRepository;
 
 @Service
-public class CustomUserDetailsService implements UserDetailsService{
+public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private CompteRepository compteRepository;
@@ -24,14 +23,14 @@ public class CustomUserDetailsService implements UserDetailsService{
 		List<Compte> listC = compteRepository.selectCompteByMail(username);
 		System.out.println(listC.get(0) instanceof Sitter);
 		return new CustomUserDetails(listC.get(0));
-		
+
 //		Optional<Compte> opt = compteRepository.selectCompteByMail(username);
 //		if(opt.isPresent())	 {
 //			if (opt.get() instanceof Sitter)
 //			return new CustomUserDetails(opt.get());
 //		}
-		
-		//throw new UsernameNotFoundException("login incorrect");
+
+		// throw new UsernameNotFoundException("login incorrect");
 	}
 
 }

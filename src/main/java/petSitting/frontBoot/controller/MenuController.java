@@ -5,12 +5,8 @@ import java.security.Principal;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import petSitting.frontBoot.model.Proprio;
 import petSitting.frontBoot.model.Sitter;
@@ -27,9 +23,10 @@ public class MenuController {
 
 	
 	@GetMapping("/auth/menu")
-	public String menu(Authentication authentication, HttpSession session) {
+	public String menu(Principal principal, HttpSession session) {
 		
-		String currentUserName = authentication.getName();
+		String currentUserName = principal.getName();
+		System.out.println(principal.getName());
 		session.setAttribute("numC", compteRepository.selectCompteByMail(currentUserName).get(0).getNumC());
 		if(compteRepository.selectCompteByMail(currentUserName).get(0) instanceof Sitter) {
 			session.setAttribute("typeC", "sitter" );
