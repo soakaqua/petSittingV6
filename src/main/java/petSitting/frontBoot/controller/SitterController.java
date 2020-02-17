@@ -3,6 +3,8 @@ package petSitting.frontBoot.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import petSitting.frontBoot.model.Annonce;
 import petSitting.frontBoot.model.Compte;
 import petSitting.frontBoot.model.Reponse;
@@ -24,76 +25,69 @@ import petSitting.frontBoot.services.ReponseService;
 import petSitting.frontBoot.services.SitterService;
 
 
-	@Controller
-	public class SitterController {
-		
-		@Autowired
-		SitterService sitterService;
-		
-		
-		@Autowired
-		CompteRepository compteRepository;
-		
-		@Autowired
-		AnnonceRepository annonceRepository;
-		
-		@Autowired
-		ReponseRepository reponseRepository;
-		@Autowired
-		ReponseService reponseService;
+@Controller
+public class SitterController {
+	
+	@Autowired
+	SitterService sitterService;
+	
+	
+	@Autowired
+	CompteRepository compteRepository;
+	
+	@Autowired
+	AnnonceRepository annonceRepository;
+	
+	@Autowired
+	ReponseRepository reponseRepository;
+	@Autowired
+	ReponseService reponseService;
 
-		@GetMapping("sitter/postulerAnnonce") //  a changer a prés par post pour que je puisse voir l erreur par get/ce qu'on ecrit sur le navigateur , c'est l'url appelé sur le front
-		public String AfficherAnnonces(Model model) {
-			List<Annonce> annonces = annonceRepository.selectAllWithStatut0();
-			Compte sitter = new Compte();
-			Optional<Compte> opt = compteRepository.findById(100);
-			if(opt.isPresent()) {
-				sitter= opt.get();
-			}
-			model.addAttribute("compte", (Sitter)sitter);
-			model.addAttribute("listAnnonces", annonces); //listAnnonces nom de la variable a recuperer en front , à toi de le nommer comme tu veux , annonces : la variable a mettre dand le model
-			model.addAttribute("reponse", new Reponse());
-			return "auth/sitter/postulerAnnonce";// le nom de la jsp
-		}
-		//@ModelAttribute("reponse")@RequestParam(name="numC") Integer numC,
-
-		@PostMapping("sitter/postulerAnnonce")
-		public String PostulerAnnonce(@ModelAttribute("reponse")Reponse reponse,@RequestParam(name="numA") Integer numA, @RequestParam(name="numC") Integer numC,BindingResult br,Model model) {
-			
-			Optional<Compte> opt1 = compteRepository.findById(numC);
-			Optional<Annonce> opt2 = annonceRepository.findById(numA);	
-			Compte c = new Compte();
-			Annonce a = new Annonce();
-		   if(opt1.isPresent()) {
-			    c= opt1.get();
-		   }
-		   if(opt2.isPresent()) {
-			    a = opt2.get();
-		   }
-			ReponsePK pk = new ReponsePK((Sitter) c, a);
-			reponse.setKey(pk);
-			
-			reponseService.save(reponse);
-			return("redirect:auth/menu");
-			
-		}
-
+	@GetMapping("sitter/postulerAnnonce") //  a changer a prés par post pour que je puisse voir l erreur par get/ce qu'on ecrit sur le navigateur , c'est l'url appelé sur le front
+	public String AfficherAnnonces(Model model) {
+		List<Annonce> annonces = annonceRepository.selectAllWithStatut0();
 		
+		Annonce reponseAnnonce = new Annonce();
+		model.addAttribute("listAnnonces", annonces); //listAnnonces nom de la variable a recuperer en front , à toi de le nommer comme tu veux , annonces : la variable a mettre dand le model
+		model.addAttribute("reponseAnnonce", reponseAnnonce);
+		return "/auth/sitter/postulerAnnonce";// le nom de la jsp
+	}
+
+	@PostMapping("sitter/postulerAnnonce")
+	public String PostulerAnnonce(@ModelAttribute("reponse")Annonce annonce,BindingResult br,Model model) {
+		
+		Optional<Compte> opt1 = compteRepository.findById(100);
+		Optional<Annonce> opt2 = annonceRepository.findById(annonce.getNumA());	
+		Compte c = new Compte();
+		Annonce a = new Annonce();
+	   if(opt1.isPresent()) {
+		    c= opt1.get();
+	   }
+	   if(opt2.isPresent()) {
+		    a = opt2.get();
+	   }
+		ReponsePK pk = new ReponsePK((Sitter) c, a);
+		Reponse s = new Reponse();
+		s.setKey(pk);
+		s.setMessage(annonce.getMessage()); 
+		reponseService.save(s);
+		return("redirect:/menu-sitter");
+		
+	}
 
 	@GetMapping("sitter/noterAnnonce")
-	public String afficherAnnoncesTermines (@RequestParam(name="numC") Integer numC,Model model) {
+	public String afficherAnnoncesTermines (Model model) {
 		
-		List<Annonce> annonces = annonceRepository.afficherAnnoncesTerminees(numC);
+		List<Annonce> annonces = annonceRepository.afficherAnnoncesTerminees(101);
 		model.addAttribute("list", annonces);
 		model.addAttribute("annonce", new Annonce());
 		
-		return ("auth/sitter/noterP");
+		return ("/auth/sitter/noterP");
 		
 	}
 	@PostMapping("sitter/noterAnnonce")
 	public String noterAnnonce (@RequestParam(name="numA") Integer numA,Double note,@ModelAttribute("annonce")Annonce annonce,Model model) {
-		System.out.println(annonce);
-		
+
 		
 		Annonce a = new Annonce();
 		Optional<Annonce> annonceTrouv = annonceRepository.findById(numA);
@@ -103,12 +97,21 @@ import petSitting.frontBoot.services.SitterService;
 		a.setNoteP(annonce.getNoteP());
 		annonceRepository.save(a);
 		
-		return ("redirect:auth/menu");
+		return ("redirect:/menu-sitter");
 		
 	}
-	
-	
-	
+
+	@GetMapping("menu-sitter")
+	public String menuSitter(HttpSession session, Model model) {
+		Compte sitter = new Compte();
+		Optional<Compte> opt = compteRepository.findById(100);
+		if (opt.isPresent()) {
+			sitter = opt.get();
+		}
+		session.setAttribute("numC", sitter.getNumC());
+		model.addAttribute("compte", sitter);
+		return ("/auth/menu");
+	}
 	//@PostMapping("/saveEleve")
 	//public String saveEleve(@ModelAttribute("personne")@Valid Eleve personne,BindingResult br, Model model) {
 //		return save (personne,br, model); 
@@ -193,8 +196,3 @@ import petSitting.frontBoot.services.SitterService;
 
 
 }
-	
-	
-	
-	
-
