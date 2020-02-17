@@ -1,11 +1,16 @@
 package petSitting.frontBoot.services;
 
 import java.util.Optional;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.OneToMany;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import petSitting.frontBoot.model.Annonce;
+import petSitting.frontBoot.model.Annonce_Service;
 import petSitting.frontBoot.model.Proprio;
 import petSitting.frontBoot.repositories.AnnonceRepository;
 import petSitting.frontBoot.repositories.CompteRepository;
@@ -26,7 +31,6 @@ public class AnnonceService {
 //	private ReponseRepository reponseRepository;
 	
 	public Annonce save(Annonce c, Proprio p) {
-	
 		
 		Annonce annonceEnBase = new Annonce();
 		if(c.getNumA()!=null) {
@@ -49,6 +53,8 @@ public class AnnonceService {
 		
 	}
 		
-	
+//	@Column(name="key")
+//	@OneToMany(mappedBy="key.annonce")
+//	private Set<Annonce_Service> annonce_service;
 	
 }
