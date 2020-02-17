@@ -72,9 +72,11 @@
 	<br/><br/>
 	
 	<!-- FORMULAIRE -->	
-	<form:form action="/petsitting/proprio/save?numC=${sessionScope.numC}" method="get" modelAttribute ="annonce" > 
+	<!-- -->
+	<form:form action="/petsitting/proprio/save" method="get" modelAttribute ="annonce" > 
 	
 			<form:hidden path="proprio.numC"/>
+			<form:hidden path="numA"/>
 			<form:hidden path="version"/>
 			<!-- CHAMPS DE CREATTION D'ANNONCE -->
 			<div class="form-group">
@@ -93,11 +95,12 @@
 					<div class="alert alert-danger"> Champ obligatoire </div>
 				</form:errors>   
 			</div>
+			
 	
 				<!-- BOUTONS DE VALIDATION OU ANNULATION -->
 			<div class="form-group">
 				<button type="submit" class="btn btn-success">Valider</button>
-				<a href="${ctx}/proprio/consulterAnnonces?numC=${session.numC}" class="btn btn-warning">Annuler</a>
+				<a href="${ctx}/proprio/consulterAnnonces" class="btn btn-warning">Annuler</a>
 			</div>
 			
 		</form:form>

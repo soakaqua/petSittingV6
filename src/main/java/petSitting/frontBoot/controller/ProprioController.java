@@ -20,46 +20,65 @@ import petSitting.frontBoot.model.Compte;
 import petSitting.frontBoot.model.Proprio;
 import petSitting.frontBoot.repositories.AnnonceRepository;
 import petSitting.frontBoot.repositories.CompteRepository;
+import petSitting.frontBoot.repositories.ReponseRepository;
+import petSitting.frontBoot.repositories.ServiceRepository;
 import petSitting.frontBoot.services.AnnonceService;
+import petSitting.frontBoot.services.ProprioService;
 
 @Controller
 @RequestMapping("/proprio")
 public class ProprioController {
 
-	//  http://localhost:8080/petsitting/proprio/consulterAnnonces?numC=10
-	//  http://localhost:8080/petsitting/proprio/publierAnnonce?numC=10
-	
+	// http://localhost:8080/petsitting/proprio/consulterAnnonces?numC=10
+	// http://localhost:8080/petsitting/proprio/publierAnnonce?numC=10
+
 	@Autowired
 	CompteRepository compteRepository;
-	
+
 	@Autowired
 	AnnonceRepository annonceRepository;
+
+	@Autowired
+	ServiceRepository serviceRepository;
 	
+	@Autowired
+	ReponseRepository reponseRepository;
+
 	@Autowired
 	AnnonceService annonceService;
 	
+	@Autowired
+	private ProprioService proprioService;
+
 	@GetMapping("/consulterAnnonces")
-	public String redirectConsulterAnnonces(@RequestParam(name="numC") Integer numC, Model model) {	
-		model.addAttribute("numC",numC);
+	public String consulterAnnonces(Model model, HttpSession session) {
+		Integer numC = (Integer) session.getAttribute("numC");
+		model.addAttribute("numC", numC);
 		model.addAttribute("annonces", annonceRepository.selectAnnonceByProprio(numC));
 		return "auth/proprio/consulterAnnonces";
 	}
-	
+
 	@GetMapping("/modifierAnnonce")
-	public String modifierAnnonce(@RequestParam(name="numC") Integer numC, @RequestParam(name="numA") Integer numA, Model model) {
-		Optional<Annonce> opt=annonceRepository.findById(numA);
-		Annonce a=null;
-		if(opt.isPresent()) {a=opt.get();} 
-		return goEdit(a,model);
+	public String modifierAnnonce(@RequestParam(name = "numA") Integer numA, Model model, HttpSession session) {
+		Integer numC = (Integer) session.getAttribute("numC");
+		Optional<Annonce> opt = annonceRepository.findById(numA);
+		Annonce a = null;
+		if (opt.isPresent()) {
+			a = opt.get();
+		}
+		return goEdit(a, model, session);
 	}
-	
+
 	@GetMapping("/publierAnnonce")
-	public String publierAnnonce(@RequestParam(name="numC") Integer numC, Model model) {
-		return goEdit(new Annonce(),model);
+	public String publierAnnonce(Model model, HttpSession session) {
+		Integer numC = (Integer) session.getAttribute("numC");
+		return goEdit(new Annonce(), model, session);
 	}
-		
-	private String goEdit(Annonce a, Model model) {
-		model.addAttribute("annonce",a);
+
+	private String goEdit(Annonce a, Model model, HttpSession session) {
+		Integer numC = (Integer) session.getAttribute("numC");
+		model.addAttribute("annonce", a);
+		// model.addAttribute("services", serviceRepository.findAll());
 //		if (a.getTitre()!=null) {
 //			return "auth/proprio/modifierAnnonce";
 //		}
@@ -70,34 +89,56 @@ public class ProprioController {
 	}
 
 	@GetMapping("/save")
-	private String save(@ModelAttribute ("annonce") @Valid Annonce annonce, Integer numC, BindingResult br, Model model, HttpSession session) {
+	private String save(@ModelAttribute("annonce") @Valid Annonce annonce, BindingResult br, Model model,
+			HttpSession session) {
+		Integer numC = (Integer) session.getAttribute("numC");
 		System.out.println(session.getAttribute("numC"));
 		System.out.println(annonce.getProprio());
-		System.out.println(annonce.getProprio().getNumC());
-		if(br.hasErrors())
-			{return "auth/proprio/modifierAnnonce";}
-		else {
+		if (br.hasErrors()) {
+			return "auth/proprio/modifierAnnonce";
+		} else {
 			Optional<Compte> opt = compteRepository.findById(numC);
-			Compte p=new Proprio();
-				if(opt.isPresent()) {p=opt.get();
-//				annonce.getProprio().setNumC((Integer)session.getAttribute("numC"));
+			Compte p = new Proprio();
+			if (opt.isPresent()) {
+				p = opt.get();
 				annonce.setStatut(0);
 				annonceService.save(annonce, (Proprio) p);
-				} 
-			
-			return "redirect:/auth/proprio/consulterAnnonces?numC="+session.getAttribute("numC"); 
+			}
+
+			// return
+			// "redirect:/auth/proprio/consulterAnnonces?numC="+session.getAttribute("numC");
+			return "redirect:/auth/proprio/consulterAnnonces";
 		}
+	}
+
+	@GetMapping("/afficherReponses")
+	public String afficherReponses(@RequestParam(name = "numA") Integer numA, Model model, HttpSession session) {
+		Integer numC = (Integer) session.getAttribute("numC");
+		model.addAttribute("numC", numC);
+		model.addAttribute("reponses", reponseRepository.selectReponseByNumA(numA));
+		return "auth/proprio/afficherReponses";
+	}
+	
+	@GetMapping("/validerSitter")
+	public String validerSitter(@RequestParam(name = "numA") Integer numA, Model model, HttpSession session) {
+		Integer numC = (Integer) session.getAttribute("numC");
+		Optional<Annonce> optA = annonceRepository.findById(numA);
+		Annonce a = null;
+		if (optA.isPresent()) {
+			Optional<Compte> opt = compteRepository.findById(numC);
+			Compte p = null;
+			if (opt.isPresent()) {
+				//model.addAttribute("reponses", proprioService.validerSitter((Annonce) a, (Proprio) p));
+				}
+			}
+		return "auth/proprio/consulterAnnonces";
 	}
 	
 	@GetMapping("/delete")
-	public ModelAndView delete(@RequestParam(name="numA") Integer numA, @RequestParam(name="numC") Integer numC) {
+	public ModelAndView delete(@RequestParam(name = "numA") Integer numA, HttpSession session) {
+		Integer numC = (Integer) session.getAttribute("numC");
 		annonceRepository.deleteByNumA(numA);
-		return new ModelAndView("redirect:/proprio/consulterAnnonces", "numC", numC);	
-	}	
-	
-	
-
-	
-
+		return new ModelAndView("redirect:/proprio/consulterAnnonces", "numC", numC);
+	}
 
 }

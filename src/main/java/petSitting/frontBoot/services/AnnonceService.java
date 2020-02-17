@@ -37,11 +37,12 @@ public class AnnonceService {
 			annonceEnBase.setNoteP((c.getNoteP()!=null)?c.getNoteP():annonceEnBase.getNoteP());
 			annonceEnBase.setNoteS((c.getNoteS()!=null)?c.getNoteS():annonceEnBase.getNoteS());
 			annonceEnBase.setStatut((c.getStatut()!=null)?c.getStatut():annonceEnBase.getStatut());
-			//annonceEnBase.setProprio((c.getProprio()!=null)?c.getProprio():annonceEnBase.getProprio());
+			annonceEnBase.setProprio((p!=null)?p:annonceEnBase.getProprio());
 			annonceRepository.save(annonceEnBase);
 			return annonceEnBase;
 		}
 		else {
+			c.setProprio(p);
 			annonceRepository.save(c);
 			return c;
 		}

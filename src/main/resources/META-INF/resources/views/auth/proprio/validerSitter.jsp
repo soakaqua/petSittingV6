@@ -60,52 +60,45 @@
 	<a href="accueil">Accueil</a> <br/><br/>
 	<a href="#deco">Me deconnecter </a> <br/><br/>
 </div> 
-	
+
 <div id="textePrincipal" class="col-8">
 
-<p> <h2> Propriétaire > Consulter mes annonces </h2> </p> 
+<p><h2> Propriétaire > Valider un sitter </h2></p> 
 
-<p> <h3> Consulter mes annonces </h3> </p> 
+<p><h3> Valider un sitter </h3></p> 
 
-
-	<a href="${ctx}/proprio/publierAnnonce?numC=${numC}" class="btn btn-success">Nouvelle annonce</a>
-	<br/><br/>	
-
-	Voici les annonces que vous avez publiées : <br/><br/>
-
+	Vous voulez valider un sitter pour cette annonce. Voici la liste des réponses à votre annonce :
+	
+	<br/><br/>
+	
 <c:choose>
 	
-	<c:when test="${annonces.isEmpty()}">
+	<c:when test="${reponses.isEmpty()}">
 		<div>
 			<br/>
-			<em>Vous n'avez aucune annonce en cours</em>
+			<em>Vous n'avez aucune réponse concernant cette annonce</em>
 		</div>
 	</c:when>
 
 	<c:otherwise>
-		<div>	
+		<form:form action="/petsitting/proprio/validerSitter" method="get"> 
+	
 			<table class="table">
 				<tr>
-					<th>Titre</th>
 					<th>Message</th>
-	
-					<th>Statut</th>
+					<th>Page du sitter</th>
 				</tr>
 				
-				<c:forEach items ="${annonces}" var="a">
+				<c:forEach items ="${reponses}" var="r">
 					<tr>
 						<!-- COLONNES -->
-						<td>${a.titre}</td>
-						<td>${a.message}</td>
-	
-						<td>${a.statut}</td>	
+						<td>${r.message}</td>
+						<td>page du sitter</td>	
 						
 						<!-- BOUTONS -->				
-						<td><a href="${ctx}/proprio/modifierAnnonce?numA=${a.numA}&numC=${numC}" class="btn btn-primary">Modifier</a></td>
-						<td><a href="${ctx}/proprio/delete?numA=${a.numA}&numC=${numC}" class="btn btn-danger">Supprimer</a></td>
-						<td><a href="${ctx}/proprio/afficherReponses?numA=${a.numA}&numC=${numC}" class="btn btn-secondary">Afficher les réponses</a></td>	
+						<td><a type="submit" class="btn btn-success">Valider</a></td>
+						<td><a href="${ctx}/proprio/consulterAnnonces" class="btn btn-warning">Annuler</a></td>	
 								
-						</td>								
 					</tr>
 					
 				</c:forEach>
@@ -114,8 +107,8 @@
 			
 	<!-- http://localhost:8080/petsitting/proprio/consulterAnnonces?numC=10 -->	
 	
-		</div>
 		
+		</form:form>
 		
 	</c:otherwise>	
 	
