@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import petSitting.frontBoot.model.Annonce;
+import petSitting.frontBoot.model.Compte;
 import petSitting.frontBoot.model.Proprio;
 import petSitting.frontBoot.repositories.AnnonceRepository;
 import petSitting.frontBoot.repositories.CompteRepository;
@@ -25,6 +26,9 @@ import petSitting.frontBoot.services.AnnonceService;
 @RequestMapping("/proprio")
 public class ProprioController {
 
+	//  http://localhost:8080/petsitting/proprio/consulterAnnonces?numC=10
+	//  http://localhost:8080/petsitting/proprio/publierAnnonce?numC=10
+	
 	@Autowired
 	CompteRepository compteRepository;
 	
@@ -35,65 +39,64 @@ public class ProprioController {
 	AnnonceService annonceService;
 	
 	@GetMapping("/consulterAnnonces")
-	public String reditectConsulterAnnonces(Proprio proprio, Model model) {	
-		Integer numC = proprio.getNumC();
-		model.addAttribute("proprio",proprio);
-		model.addAttribute("annonces", annonceRepository.selectAnnonceByProprio(proprio.getNumC()));
+	public String redirectConsulterAnnonces(@RequestParam(name="numC") Integer numC, Model model) {	
+		model.addAttribute("numC",numC);
+		model.addAttribute("annonces", annonceRepository.selectAnnonceByProprio(numC));
 		return "auth/proprio/consulterAnnonces";
 	}
 	
 	@GetMapping("/modifierAnnonce")
-	public String reditectModifierAnnonce(Proprio proprio, Model model) {
-		Integer numC = proprio.getNumC();
-		model.addAttribute("numC",numC);
-		return "auth/proprio/modifierAnnonce";
+	public String modifierAnnonce(@RequestParam(name="numC") Integer numC, @RequestParam(name="numA") Integer numA, Model model) {
+		Optional<Annonce> opt=annonceRepository.findById(numA);
+		Annonce a=null;
+		if(opt.isPresent()) {a=opt.get();} 
+		return goEdit(a,model);
 	}
 	
 	@GetMapping("/publierAnnonce")
-	public String reditectPublierAnnonce(Proprio proprio, Model model) {
-		Integer numC = proprio.getNumC();
-		model.addAttribute("numC",numC);
-		model.addAttribute("annonce",new Annonce());
-		return "auth/proprio/publierAnnonce";
+	public String publierAnnonce(@RequestParam(name="numC") Integer numC, Model model) {
+		return goEdit(new Annonce(),model);
+	}
+		
+	private String goEdit(Annonce a, Model model) {
+		model.addAttribute("annonce",a);
+//		if (a.getTitre()!=null) {
+//			return "auth/proprio/modifierAnnonce";
+//		}
+//		else {
+//			return "auth/proprio/publierAnnonce";
+//		}
+		return "auth/proprio/modifierAnnonce";
 	}
 
+	@GetMapping("/save")
+	private String save(@ModelAttribute ("annonce") @Valid Annonce annonce, Integer numC, BindingResult br, Model model, HttpSession session) {
+		System.out.println(session.getAttribute("numC"));
+		System.out.println(annonce.getProprio());
+		System.out.println(annonce.getProprio().getNumC());
+		if(br.hasErrors())
+			{return "auth/proprio/modifierAnnonce";}
+		else {
+			Optional<Compte> opt = compteRepository.findById(numC);
+			Compte p=new Proprio();
+				if(opt.isPresent()) {p=opt.get();
+//				annonce.getProprio().setNumC((Integer)session.getAttribute("numC"));
+				annonce.setStatut(0);
+				annonceService.save(annonce, (Proprio) p);
+				} 
+			
+			return "redirect:/auth/proprio/consulterAnnonces?numC="+session.getAttribute("numC"); 
+		}
+	}
+	
 	@GetMapping("/delete")
-	public ModelAndView delete(@RequestParam(name="numA") Integer numA, Integer numC) {
+	public ModelAndView delete(@RequestParam(name="numA") Integer numA, @RequestParam(name="numC") Integer numC) {
 		annonceRepository.deleteByNumA(numA);
 		return new ModelAndView("redirect:/proprio/consulterAnnonces", "numC", numC);	
-	}
-	
-	@GetMapping("/saveModif")
-	public String saveModif(@ModelAttribute ("annonce") @Valid Annonce annonce, Integer numA, BindingResult br, Model model, HttpSession session) { 
-		if(br.hasErrors())
-			{return "proprio/publierAnnonce";}
-		else {
-			Optional<Annonce> opt=annonceRepository.findById(numA);
-			Annonce a=null;
-			if(opt.isPresent()) {
-				a=opt.get();
-				a.getProprio().setNumC((Integer)session.getAttribute("numC"));
-				a.setStatut(0);
-				annonceService.save(a);
-				}
-			return "redirect:/proprio/consulterAnnonces?numC="+session.getAttribute("numC"); 
-			}
-	}	//   http://localhost:8080/petSitting_FrontV4/proprio/saveModif?numA=145&numC=101
-	
-	@GetMapping("/savePubli")
-	public String savePubli(@ModelAttribute ("annonce") @Valid Annonce annonce, BindingResult br, Model model, HttpSession session) { 
-		if(br.hasErrors())
-			{return "proprio/modifierAnnonce";}
-		else {
-			annonce.getProprio().setNumC((Integer)session.getAttribute("numC"));
-			annonce.setStatut(0);
-			annonceService.save(annonce);
-			return "redirect:/proprio/consulterAnnonces?numC="+session.getAttribute("numC"); 
-			}
-	}
-	//      http://localhost:8080/petSitting_FrontV4/proprio/consulterAnnonces?numC=101
+	}	
 	
 	
+
 	
 
 

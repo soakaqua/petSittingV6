@@ -16,6 +16,9 @@ public class AnnonceService {
 	@Autowired
 	private AnnonceRepository annonceRepository;
 	
+	@Autowired
+	private CompteRepository compteRepository;
+	
 //	@Autowired
 //	private CompteRepository compteRepository;
 //	

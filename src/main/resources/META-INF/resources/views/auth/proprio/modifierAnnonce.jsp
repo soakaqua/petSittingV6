@@ -67,14 +67,14 @@
 
 <p><h3> Modifier une annonce </h3></p> 
 
-	Vous voulez modificer cette annonce. Veuillez remplir les champs suivants :
+	Vous voulez modifier cette annonce. Veuillez remplir les champs suivants :
 	
 	<br/><br/>
 	
 	<!-- FORMULAIRE -->	
-	<form:form action="saveModif?numC=${sessionScope.numC}" method="get" modelAttribute="annonce">
+	<form:form action="/petsitting/proprio/save?numC=${sessionScope.numC}" method="get" modelAttribute ="annonce" > 
 	
-			<form:hidden path="numC"/>
+			<form:hidden path="proprio.numC"/>
 			<form:hidden path="version"/>
 			<!-- CHAMPS DE CREATTION D'ANNONCE -->
 			<div class="form-group">
@@ -96,7 +96,7 @@
 	
 				<!-- BOUTONS DE VALIDATION OU ANNULATION -->
 			<div class="form-group">
-				<button type="submit" class="btn btn-success">Modifier</button>
+				<button type="submit" class="btn btn-success">Valider</button>
 				<a href="${ctx}/proprio/consulterAnnonces?numC=${session.numC}" class="btn btn-warning">Annuler</a>
 			</div>
 			

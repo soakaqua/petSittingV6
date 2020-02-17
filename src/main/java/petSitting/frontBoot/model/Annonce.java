@@ -2,6 +2,7 @@ package petSitting.frontBoot.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -62,6 +63,7 @@ public class Annonce {
 	private Set<Reponse> reponse;
 	
 	@ManyToOne
+	//(cascade = {CascadeType.ALL})
 	private Proprio proprio;
 	
 	@Version
