@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -15,13 +17,15 @@ import javax.persistence.Version;
 @Table(name ="compte")
 @SequenceGenerator(name = "seqCompte", sequenceName = "seq_compte",initialValue = 100, allocationSize = 1)
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) // 1 table ! ajouter discriminatorColumn et discriminatorValue dans classes filles
+@NamedQueries
+({@NamedQuery(name="Compte.selectCompteByMail",query="select distinct c from Compte c where c.mail=?1")})
 public class Compte {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqCompte")
 	private Integer numC;
 	@Column(name ="cp", length = 15)
 	private Integer cp;
-	@Column(name ="mdp", length = 30)
+	@Column(name ="mdp", length = 250)
 	private String mdpC;
 	@Column(name ="mail", length = 50)
 	private String mail;

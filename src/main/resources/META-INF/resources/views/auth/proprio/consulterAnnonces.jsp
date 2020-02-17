@@ -54,9 +54,9 @@
 	<!--
 	<a href="proprio/modifierAnnonce">Modifier une annoncee</a> <br/><br/>
 	-->
-	<a href="proprio/publierAnnonce">Publier une annonce</a> <br/><br/>
-	<a href="proprio/validerSitter">Valider un sitter</a> <br/><br/>
-	<a href="proprio/noterS">Noter un sitter</a> <br/><br/>	
+	<a href="publierAnnonce">Publier une annonce</a> <br/><br/>
+	<a href="validerSitter">Valider un sitter</a> <br/><br/>
+	<a href="noterS">Noter un sitter</a> <br/><br/>	
 	<a href="accueil">Accueil</a> <br/><br/>
 	<a href="#deco">Me deconnecter </a> <br/><br/>
 </div> 
@@ -97,13 +97,14 @@
 						<td>${a.statut}</td>	
 						
 						<!-- BOUTONS -->				
-						<td><a href="${ctx}/proprio/saveModif?numA=${a.numA}&numC=${numC}" class="btn btn-primary">Modifier</a></td>
+						<td><a href="${ctx}/proprio/modifierAnnonce?numA=${a.numA}&numC=${numC}" class="btn btn-primary">Modifier</a></td>
 						<td><a href="${ctx}/proprio/delete?numA=${a.numA}&numC=${numC}" class="btn btn-danger">Supprimer</a></td>									
 					</tr>
 					
 				</c:forEach>
 			</table>
-	<!-- http://localhost:8080/petSitting_FrontV4/proprio/consulterAnnonces?numC=101 -->	
+	<!-- http://localhost:8080/petsitting/proprio/consulterAnnonces?numC=10 -->	
+	
 		</div>
 	</c:otherwise>	
 	

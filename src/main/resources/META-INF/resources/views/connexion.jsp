@@ -61,22 +61,35 @@
 
 		<div id="textePrincipal" class="col-8">
 
-			<p>
-			<h2>Connexion</h2>
-			</p>
+			<div>
+			<c:if test="${param.error!=null}">
+				<div class="alert alert-danger">Erreur d'authentification</div>
+			</c:if>
+			<!-- pour formulaire login : toujours method post et action "" -->
+			<form method="post" action="">
+				<!-- Pour éviter certaines attaques -->
+				<input type="hidden" name="${_csrf.parameterName}"
+					value="${_csrf.token}" />
+				<div>
+					<!-- input : doit s'appeler username (pour spring) -->
+					<label for="username">Adresse mail : </label> <input id="username"
+						name="username" class="form-control">
 
-			<form name="connexion" action="connexion" method="post">
-
-				<em><p>
-						<label for="mail">Entrez votre mail</label>
-					</p></em> <input placeholder="ex: mail@test.com" required id="mail"
-					name="mail" type="email" /> <br /> <br /> <em><p>
-						<label for="mdp">Entrez votre mot de passe</label>
-					</p></em> <input placeholder="**********" required id="mdp" name="mdp"
-					type="password" /> <br /> <br /> <input value="Me connecter"
-					type="submit" />
-
+				</div>
+				<div>
+					<!-- input : doit s'appeler password (pour spring) -->
+					<label for="password">Mot de passe : </label><input type="password"
+						id="password" name="password" class="form-control">
+				</div>
+				<div>
+					<button type="submit" class="btn btn-info">envoyer</button>
+<%-- 					<a href="${ctx}" class="btn btn-link">Retour accueil</a> --%>
+				</div>
+				<div>
+				<a href="${ctx}/inscription" class="btn btn-link">Inscription</a>
+				</div>
 			</form>
+		</div>
 
 		</div>
 
