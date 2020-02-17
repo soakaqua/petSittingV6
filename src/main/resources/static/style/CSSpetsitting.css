@@ -1,0 +1,20 @@
+
+
+
+h1{color:steelblue;text-align:center;}
+h2{color:cornflowerblue;}
+h3{color:dodgerblue;}
+
+	
+body {background-color:gainsboro;margin:10px;-moz-box-sizing: border-box; box-sizing: border-box;}
+
+#entete {margin-left:0px;background-color:white; height:150px}
+#logoEntete {padding-top:10px;display:block;text-align:center}
+
+
+#footer {z-index:3;padding-bottom:10px;padding-top:10px;color:white;background-color:steelblue;text-align:center;height:40px;position:fixed;bottom:0;left: 0; right: 0}
+
+/* Corps */
+#banderole {background-color:#244968;margin-left:15px}
+#textePrincipal {background-color:gainsboro;margin-left:15px}
+#pagefilling{z-index:3;background-color:white;min-height:150px;}

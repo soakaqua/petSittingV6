@@ -2,8 +2,6 @@ package petSitting.frontBoot.controller;
 
 import java.util.Optional;
 
-import javax.websocket.Session;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,7 +55,7 @@ public class SitterController2 {
 		ReponsePK pk = new ReponsePK((Sitter) opt1.get(), opt2.get());
 		reponseRepository.deleteById(pk);
 		model.addAttribute("numC", pk.getSitter().getNumC());
-		return "redirect:/sitter/afficherAnnoncesBySitter";
+		return "redirect:/sitter/afficherAnnoncesBySitter?numC="+model.getAttribute("numC");
 	}
 	
 	@GetMapping("/sitter/editReponse")
@@ -79,8 +77,7 @@ public class SitterController2 {
 		reponseService.save(reponse);
 		model.addAttribute("numC", reponse.getKey().getSitter().getNumC());
 		return "redirect:/sitter/afficherAnnoncesBySitter?numC="+model.getAttribute("numC");
-//		return "forward:/auth/sitter/afficherAnnoncesBySitter";
-//		return "/auth/sitter/afficherAnnoncesBySitter";
+
 		
 	}
 	
