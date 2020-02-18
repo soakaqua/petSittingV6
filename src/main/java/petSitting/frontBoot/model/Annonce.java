@@ -27,7 +27,8 @@ import javax.persistence.NamedQuery;
 ({@NamedQuery(name="Annonce.selectAnnonceByProprio",query="select distinct a from Annonce a left join fetch a.proprio prop where prop.numC=?1"),
 @NamedQuery(name="Annonce.afficherAnnoncesTerminees",query="select distinct a from Annonce a left join fetch a.proprio prop where a.statut=1 and prop.numC=?1"),
 @NamedQuery(name="Annonce.selectAllWithStatut0",query="select a from Annonce a where a.statut=0"),
-@NamedQuery(name="Annonce.selectAnnonceBySitter",query="select distinct a from Annonce a left join fetch a.reponse rep where rep.key.sitter.numC=?1")
+@NamedQuery(name="Annonce.selectAnnonceBySitter",query="select distinct a from Annonce a left join fetch a.reponse rep where rep.key.sitter.numC=?1"),
+@NamedQuery(name="Annonce.selectAnnonceBySitterTerminee",query="select distinct a from Annonce a left join fetch a.reponse rep where rep.key.sitter.numC=?1 and a.statut=1")
 //,@NamedQuery(name="Annonce.selectNoteSitter",query="select distinct noteS from Sitter s left join fetch s.annonce ann where ann.key.numC=?1"),
 }) 
 
@@ -55,11 +56,11 @@ public class Annonce {
 	private Integer statut;
 	
 	@Column(name="key")
-	@OneToMany(mappedBy="key.annonce") //fausse erreur. Coonexion virtuelle, ne modifie pas la table
+	@OneToMany(mappedBy="key.annonce")
 	private Set<Annonce_Service> annonce_service;
 	
 	@Column(name="key")
-	@OneToMany(mappedBy="key.annonce") //fausse erreur. Coonexion virtuelle, ne modifie pas la table
+	@OneToMany(mappedBy="key.annonce")
 	private Set<Reponse> reponse;
 	
 	@ManyToOne
