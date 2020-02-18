@@ -72,7 +72,7 @@
 	<br/><br/>
 	
 	<!-- FORMULAIRE -->	
-	<form:form action="/petsitting/proprio/save" method="get" modelAttribute="annonce" > 
+	<form:form action="/petsitting/proprio/save" method="post" modelAttribute="annonce" > 
 	
 			<form:hidden path="proprio.numC"/>
 			<form:hidden path="numA"/>
@@ -101,38 +101,38 @@
 			    Selectionnez le(s) service(s) : <br/><br/>
 			    
 			    <div>
-			    <input type="checkbox" name="services" id="1" value="1">
+			    <input class="checkboxServices" type="checkbox" name="checkboxServices" id="1" value="1">
 			    <label for="1"> Garde chez le propriétaire</label>
 			    </div>
 			      
 			    <div>
-			    <input type="checkbox" name="services" id="2" value="2">
+			    <input class="checkboxServices" type="checkbox" name="checkboxServices" id="2" value="2">
 			    <label for="2"> Garde chez le sitter</label>
 			    </div> 
 			    
 			    <div>
-			    <input type="checkbox" name="services" id="3" value="3">
+			    <input class="checkboxServices" type="checkbox" name="checkboxServices" id="3" value="3">
 			    <label for="3"> Soins médicaux</label>
 			    </div>
 			    
 			    <div>
-			    <input type="checkbox" name="services" id="4" value="4">
+			    <input class="checkboxServices" type="checkbox" name="checkboxServices" id="4" value="4">
 			    <label for="4"> Ballade</label>  
 			    </div>
 			    
 			    <div>
-			    <input type="checkbox" name="services" id="5" value="5">
+			    <input class="checkboxServices" type="checkbox" name="checkboxServices" id="5" value="5">
 			    <label for="5"> Services de Massage</label>
 			    </div>
 			     
 			    <div>
-			    <input type="checkbox" name="services" id="6" value="6">
+			    <input class="checkboxServices" type="checkbox" name="checkboxServices" id="6" value="6">
 			    <label for="6"> Services de Toilettage</label>
 			    </div>
 			    
 			    <div>
-			    <input type="checkbox" name="services" id="7" value="7">
-			    <label for="7">Services Alimentaire</label>  
+			    <input class="checkboxServices" type="checkbox" name="checkboxServices" id="7" value="7">
+			    <label for="7"> Services Alimentaire</label>  
 			    </div>
 		        
 		    </fieldset>  		
