@@ -1,6 +1,7 @@
 package petSitting.frontBoot.controller;
 
 import java.util.Optional;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import petSitting.frontBoot.model.Annonce;
+import petSitting.frontBoot.model.Annonce_Service;
 import petSitting.frontBoot.model.Compte;
 import petSitting.frontBoot.model.Proprio;
 import petSitting.frontBoot.repositories.AnnonceRepository;
@@ -78,7 +80,7 @@ public class ProprioController {
 	private String goEdit(Annonce a, Model model, HttpSession session) {
 		Integer numC = (Integer) session.getAttribute("numC");
 		model.addAttribute("annonce", a);
-		// model.addAttribute("services", serviceRepository.findAll());
+		//model.addAttribute("services", serviceRepository.findAll());
 		
 //		if (a.getTitre()!=null) {
 //			return "auth/proprio/modifierAnnonce";
@@ -103,6 +105,12 @@ public class ProprioController {
 			if (opt.isPresent()) {
 				p = opt.get();
 				annonce.setStatut(0);
+				Set<Annonce_Service> ListeServices = annonce.getAnnonce_service();
+//				for(int i;;i++) {
+//					Annonce_Service -> i;
+//					ListeServices.add(i);
+//				}
+				
 				annonceService.save(annonce, (Proprio) p);
 			}
 			return "redirect:/proprio/consulterAnnonces";

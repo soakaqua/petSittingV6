@@ -42,6 +42,7 @@ public class AnnonceService {
 			annonceEnBase.setNoteS((c.getNoteS()!=null)?c.getNoteS():annonceEnBase.getNoteS());
 			annonceEnBase.setStatut((c.getStatut()!=null)?c.getStatut():annonceEnBase.getStatut());
 			annonceEnBase.setProprio((p!=null)?p:annonceEnBase.getProprio());
+			annonceEnBase.setAnnonce_service((c.getAnnonce_service()!=null)?c.getAnnonce_service():annonceEnBase.getAnnonce_service());
 			annonceRepository.save(annonceEnBase);
 			return annonceEnBase;
 		}
