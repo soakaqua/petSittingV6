@@ -1,12 +1,16 @@
 package petSitting.frontBoot.controller;
 
+import java.util.List;
 import java.util.Optional;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import petSitting.frontBoot.model.Annonce;
@@ -38,12 +42,62 @@ public class SitterController2 {
 	@Autowired
 	ReponseService reponseService;
 	
+	@GetMapping("sitter/noterAnnonce")
+	public String afficherAnnoncesTermines (Model model, HttpSession session) {
+		
+		List<Annonce> annonces = annonceRepository.afficherAnnoncesTerminees((Integer) session.getAttribute("numC"));
+		model.addAttribute("list", annonces);
+		model.addAttribute("annonce", new Annonce());
+		
+		return ("/auth/sitter/noterP");
+		
+	}
+	@PostMapping("sitter/noterAnnonce")
+	public String noterAnnonce (@RequestParam(name="numA") Integer numA,Double note,@ModelAttribute("annonce")Annonce annonce,Model model) {
+
+		
+		Annonce a = new Annonce();
+		Optional<Annonce> annonceTrouv = annonceRepository.findById(numA);
+		 if(annonceTrouv.isPresent()) {
+			    a= annonceTrouv.get();
+		   }
+		a.setNoteP(annonce.getNoteP());
+		annonceRepository.save(a);
+		
+		return ("redirect:/auth/menu");
+	}
+	
+	//fonctionnel
+
+	
+	@GetMapping("/sitter/afficherAnnonces")
+	public String afficherAnnonces(Model model) {
+		model.addAttribute("annonces", annonceRepository.selectAllWithStatut0());
+		return "/auth/sitter/afficherAnnonces";
+	}
+	
+	
+	@GetMapping("/sitter/postuler")
+	public String createReponse(@RequestParam(name="numA") Integer numA, Model model, HttpSession session) {
+		
+		Optional<Compte> opt1 = compteRepository.findById((Integer) session.getAttribute("numC"));
+		Optional<Annonce> opt2 = annonceRepository.findById(numA);	
+		ReponsePK pk = new ReponsePK((Sitter) opt1.get(), opt2.get());
+		
+		Reponse reponse = new Reponse();
+		reponse.setKey(pk);
+		
+		model.addAttribute("reponse", reponse);
+		model.addAttribute("annonce", opt2.get());
+		return "/auth/sitter/editReponse";
+	}
+	
+	
 
 	@GetMapping("/sitter/afficherAnnoncesBySitter")
-	public String menuProprio(@RequestParam(name="numC") Integer numC, Model model) {
-		model.addAttribute("annonces", annonceRepository.selectAnnonceBySitter(numC));
-
-		model.addAttribute("reponse", sitterService.afficherReponseBySitterAndAnnonce(numC));
+	public String menuProprio(Model model, HttpSession session) {
+		model.addAttribute("annonces", annonceRepository.selectAnnonceBySitter((Integer) session.getAttribute("numC")));
+		model.addAttribute("reponse", sitterService.afficherReponseBySitterAndAnnonce((Integer) session.getAttribute("numC")));
 		return "/auth/sitter/afficherAnnoncesBySitter" ;	
 		}
 
@@ -55,7 +109,7 @@ public class SitterController2 {
 		ReponsePK pk = new ReponsePK((Sitter) opt1.get(), opt2.get());
 		reponseRepository.deleteById(pk);
 		model.addAttribute("numC", pk.getSitter().getNumC());
-		return "redirect:/sitter/afficherAnnoncesBySitter?numC="+model.getAttribute("numC");
+		return "redirect:/sitter/afficherAnnoncesBySitter";
 	}
 	
 	@GetMapping("/sitter/editReponse")
@@ -76,7 +130,7 @@ public class SitterController2 {
 			
 		reponseService.save(reponse);
 		model.addAttribute("numC", reponse.getKey().getSitter().getNumC());
-		return "redirect:/sitter/afficherAnnoncesBySitter?numC="+model.getAttribute("numC");
+		return "redirect:/sitter/afficherAnnoncesBySitter";
 
 		
 	}

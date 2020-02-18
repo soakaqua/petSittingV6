@@ -114,11 +114,11 @@
 					<div id="banderole" class="col-2">
 						<br />
 						<h4 style="font-size: 23; color: white">Menu</h4>
-						<li><a href="${ctx}/sitter/afficherAnnoncesBySitter?numC=${sessionScope.numC}">Consulter les annonces
+						<li><a href="${ctx}/sitter/afficherAnnoncesBySitter">Consulter les annonces
 								auxquelles j'ai postulé</a></li> <br />
-						<li><a href="sitter?id=2">Consulter toutes les annonces</a></li> <br />
+						<li><a href="${ctx}/sitter/afficherAnnonces">Consulter toutes les annonces</a></li> <br />
 						<li><a href="${ctx}/sitter/postulerAnnonce?numC=${sessionScope.numC}">Postuler à une annonce</a></li> <br />
-						<li><a href="sitter?id=4">Noter un propriétaire sur un
+						<li><a href="${ctx}/sitter/noterAnnonce">Noter un propriétaire sur un
 								petsitting réalisé</a></li> <br />
 						<li><a href="accueil">Me déconnecter</a></li> <br /> <br />
 
@@ -132,14 +132,14 @@
 
 						Bon retour parmi nous. Que souhaitez-vous faire ? <br /> <br />
 						<ul>
-							<li><a href="${ctx}/sitter/afficherAnnoncesBySitter?numC=${sessionScope.numC}">Consulter les annonces
+							<li><a href="${ctx}/sitter/afficherAnnoncesBySitter">Consulter les annonces
 									auxquelles j'ai postulé</a></li>
 							<br />
-							<li><a href="sitter?id=2">Consulter toutes les annonces</a></li>
+							<li><a href="${ctx}/sitter/afficherAnnonces">Consulter toutes les annonces</a></li>
 							<br />
 							<li><a href="${ctx}/sitter/postulerAnnonce?numC=${sessionScope.numC}">Postuler à une annonce</a></li>
 							<br />
-							<li><a href="sitter?id=4">Noter un propriétaire sur un
+							<li><a href="${ctx}/sitter/noterAnnonce">Noter un propriétaire sur un
 									petsitting réalisé</a></li>
 							<br />
 							<li><a href="accueil">Me déconnecter</a></li>
