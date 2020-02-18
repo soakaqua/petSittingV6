@@ -86,12 +86,32 @@
 
 	<c:otherwise>
 		<div>	
-			<table class="table">
+			<table class="table" style="text-align: center;">
 				<tr>
 					<th>Titre</th>
 					<th>Message</th>
-	
 					<th>Statut</th>
+					<th>Services</th>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>	
+				</tr>
+				
+				<tr>
+					<th></th>
+					<th></th>
+					<th></th>
+						<td><em>Garde propriétaire</em></td>
+						<td><em>Garde sitter</em></td>
+						<td><em>Soins médicaux</em></td>
+						<td><em>Ballade</em></td>
+						<td><em>Massage</em></td>
+						<td><em>Toilettage</em></td>
+						<td><em>Alimentation</em></td>	
+						
 				</tr>
 				
 				<c:forEach items ="${annonces}" var="a">
@@ -99,8 +119,15 @@
 						<!-- COLONNES -->
 						<td>${a.titre}</td>
 						<td>${a.message}</td>
+						<td>${a.statut}</td>
 						
-						<td>${a.statut}</td>	
+						<td><c:if test="${a != null}">	X </c:if></td>
+						<td><c:if test="${a.annonce_service != null}">	X </c:if></td>
+						<td>X</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
 						
 						<!-- BOUTONS -->				
 						<td>
