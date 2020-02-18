@@ -74,7 +74,7 @@
 						<a href="${ctx}/proprio/publierAnnonce?numC=${sessionScope.numC}">Publier une annonce</a> <br /> <br /> <a
 							href="proprio?id=4">Valider un sitter</a> <br /> <br /> <a
 							href="proprio?id=5">Noter un sitter</a> <br /> <br /> <a
-							href="accueil">Me déconnecter</a> <br />
+							href="${ctx}/deconnexion">Me déconnecter</a> <br />
 
 
 					</div>
@@ -99,7 +99,7 @@
 							<li><a href="proprio?id=5">Noter un pet-sitter sur un
 									petsitting réalisé</a></li>
 							<br />
-							<li><a href="accueil">Me déconnecter</a></li>
+							<li><a href="${ctx}/deconnexion">Me déconnecter</a></li>
 							<br />
 						</ul>
 					</div>
@@ -118,9 +118,9 @@
 								auxquelles j'ai postulé</a></li> <br />
 						<li><a href="${ctx}/sitter/afficherAnnonces">Consulter toutes les annonces</a></li> <br />
 						<li><a href="${ctx}/sitter/postulerAnnonce?numC=${sessionScope.numC}">Postuler à une annonce</a></li> <br />
-						<li><a href="${ctx}/sitter/noterAnnonce">Noter un propriétaire sur un
-								petsitting réalisé</a></li> <br />
-						<li><a href="accueil">Me déconnecter</a></li> <br /> <br />
+						<li><a href="${ctx}/sitter/historiqueAnnonces">Afficher l'historique de vos petSitting</a></li>
+
+						<li><a href="${ctx}/deconnexion">Me déconnecter</a></li> <br /> <br />
 
 					</div>
 
@@ -139,10 +139,9 @@
 							<br />
 							<li><a href="${ctx}/sitter/postulerAnnonce?numC=${sessionScope.numC}">Postuler à une annonce</a></li>
 							<br />
-							<li><a href="${ctx}/sitter/noterAnnonce">Noter un propriétaire sur un
-									petsitting réalisé</a></li>
+							<li><a href="${ctx}/sitter/historiqueAnnonces">Afficher l'historique de vos petSitting</a></li>
 							<br />
-							<li><a href="accueil">Me déconnecter</a></li>
+							<li><a href="${ctx}/deconnexion">Me déconnecter</a></li>
 							<br />
 							<br />
 						</ul>

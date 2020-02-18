@@ -52,11 +52,9 @@
 		<div id="banderole" class="col-2">
 			<br />
 			<h4 style="font-size: 23; color: white">Menu</h4>
-			<br /> <a href="connexion">Connexion</a> <br /> <br /> <a
-				href="connexion?id=2" >Inscription</a> <br /> <br /> <a
-				href="Main page.html">Accueil</a> <br /> <br /> <a
-				href="Proprio main.html"> Accès cheat Proprio</a> <br /> <br /> <a
-				href="Sitter main.html"> Accès cheat Sitter</a> <br /> <br />
+			<br /> <a href="${ctx}/connexion">Connexion</a> <br /> <br /> <a
+				href="${ctx}/inscription" >Inscription</a> <br /> <br /> <a
+				href="${ctx}/accueil">Accueil</a> <br /> <br /> 
 		</div>
 
 		<div id="textePrincipal" class="col-8">
@@ -71,7 +69,8 @@
 			pour le bien-être de vos animaux. <br /> Nous offrons une
 			optmisation du temps de trajet via la selection des annonces par code
 			postal. <br /> (carte de la france ?) <br /> <br /> <a
-				href="connexion">Connexion</a> <br /> <br /> <a href="toto">Inscription</a>
+				href="${ctx}/connexion">Connexion</a> <br /> 
+				<br /> <a href="${ctx}/inscription">Inscription</a>
 			<br /> <br /> <br /> <br />
 
 		</div>
