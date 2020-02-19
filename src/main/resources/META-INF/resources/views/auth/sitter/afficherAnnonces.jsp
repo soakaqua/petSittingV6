@@ -91,7 +91,7 @@
 						<td>${a.message}</td>
 						
 						<td>
-							<c:if test="${moyenneP[cpt.index] != 'NaN'}">
+							<c:if test="${moyenneP[cpt.index] != 'null'}">
 								${moyenneP[cpt.index]}
 							</c:if>
 						</td>

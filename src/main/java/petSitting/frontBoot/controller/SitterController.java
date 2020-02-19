@@ -90,7 +90,12 @@ public class SitterController {
 		DecimalFormat df = new DecimalFormat("#.#");
 		df.setRoundingMode(RoundingMode.CEILING);
 		for(int i =0 ; i< lstA.size(); i++) {
-			lstM.add(df.format(annonceService.moyenneProprio(lstA.get(i).getProprio().getNumC()))) ;
+			if(Double.isNaN(annonceService.moyenneProprio(lstA.get(i).getProprio().getNumC())) != true) {
+				lstM.add(df.format(annonceService.moyenneProprio(lstA.get(i).getProprio().getNumC()))) ;
+			}
+			else {
+				lstM.add("null");
+			}
 		}
 		model.addAttribute("moyenneP", lstM);
 		return "/auth/sitter/afficherAnnonces";
