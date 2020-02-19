@@ -107,6 +107,14 @@ public class Compte {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
 	@Override
 	public String toString() {
 		return "Compte [numC=" + numC + ", cp=" + cp + ", mdpC=" + mdpC + ", mail=" + mail + ", statut=" + statut + "]";

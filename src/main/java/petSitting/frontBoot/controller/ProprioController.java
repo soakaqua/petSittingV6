@@ -1,5 +1,8 @@
 package petSitting.frontBoot.controller;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -12,15 +15,19 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import petSitting.frontBoot.model.Annonce;
 import petSitting.frontBoot.model.Annonce_Service;
+import petSitting.frontBoot.model.Annonce_ServicePK;
 import petSitting.frontBoot.model.Compte;
 import petSitting.frontBoot.model.Proprio;
+import petSitting.frontBoot.model.Service;
 import petSitting.frontBoot.repositories.AnnonceRepository;
+import petSitting.frontBoot.repositories.Annonce_ServiceRepository;
 import petSitting.frontBoot.repositories.CompteRepository;
 import petSitting.frontBoot.repositories.ReponseRepository;
 import petSitting.frontBoot.repositories.ServiceRepository;
@@ -44,6 +51,9 @@ public class ProprioController {
 	ServiceRepository serviceRepository;
 	
 	@Autowired
+	Annonce_ServiceRepository annonce_serviceRepository;
+	
+	@Autowired
 	ReponseRepository reponseRepository;
 
 	@Autowired
@@ -60,6 +70,19 @@ public class ProprioController {
 		return "auth/proprio/consulterAnnonces";
 	}
 
+	@PostMapping("noterAnnonce")
+	public String noterAnnonce (@RequestParam(name="numA") Integer numA,@RequestParam(name="noteS") Integer noteS , Model model) {
+		Annonce a = new Annonce();
+		Optional<Annonce> annonceTrouv = annonceRepository.findById(numA);
+		if(annonceTrouv.isPresent()) {
+			a= annonceTrouv.get();
+		}
+		a.setNoteS((double) noteS);
+		annonceRepository.save(a);
+		
+		return ("redirect:/proprio/consulterAnnonces");
+	}
+	
 	@GetMapping("/modifierAnnonce")
 	public String modifierAnnonce(@RequestParam(name = "numA") Integer numA, Model model, HttpSession session) {
 		Integer numC = (Integer) session.getAttribute("numC");
@@ -92,11 +115,15 @@ public class ProprioController {
 		
 	}
 
-	@GetMapping("/save")
-	private String save(@ModelAttribute("annonce") @Valid Annonce annonce, BindingResult br, Model model, HttpSession session) {
+	@PostMapping("/save")
+	private String save(@ModelAttribute("annonce") @Valid Annonce annonce, @RequestParam Integer[] checkboxServices,  BindingResult br, Model model, HttpSession session) {
 		Integer numC = (Integer) session.getAttribute("numC");
-		System.out.println(session.getAttribute("numC"));
-		System.out.println(annonce.getProprio());
+		Integer numA = annonce.getNumA();
+		annonce_serviceRepository.supprAnnonceServiceByNumA(numA);
+//		System.out.println(session.getAttribute("numC"));
+//		System.out.println(annonce.getProprio());
+//		System.out.println("Arrays.deepToString(checkboxServices) : "+Arrays.deepToString(checkboxServices));
+//		System.out.println("checkboxServices[0] : "+checkboxServices[0]);
 		if (br.hasErrors()) {
 			return "auth/proprio/modifierAnnonce";
 		} else {
@@ -104,17 +131,46 @@ public class ProprioController {
 			Compte p = new Proprio();
 			if (opt.isPresent()) {
 				p = opt.get();
-				annonce.setStatut(0);
-				Set<Annonce_Service> ListeServices = annonce.getAnnonce_service();
-//				for(int i;;i++) {
-//					Annonce_Service -> i;
-//					ListeServices.add(i);
-//				}
+				annonce.setStatut(0);						
+
+				Annonce annonceFinale = annonceService.save(annonce, (Proprio) p);
+			
+//--------------------------------------------------------------------------------------------------------------------------------		
 				
-				annonceService.save(annonce, (Proprio) p);
+				//Créer une LISTE ORDONNEE qui récupère les services sélectionnés
+				List<Service> listServices = new ArrayList();
+//				System.out.println("serviceRepository.findById(checkboxServices[0]) : "+serviceRepository.findById(checkboxServices[0]));
+//				System.out.println("serviceRepository.findById(checkboxServices[0]) : "+serviceRepository.findById(checkboxServices[0]).get());
+//				System.out.println("serviceRepository.findById(checkboxServices[0]) : "+serviceRepository.findById(checkboxServices[0]).get().getNomSer());
+				for(int i=0; i<checkboxServices.length; i++) {
+					Optional<Service> opt2 = serviceRepository.findById(checkboxServices[i]);
+					Service serviceRecup = null;
+					if (opt2.isPresent()) {
+						serviceRecup = opt2.get();
+						listServices.add(serviceRecup);
+					}					
+				}
+				//System.out.println("liste services : "+listServices);
+
+				//Convertir la liste de services en Set Annonce_Service				
+				Set<Annonce_Service> setAnnonceService = new HashSet<Annonce_Service>();
+				Annonce_Service annServ = new Annonce_Service();
+				Annonce_ServicePK annServPK = new Annonce_ServicePK();
+				for(int j=0; j<listServices.size();j++) {
+				System.out.println("annonce : "+annonceFinale.getNumA());
+					annServPK.setAnnonce(annonceFinale);
+					annServPK.setService(listServices.get(j)); 
+					annServ.setKey(annServPK);
+					System.out.println("annServ i: "+annServ);
+					setAnnonceService.add(annServ);
+					annonce_serviceRepository.save(annServ);
+				}
+				//Enregistrer le nouveau Set Annonce_Service
+				annonceFinale.setAnnonce_service(setAnnonceService);
+				annonceService.save(annonceFinale, (Proprio) p);
 			}
 			return "redirect:/proprio/consulterAnnonces";
-		}
+		}	
 	}
 
 	@GetMapping("/afficherReponses")
@@ -135,6 +191,7 @@ public class ProprioController {
 	@GetMapping("/delete")
 	public ModelAndView delete(@RequestParam(name = "numA") Integer numA, HttpSession session) {
 		Integer numC = (Integer) session.getAttribute("numC");
+		annonce_serviceRepository.supprAnnonceServiceByNumA(numA);
 		annonceRepository.deleteByNumA(numA);
 		return new ModelAndView("redirect:/proprio/consulterAnnonces", "numC", numC);
 	}

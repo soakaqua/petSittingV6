@@ -65,11 +65,18 @@
 				<h2>Inscription</h2>
 			</p>
 		
-		<form:form action="${ctx}inscription" methode="post" modelAttribute="compte">
+		<form:form action="${ctx}/inscription" methode="post" modelAttribute="compte">
 			<form:hidden path="numC" />
 			<form:hidden path="statut" />
 			<form:hidden path="version" />
-		
+			
+			
+			<select name = "type" cssClass="form-control" required="required">
+				<option value="" >Veuillez selectionner le type de compte correspondant à vos besoins !</option>
+				<option value="sitter" >Vous désirez garder des animaux : Sitter</option>
+				<option value="proprio" >Vous voulez faire garder vos animaux : Propriétaire</option>
+			</select>
+			
 
 			<div class="form-group">
 				<form:label path="prenom">Prenom :</form:label>
@@ -99,6 +106,7 @@
 				<form:label path="cp">Code postal :</form:label>
 				<form:input path="cp" cssClass="form-control"></form:input>
 			</div>			
+			<button type="submit" class="btn btn-success">envoyer</button>			
 		</form:form>
 	
 

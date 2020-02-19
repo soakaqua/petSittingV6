@@ -63,23 +63,23 @@
 
 <div id="textePrincipal" class="col-8">
 
-<p><h2> Propriétaire > Modifier une annonce </h2></p> 
+<p><h2> Propriétaire > Gérer une annonce </h2></p> 
 
-<p><h3> Modifier une annonce </h3></p> 
+<p><h3> Gérer une annonce </h3></p> 
 
-	Vous voulez modifier cette annonce. Veuillez remplir les champs suivants :
+	Veuillez remplir les champs suivants :
 	
 	<br/><br/>
 	
 	<!-- FORMULAIRE -->	
-	<form:form action="/petsitting/proprio/save" method="get" modelAttribute="annonce" > 
+	<form:form action="/petsitting/proprio/save" method="post" modelAttribute="annonce" > 
 	
 			<form:hidden path="proprio.numC"/>
 			<form:hidden path="numA"/>
 			<form:hidden path="version"/>
 			<!-- CHAMPS DE CREATTION D'ANNONCE -->
 			<div class="form-group">
-				<form:label path="titre">Titre</form:label>
+				<form:label path="titre"> Titre de l'annonce </form:label>
 				<form:input path="titre" placeholder="${titre}" cssClass="form-control"/>
 				<form:errors path="titre" cssClass="alert alert-danger">
 					<div class="alert alert-danger"> Champ obligatoire </div>
@@ -87,7 +87,7 @@
 			</div>
 			
 			<div class="form-group">
-				<form:label path="message">  Message</form:label>
+				<form:label path="message"> Message </form:label>
 				<br/>
 				<form:textarea path="message" placeholder="${message}" row="5" cols="60" ></form:textarea>
 				<form:errors path="message" cssClass="alert alert-danger">
@@ -101,38 +101,38 @@
 			    Selectionnez le(s) service(s) : <br/><br/>
 			    
 			    <div>
-			    <input type="checkbox" name="services" id="1" value="1">
+			    <input class="checkboxServices" type="checkbox" name="checkboxServices" id="1" value="1">
 			    <label for="1"> Garde chez le propriétaire</label>
 			    </div>
 			      
 			    <div>
-			    <input type="checkbox" name="services" id="2" value="2">
+			    <input class="checkboxServices" type="checkbox" name="checkboxServices" id="2" value="2">
 			    <label for="2"> Garde chez le sitter</label>
 			    </div> 
 			    
 			    <div>
-			    <input type="checkbox" name="services" id="3" value="3">
+			    <input class="checkboxServices" type="checkbox" name="checkboxServices" id="3" value="3">
 			    <label for="3"> Soins médicaux</label>
 			    </div>
 			    
 			    <div>
-			    <input type="checkbox" name="services" id="4" value="4">
+			    <input class="checkboxServices" type="checkbox" name="checkboxServices" id="4" value="4">
 			    <label for="4"> Ballade</label>  
 			    </div>
 			    
 			    <div>
-			    <input type="checkbox" name="services" id="5" value="5">
+			    <input class="checkboxServices" type="checkbox" name="checkboxServices" id="5" value="5">
 			    <label for="5"> Services de Massage</label>
 			    </div>
 			     
 			    <div>
-			    <input type="checkbox" name="services" id="6" value="6">
+			    <input class="checkboxServices" type="checkbox" name="checkboxServices" id="6" value="6">
 			    <label for="6"> Services de Toilettage</label>
 			    </div>
 			    
 			    <div>
-			    <input type="checkbox" name="services" id="7" value="7">
-			    <label for="7">Services Alimentaire</label>  
+			    <input class="checkboxServices" type="checkbox" name="checkboxServices" id="7" value="7">
+			    <label for="7"> Services Alimentaire</label>  
 			    </div>
 		        
 		    </fieldset>  		
