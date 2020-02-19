@@ -78,19 +78,27 @@
 
 			Voici la liste des annonce de petsittings que vous avez réalisées : <br /> <br />
 
-			<table class="table">
+			<table class="table" style="text-align: center;">
 				<tr>
 					<th>Titre</th>
 					<th>Message</th>
 					<th>Votre réponse</th>
-					<th>Note donnée</th>
+					<th>Noter le Propriétaire</th>
 					
+				</tr>
+					<th></th>
+					<th></th>
+					<th></th>
+					<td>sur votre échange</td>
+				<tr>
+				
 				</tr>
 				<c:forEach items="${annonces}" var="annonce" varStatus="cpt">
 					<tr>
 						<td>${annonce.titre}</td>
 						<td>${annonce.message}</td>
 						<td>${reponse[cpt.index].message}</td>
+						
 						<c:choose>
 							<c:when test ="${annonce.noteP == null}">
 								<form action= "${ctx}/sitter/noterAnnonce" method="post" id="form${cpt.index}">									
@@ -98,7 +106,7 @@
 									<!-- emplacement select -->
 										<input type="text" id="numA" name="numA" hidden="true" value="${annonce.numA}">
 										<select required="true" name="noteP" id="noteP" class="mdb-select md-form">
-										  <option value="" selected>Noter le propriétaire sur votre prestation (0 très insatisfaisant - 5 très satisfaisant)</option>																
+										  <option value="" selected>0 mauvais - 5 excellent</option>																
 										  <option value="0">0</option>										
 										  <option value="1">1</option>
 										  <option value="2">2</option>
