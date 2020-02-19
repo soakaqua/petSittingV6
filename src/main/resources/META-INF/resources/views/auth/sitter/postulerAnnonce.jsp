@@ -46,22 +46,17 @@
 
 	<div id="corps" class="row">
 
-		<div id="banderole" class="col-2">
-			<br />
-			<h4 style="font-size: 23; color: white">Menu</h4>
-			<br /> <a href="Sitter consulterAnnoncesS.html"> Consulter mes
-				annonces</a> <br />
-			<br /> <a href="Sitter toutesAnnonces.html">Consulter toutes les
-				annonces </a> <br />
-			<br /> <a href="Sitter postulerAnnonce.html">Postuler à une
-				annonce</a> <br />
-			<br /> <a href="Sitter noterP.html">Noter un propriétaire</a> <br />
-			<br /> <a href="Main page.html">Accueil</a> <br />
-			<br /> <a href="#deco">Me deconnecter </a> <br />
-			<br />
+					<div id="banderole" class="col-2">
+						<br/>
+						<h4 style="font-size:23;color:white">Menu</h4>
+						<br/>
 
-
-		</div>
+						<a href="${ctx}/sitter/afficherAnnoncesBySitter">Consulter les annonces auxquelles j'ai postulé</a> <br /><br />
+						<a href="${ctx}/sitter/afficherAnnonces">Consulter toutes les annonces</a><br /><br />
+						<a href="${ctx}/sitter/historiqueAnnonces">Afficher l'historique de vos petSitting</a><br /><br />
+						<a href="${ctx}/deconnexion">Me déconnecter</a>
+						<br /> <br />
+					</div>
 
 		<div id="textePrincipal" class="col-8">
 
