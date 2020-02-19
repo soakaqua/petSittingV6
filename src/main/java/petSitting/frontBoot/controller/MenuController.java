@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ import petSitting.frontBoot.model.Compte;
 import petSitting.frontBoot.model.Proprio;
 import petSitting.frontBoot.model.Sitter;
 import petSitting.frontBoot.repositories.CompteRepository;
+import petSitting.frontBoot.services.CompteService;
 
 
 @Controller
@@ -27,6 +29,11 @@ public class MenuController {
 	@Autowired
 	CompteRepository compteRepository;
 	
+	@Autowired
+	CompteService compteService;
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	@GetMapping("/auth/menu")
 	public String menu(Principal principal, HttpSession session) {
@@ -71,9 +78,32 @@ public class MenuController {
 	
 	@PostMapping("/inscription")
 	public String inscription(@ModelAttribute("compte") Compte compte, @RequestParam(name="type") String type) {
+		System.out.println(type);
+		System.out.println(compte.getMail());
 		
-		return "connexion";
-	}
+		if(type.contentEquals("sitter")) {
+			Sitter s = new Sitter();
+			s.setPrenom(compte.getPrenom());
+			s.setNom(compte.getNom());
+			s.setMail(compte.getMail());
+			s.setMdpC(passwordEncoder.encode(compte.getMdpC()));
+			s.setCp(compte.getCp());
+			s.setStatut(1);
+			compteService.save(s);
+		}
+		else if(type.contentEquals("proprio")) {
+			Proprio s = new Proprio();
+			s.setPrenom(compte.getPrenom());
+			s.setNom(compte.getNom());
+			s.setMail(compte.getMail());
+			s.setMdpC(passwordEncoder.encode(compte.getMdpC()));
+			s.setCp(compte.getCp());
+			s.setStatut(1);
+			compteService.save(s);
+		}
+		
+		return ("redirect:/connexion");
+	}	
 	
 	
 }
