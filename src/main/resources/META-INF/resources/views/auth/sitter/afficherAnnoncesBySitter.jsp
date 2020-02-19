@@ -76,12 +76,12 @@
 			<h3>Consulter mes annonces</h3>
 			</p>
 
-			Voici la liste des annonces auxquelles vous avez postulé : <br /> <br />
+			Voici la liste des annonces auxquelles vous avez postulé : <br /><br/>
 
 			<table class="table">
 				<tr>
-					<th>titre</th>
-					<th>message</th>
+					<th>Titre</th>
+					<th>Message</th>
 					<th>Votre réponse</th>
 				</tr>
 				<c:forEach items="${annonces}" var="a" varStatus="cpt">
@@ -97,6 +97,9 @@
 							class="btn btn-danger">Supprimer</a></td>
 					</tr>
 				</c:forEach>
-		</div>
+		<br /><br />	
+	</div>
+<br /><br />
+<br /><br />
 </body>
 </html>

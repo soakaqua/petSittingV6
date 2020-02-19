@@ -76,14 +76,14 @@
 			<h3>Consulter l'historique de mes annonces</h3>
 			</p>
 
-			Voici la liste des petsittings que vous avez réalisé : <br /> <br />
+			Voici la liste des annonce de petsittings que vous avez réalisées : <br /> <br />
 
 			<table class="table">
 				<tr>
-					<th>titre</th>
-					<th>message</th>
+					<th>Titre</th>
+					<th>Message</th>
 					<th>Votre réponse</th>
-					<th>Note propriétaire</th>
+					<th>Note donnée</th>
 					
 				</tr>
 				<c:forEach items="${annonces}" var="annonce" varStatus="cpt">
@@ -124,9 +124,11 @@
 				</c:forEach>
 		
 		</table>
+		<br/><br/>
 		<p><a href="${ctx}/auth/menu"
 							class="btn btn-info">Retour au menu</a>
 		</p>
-							
+		<br/><br/>	<br/>				
 </body>
+
 </html>
