@@ -190,13 +190,13 @@ public class ProprioController {
 		
 		for(int i =0 ; i< lstR.size(); i++) {
 			if(Double.isNaN(annonceService.moyenneSitter(lstR.get(i).getKey().getSitter().getNumC())) != true) {
-				lstM.add(df.format(annonceService.moyenneProprio(lstR.get(i).getKey().getSitter().getNumC()))) ;
+				lstM.add(df.format(annonceService.moyenneSitter(lstR.get(i).getKey().getSitter().getNumC()))) ;
 			}
 			else {
 				lstM.add("null");
 			}
 		}
-		model.addAttribute("moyenneP", lstM);
+		model.addAttribute("moyenneS", lstM);
 		return "auth/proprio/afficherReponses";
 	}
 	

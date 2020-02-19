@@ -84,11 +84,15 @@
 					<th>Note moyenne du sitter</th>
 				</tr>
 				
-				<c:forEach items ="${reponses}" var="r">
+				<c:forEach items ="${reponses}" var="r" varStatus="cpt">
 					<tr>
 						<!-- COLONNES -->
 						<td>${r.message}</td>
-						<td>Lien ici</td>	
+						<td>
+						<c:if test="${moyenneS[cpt.index] != 'null'}">
+								${moyenneS[cpt.index]}
+						</c:if>
+						</td>	
 						
 						<!-- BOUTONS -->				
 						<td><a href="${ctx}/proprio/validerSitter?numC=${r.key.sitter.getNumC()}&numA=${r.key.annonce.getNumA()}" class="btn btn-success">Valider</a></td>								
