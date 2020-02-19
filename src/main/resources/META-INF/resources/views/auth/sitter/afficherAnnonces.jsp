@@ -82,7 +82,7 @@
 				<tr>
 					<th>Titre</th>
 					<th>Message</th>
-					<th>Note moyenne propriétaire</th>
+					<th>Note du propriétaire</th>
 					
 				</tr>
 				<c:forEach items="${annonces}" var="a" varStatus="cpt">
@@ -100,6 +100,8 @@
 							class="btn btn-info">Postuler</a></td>
 					</tr>
 				</c:forEach>
+		<br/><br/>
 		</div>
+		<br/><br/><br/>
 </body>
 </html>

@@ -73,28 +73,37 @@
 			<p>
 			<h2>Profil du Pet-sitter </h2>
 			
+			<br/>
 			<h4 style="font-size: 23; color: black; font: bold;">Marine Cattier</h4>
-			    <h5><p>Adresse: Adresse : 6 Rue Rougemont, 75009 Paris</p>
-			    <p> Téléphone : 0785078191</p></h5>
+			<br/>
+			    <p>Adresse: <em>6 Rue Rougemont, 75009 Paris</em></p>
+			    <p> Téléphone : <em>0785078191</em></p>
+			    <p> Note : <em>4.6/5</em></p>
 
               
-			<br></br>
-			<h4>Motivations</h4>
+			<br/>
+			<h4>Motivation</h4>
+			_______________________________________
 			<div>
-			<p>Je suis Marine, j ai 28 ans, passionnée par les animaux j en ai fait mon métier.</p>
+			<br/>
+			<p>Je m'appelle Marine, j'ai 28 ans, passionnée par les animaux j'en ai fait mon métier.</p>
 			  <p>Actuellement je suis toiletteuse et petsitter professionnelle pour garder les animaux domestiques et les nouveaux animaux de compagnie.</p> 
 			  <p>Responsable et rigoureuse, je suis une personne de confiance et c'est avec plaisir que je prendrais soin de votre compagnon</p>
 			   <p>pendant votre absence ce qui vous laissera partir en vacances en toute sérénité</p>
           </div>
-			_______________________________________
 			
+			
+			<br/>
 			<h4>Expérience</h4>
-			<p>Ayant 5 ans  d expérience professionnelle pour garder les animaux  et répondre à leurs besoins,</p>
-			<p> je vous propose mes services de toilettage, ballade, garde et de soins médicaux.</p> 
 			_______________________________________
+			<div>
+			<br/>
+			<p>Ayant 5 ans  d'expérience professionnelle pour garder les animaux et répondre à leurs besoins,</p>
+			<p> je vous propose mes services de toilettage, ballade, garde et de soins médicaux.</p> 
+			
 		</div>
 	
-
+<br/><br/><br/>
 		
 	
 </body>
