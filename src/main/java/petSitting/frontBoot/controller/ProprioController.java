@@ -27,6 +27,7 @@ import petSitting.frontBoot.model.Compte;
 import petSitting.frontBoot.model.Proprio;
 import petSitting.frontBoot.model.Service;
 import petSitting.frontBoot.repositories.AnnonceRepository;
+import petSitting.frontBoot.repositories.Annonce_ServiceRepository;
 import petSitting.frontBoot.repositories.CompteRepository;
 import petSitting.frontBoot.repositories.ReponseRepository;
 import petSitting.frontBoot.repositories.ServiceRepository;
@@ -50,6 +51,9 @@ public class ProprioController {
 	ServiceRepository serviceRepository;
 	
 	@Autowired
+	Annonce_ServiceRepository annonce_serviceRepository;
+	
+	@Autowired
 	ReponseRepository reponseRepository;
 
 	@Autowired
@@ -66,6 +70,19 @@ public class ProprioController {
 		return "auth/proprio/consulterAnnonces";
 	}
 
+	@PostMapping("noterAnnonce")
+	public String noterAnnonce (@RequestParam(name="numA") Integer numA,@RequestParam(name="noteS") Integer noteS , Model model) {
+		Annonce a = new Annonce();
+		Optional<Annonce> annonceTrouv = annonceRepository.findById(numA);
+		if(annonceTrouv.isPresent()) {
+			a= annonceTrouv.get();
+		}
+		a.setNoteS((double) noteS);
+		annonceRepository.save(a);
+		
+		return ("redirect:/proprio/consulterAnnonces");
+	}
+	
 	@GetMapping("/modifierAnnonce")
 	public String modifierAnnonce(@RequestParam(name = "numA") Integer numA, Model model, HttpSession session) {
 		Integer numC = (Integer) session.getAttribute("numC");
@@ -101,6 +118,8 @@ public class ProprioController {
 	@PostMapping("/save")
 	private String save(@ModelAttribute("annonce") @Valid Annonce annonce, @RequestParam Integer[] checkboxServices,  BindingResult br, Model model, HttpSession session) {
 		Integer numC = (Integer) session.getAttribute("numC");
+		Integer numA = annonce.getNumA();
+		annonce_serviceRepository.supprAnnonceServiceByNumA(numA);
 //		System.out.println(session.getAttribute("numC"));
 //		System.out.println(annonce.getProprio());
 //		System.out.println("Arrays.deepToString(checkboxServices) : "+Arrays.deepToString(checkboxServices));
@@ -112,9 +131,12 @@ public class ProprioController {
 			Compte p = new Proprio();
 			if (opt.isPresent()) {
 				p = opt.get();
-				annonce.setStatut(0);			
-//--------------------------------------------------------------------------------------------------------------------------------				
+				annonce.setStatut(0);						
 
+				Annonce annonceFinale = annonceService.save(annonce, (Proprio) p);
+			
+//--------------------------------------------------------------------------------------------------------------------------------		
+				
 				//Créer une LISTE ORDONNEE qui récupère les services sélectionnés
 				List<Service> listServices = new ArrayList();
 //				System.out.println("serviceRepository.findById(checkboxServices[0]) : "+serviceRepository.findById(checkboxServices[0]));
@@ -130,32 +152,25 @@ public class ProprioController {
 				}
 				//System.out.println("liste services : "+listServices);
 
-				//Convertir la liste de services en Set Annonce_Service
+				//Convertir la liste de services en Set Annonce_Service				
 				Set<Annonce_Service> setAnnonceService = new HashSet<Annonce_Service>();
-				System.out.println("annonce.getAnnonce_service() : "+annonce.getAnnonce_service());
-				System.out.println("setAnnonceService : "+setAnnonceService);
 				Annonce_Service annServ = new Annonce_Service();
 				Annonce_ServicePK annServPK = new Annonce_ServicePK();
-//				for(int j=0; j<listServices.size();j++) {
-					annServPK.setAnnonce(annonce);
-//					System.out.println("annServPK i: "+annServPK);
-					annServPK.setService(listServices.get(0));
+				for(int j=0; j<listServices.size();j++) {
+				System.out.println("annonce : "+annonceFinale.getNumA());
+					annServPK.setAnnonce(annonceFinale);
+					annServPK.setService(listServices.get(j)); 
 					annServ.setKey(annServPK);
-//					System.out.println("annServ i: "+annServ);
+					System.out.println("annServ i: "+annServ);
 					setAnnonceService.add(annServ);
-//					System.out.println("setAnnonceService i: "+setAnnonceService);
-				//}
-				
+					annonce_serviceRepository.save(annServ);
+				}
 				//Enregistrer le nouveau Set Annonce_Service
-				annonce.setAnnonce_service(setAnnonceService);
-	
-//--------------------------------------------------------------------------------------------------------------------------------		
-				annonceService.save(annonce, (Proprio) p);
+				annonceFinale.setAnnonce_service(setAnnonceService);
+				annonceService.save(annonceFinale, (Proprio) p);
 			}
 			return "redirect:/proprio/consulterAnnonces";
-		}
-		
-			
+		}	
 	}
 
 	@GetMapping("/afficherReponses")
@@ -176,6 +191,7 @@ public class ProprioController {
 	@GetMapping("/delete")
 	public ModelAndView delete(@RequestParam(name = "numA") Integer numA, HttpSession session) {
 		Integer numC = (Integer) session.getAttribute("numC");
+		annonce_serviceRepository.supprAnnonceServiceByNumA(numA);
 		annonceRepository.deleteByNumA(numA);
 		return new ModelAndView("redirect:/proprio/consulterAnnonces", "numC", numC);
 	}

@@ -91,7 +91,7 @@
 					<tr>
 						<!-- COLONNES -->
 						<td>${r.message}</td>
-						<td>page du sitter</td>	
+						<td><a href="http://localhost:8080/petsitting/sitter/ficheSitter">Lien ici</a></td>	
 						
 						<!-- BOUTONS -->				
 						<td><a href="${ctx}/proprio/validerSitter?numC=${r.key.sitter.getNumC()}&numA=${r.key.annonce.getNumA()}" class="btn btn-success">Valider</a></td>								

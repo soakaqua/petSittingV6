@@ -63,11 +63,11 @@
 
 <div id="textePrincipal" class="col-8">
 
-<p><h2> Propriétaire > Modifier une annonce </h2></p> 
+<p><h2> Propriétaire > Gérer une annonce </h2></p> 
 
-<p><h3> Modifier une annonce </h3></p> 
+<p><h3> Gérer une annonce </h3></p> 
 
-	Vous voulez modifier cette annonce. Veuillez remplir les champs suivants :
+	Veuillez remplir les champs suivants :
 	
 	<br/><br/>
 	
@@ -79,7 +79,7 @@
 			<form:hidden path="version"/>
 			<!-- CHAMPS DE CREATTION D'ANNONCE -->
 			<div class="form-group">
-				<form:label path="titre">Titre</form:label>
+				<form:label path="titre"> Titre de l'annonce </form:label>
 				<form:input path="titre" placeholder="${titre}" cssClass="form-control"/>
 				<form:errors path="titre" cssClass="alert alert-danger">
 					<div class="alert alert-danger"> Champ obligatoire </div>
@@ -87,7 +87,7 @@
 			</div>
 			
 			<div class="form-group">
-				<form:label path="message">  Message</form:label>
+				<form:label path="message"> Message </form:label>
 				<br/>
 				<form:textarea path="message" placeholder="${message}" row="5" cols="60" ></form:textarea>
 				<form:errors path="message" cssClass="alert alert-danger">

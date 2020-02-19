@@ -2,12 +2,19 @@ package petSitting.frontBoot.model;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
 
 @Entity
 @Table(name="annonce_service")
+
+@NamedQueries({
+	@NamedQuery(name="Annonce_Service.supprAnnonceServiceByNumA",query="delete from Annonce_Service a where a.key.annonce.numA=?1")
+})
+
 public class Annonce_Service {
 	
 	@EmbeddedId //erreur � ignorer

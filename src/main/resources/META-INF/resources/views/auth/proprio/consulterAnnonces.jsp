@@ -99,7 +99,7 @@
 						<td></td>
 						<td></td>	
 				</tr>
-				
+			
 				<tr>
 					<th></th>
 					<th></th>
@@ -121,14 +121,18 @@
 						<td>${a.message}</td>
 						<td>${a.statut}</td>
 						
-						<td><c:if test="${a != null}">	X </c:if></td>
-						<td><c:if test="${a.annonce_service != null}">	X </c:if></td>
-						<td>X</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
 						
+						<td>
+
+						</td>
+ 						<td><td><c:if test="${a.annonce_service.contains(1)}"> X </c:if></td></td>
+ 						<td></td>
+ 						<td></td>
+ 						<td></td>
+ 						<td></td>
+ 						<td></td>
+
+					
 						<!-- BOUTONS -->				
 						<td>
 							<c:if test="${a.statut == 0}">
@@ -145,6 +149,40 @@
 								<a href="${ctx}/proprio/afficherReponses?numA=${a.numA}&numC=${numC}" class="btn btn-secondary">Afficher les réponses</a>
 							</c:if>
 						</td>	
+						
+						
+						<c:choose>
+							<c:when test ="${annonce.noteS == null and a.statut ==1 }">
+								<form action= "${ctx}/proprio/noterAnnonce" method="post" id="form${cpt.index}">									
+									<td> 
+									<!-- emplacement select -->
+										<input type="text" id="numA" name="numA" hidden="true" value="${annonce.numA}">
+										<select required="true" name="noteS" id="noteS" class="mdb-select md-form">
+										  <option value="" selected>Noter le sitter sur sa prestation (0 très insatisfaisant - 5 très satisfaisant)</option>																
+										  <option value="0">0</option>										
+										  <option value="1">1</option>
+										  <option value="2">2</option>
+										  <option value="3">3</option>
+										  <option value="4">4</option>
+										  <option value="5">5</option>
+										</select>
+									</td>
+									<td>
+										<button type="submit" form="form${cpt.index}" value="Submit" class="btn btn-primary">Noter</button>
+									</td>
+								</form>
+							</c:when>
+							<c:when test ="${annonce.noteS != null}">
+								<td>
+								${annonce.noteS}
+								</td>
+							</c:when>
+						
+						</c:choose>
+						
+						
+						
+						
 																
 					</tr>
 					
