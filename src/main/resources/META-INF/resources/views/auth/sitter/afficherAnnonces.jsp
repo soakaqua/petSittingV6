@@ -80,14 +80,21 @@
 
 			<table class="table">
 				<tr>
-					<th>titre</th>
-					<th>message</th>
+					<th>Titre</th>
+					<th>Message</th>
+					<th>Note moyenne propriétaire</th>
 					
 				</tr>
 				<c:forEach items="${annonces}" var="a" varStatus="cpt">
 					<tr>
 						<td>${a.titre}</td>
 						<td>${a.message}</td>
+						
+						<td>
+							<c:if test="${moyenneP[cpt.index]} != null">
+							${moyenneP[cpt.index]}
+						</c:if>
+						</td>
 						<td><a
 							href="${ctx}/sitter/postuler?numA=${a.numA}"
 							class="btn btn-info">Postuler</a></td>

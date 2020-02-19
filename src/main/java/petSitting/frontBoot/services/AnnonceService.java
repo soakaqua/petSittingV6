@@ -1,5 +1,7 @@
 package petSitting.frontBoot.services;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -57,5 +59,25 @@ public class AnnonceService {
 //	@Column(name="key")
 //	@OneToMany(mappedBy="key.annonce")
 //	private Set<Annonce_Service> annonce_service;
+	
+	
+	//Moyenne proprio
+	public Double moyenneProprio(Integer numC) {
+		List<Annonce> lstA = new ArrayList<Annonce>();
+		lstA = annonceRepository.selectAnnonceByProprio(numC);
+		Integer cpt = 0;
+		Double somme = 0.0 ;
+		Double moyenne = 0.0 ;
+		for(int i = 0  ; i < lstA.size() ; i++) {
+			if(lstA.get(i).getNoteP() != null) {
+				cpt++;
+				somme = somme + lstA.get(i).getNoteP();
+			}
+		}
+		moyenne = somme / cpt;
+		
+		return moyenne;
+		
+	}
 	
 }

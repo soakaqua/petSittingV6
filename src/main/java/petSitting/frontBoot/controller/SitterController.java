@@ -22,6 +22,7 @@ import petSitting.frontBoot.model.Sitter;
 import petSitting.frontBoot.repositories.AnnonceRepository;
 import petSitting.frontBoot.repositories.CompteRepository;
 import petSitting.frontBoot.repositories.ReponseRepository;
+import petSitting.frontBoot.services.AnnonceService;
 import petSitting.frontBoot.services.ReponseService;
 import petSitting.frontBoot.services.SitterService;
 
@@ -42,6 +43,9 @@ public class SitterController {
 
 	@Autowired
 	ReponseService reponseService;
+	
+	@Autowired
+	AnnonceService annonceService;
 
 	@GetMapping("sitter/historiqueAnnonces")
 	public String afficherAnnoncesTermines (Model model, HttpSession session) {
@@ -77,6 +81,14 @@ public class SitterController {
 	@GetMapping("/sitter/afficherAnnonces")
 	public String afficherAnnonces(Model model) {
 		model.addAttribute("annonces", annonceRepository.selectAllWithStatut0());
+		List<Annonce> lstA = new ArrayList<Annonce>();
+		lstA =  annonceRepository.selectAllWithStatut0();
+		
+		List<Double> lstM = new ArrayList<Double>();
+		for(int i =0 ; i< lstA.size(); i++) {
+			lstM.add(annonceService.moyenneProprio(lstA.get(i).getProprio().getNumC())) ;
+		}
+		model.addAttribute("moyenneP", lstM);
 		return "/auth/sitter/afficherAnnonces";
 	}
 
