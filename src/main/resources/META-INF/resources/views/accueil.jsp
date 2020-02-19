@@ -51,10 +51,10 @@
 
 		<div id="banderole" class="col-2">
 			<br />
-			<h4 style="font-size: 23; color: white">Menu</h4>
-			<br /> <a href="${ctx}/connexion">Connexion</a> <br /> <br /> <a
-				href="${ctx}/inscription" >Inscription</a> <br /> <br /> <a
-				href="${ctx}/accueil">Accueil</a> <br /> <br /> 
+			<h4 style="font-size: 23; color: white">Menu</h4><br />
+			<a href="${ctx}/accueil" > Accueil</a> <br /> <br />
+			<a href="${ctx}/connexion">Connexion</a> <br /> <br /> 
+			<a href="${ctx}/inscription">Inscription</a> <br /> <br /> 
 		</div>
 
 		<div id="textePrincipal" class="col-8">
@@ -63,15 +63,14 @@
 			<h2>Accueil</h2>
 			</p>
 
-			Ce site permet de mettre en lien des pet-sitters compétents avec des
-			propriétaires voulant prendre soin de leurs animaux. Nous offrons
-			différents services comme des promenades, massages ou soins médicaux
-			pour le bien-être de vos animaux. <br /> Nous offrons une
-			optmisation du temps de trajet via la selection des annonces par code
-			postal. <br /> (carte de la france ?) <br /> <br /> 
-			
-			<a href="${ctx}/connexion" class="btn btn-info">Connexion</a> <br /> 
-				<br /> 
+			 <h3><em>Tout l'amour dont votre animal a besoin</em></h3>
+			 <br/>
+          <p> Vous ne passez pas autant de temps que vous le voudriez avec votre animal ?</p>
+          <p>  Vous partez en vacances et vous voulez garder votre animal ?</p>
+          <p> Votre animal a besoin des soins médicaux ou de toilettage et vous ne trouvez pas le temps pour le faire ? </p>
+          <p><b>PetSitting</b>, vous met en contact avec des pet-sitters compétents et qualifiés pour prendre soin de votre compagnon.</p>
+			<br />
+			<a href="${ctx}/connexion" class="btn btn-info">Connexion</a> 
 			<a href="${ctx}/inscription" class="btn btn-dark">Inscription</a>
 			<br /> <br /> <br /> <br />
 

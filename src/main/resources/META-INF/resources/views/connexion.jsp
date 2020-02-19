@@ -51,10 +51,10 @@
 
 		<div id="banderole" class="col-2">
 			<br />
-			<h4 style="font-size: 23; color: white">Menu</h4>
-			<br /> <a href="${ctx}/connexion">Connexion</a> <br /> <br /> <a
-				href="${ctx}/inscription">Inscription</a> <br /> <br /> <a
-				href="${ctx}/accueil">Accueil</a> <br /> <br />
+			<h4 style="font-size: 23; color: white">Menu</h4><br />
+			<a href="${ctx}/accueil" > Accueil</a> <br /> <br />
+			<a href="${ctx}/connexion">Connexion</a> <br /> <br /> 
+			<a href="${ctx}/inscription">Inscription</a> <br /> <br /> 
 		</div>
 
 		<div id="textePrincipal" class="col-8">
@@ -89,9 +89,9 @@
 				<br />
 				Pas encore inscrit ? <em>Rejoignez-nous : </em>
 				<br /><br />
-				<div>
+				
 				<a href="${ctx}/inscription" class="btn btn-dark">Inscription</a>
-				</div>
+				
 			</form>
 		</div>
 

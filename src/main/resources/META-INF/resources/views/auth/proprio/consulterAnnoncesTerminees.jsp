@@ -61,8 +61,8 @@
 	
 <div id="textePrincipal" class="col-8">
 
-<p> <h2> Propriétaire > Consulter mes annonces </h2> </p> 
-<p> <h3> Consulter mes annonces </h3> </p> 
+<p> <h2> Propriétaire > Consulter mes annonces terminées </h2> </p> 
+<p> <h3> Consulter l'historique de mes annonces </h3> </p> 
 
 <!-- 
 Pour créer une nouvelle annonce :<br /><br />
@@ -227,7 +227,7 @@ Pour créer une nouvelle annonce :<br /><br />
 										</select>
 									</td>
 									
-									<td><button type="submit" form="form${cpt.index}" value="Submit" class="btn btn-primary">Noter</button></td>
+									<td><button type="submit" form="form${cpt.index}" value="Submit" class="btn btn-success">Noter</button></td>
 									
 								</form>
 							</c:when>
