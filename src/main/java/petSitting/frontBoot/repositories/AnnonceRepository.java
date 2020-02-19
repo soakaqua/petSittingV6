@@ -17,6 +17,7 @@ public interface AnnonceRepository extends JpaRepository<Annonce, Integer> {
 	public List<Annonce> selectAnnonceByProprio(Integer numC);
 	public List<Annonce> afficherAnnoncesTerminees(Integer numC);
 	public List<Annonce> selectAnnonceBySitter(Integer numC);
+	public List<Annonce> selectAnnonceBySitterEnCours(Integer numC);
 	public List<Annonce> selectAllWithStatut0();
 	public List<Annonce> selectAnnonceBySitterTerminee(Integer numC);
 	//public List<Integer> selectNoteSitter(Integer numC);
