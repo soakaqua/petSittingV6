@@ -79,58 +79,7 @@ public class SitterController {
 		model.addAttribute("annonces", annonceRepository.selectAllWithStatut0());
 		return "/auth/sitter/afficherAnnonces";
 	}
-<<<<<<< HEAD
-	
-	
-	
-	//@PostMapping("/saveEleve")
-	//public String saveEleve(@ModelAttribute("personne")@Valid Eleve personne,BindingResult br, Model model) {
-//		return save (personne,br, model); 
-	//}
-	
-	
-//	@PostMapping("/sitter/saveReponse")
-//	public String saveReponse(@ModelAttribute("reponse") Reponse reponse, Model model) {
-//		reponseService.save(reponse);
-//		model.addAttribute("numC", reponse.getKey().getCompte().getNumC());
-//		return "redirect:/sitter/afficherAnnoncesBySitter";
-//		
-//	}
-//	
-	
-//	public String save(Reponse reponse, BindingResult br, Model model) {
-//		if (br.hasErrors())
-//			return "sitter/postulerAnnonce";
-//		if (reponse.getMessage() != null && reponse.getMessage().isEmpty()) {
-//			reponse.setMessage(null);
-//		}
-//		reponseRepository.save(reponse);
-//		
-//		return "redirect:/menu";
-//	}
-//faut faire marcher save reponse
-	
-//	@GetMapping("/menu")
-//	public ModelAndView menuProprio() {
-//		Compte proprio = new Compte();
-//		Optional<Compte> opt = compteRepository.findById(101);
-//		if(opt.isPresent()) {
-//			proprio= opt.get();
-//		}
-//		
-//		return new ModelAndView("menu", "compte", (Proprio) proprio );
-//	}
-	
-	
-	
-	
-	
-//@PostMapping("/saveEleve")
-//public String saveEleve(@ModelAttribute("personne")@Valid Eleve personne,BindingResult br, Model model) {
-//	return save (personne,br, model); 
-//}
-=======
->>>>>>> 712ca10e87277bd0085febbd681f9d02935cad15
+
 
 
 	@GetMapping("/sitter/postuler")
