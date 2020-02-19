@@ -71,7 +71,7 @@ public class ProprioController {
 	}
 
 	@PostMapping("noterAnnonce")
-	public String noterAnnonce (@RequestParam(name="numA") Integer numA,@RequestParam(name="noteS") Integer noteS , Model model) {
+	public String noterAnnonce (@RequestParam(name="numA") Integer numA,@RequestParam(name="noteS") Integer noteS, Model model) {
 		Annonce a = new Annonce();
 		Optional<Annonce> annonceTrouv = annonceRepository.findById(numA);
 		if(annonceTrouv.isPresent()) {
