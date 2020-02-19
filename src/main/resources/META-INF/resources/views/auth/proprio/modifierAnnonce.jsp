@@ -53,15 +53,13 @@
 	<br/>
 	<h4 style="font-size:23;color:white">Menu</h4>
 	<br/>
-	<a href="proprio/consulterAnnonces">Consulter mes annonces</a> <br/><br/>
-	<!--
-	<a href="proprio/modifierAnnonce">Modifier une annoncee</a> <br/><br/>
-	-->
-	<a href="publierAnnonce">Publier une annonce</a> <br/><br/>
-	<a href="validerSitter">Valider un sitter</a> <br/><br/>
-	<a href="noterS">Noter un sitter</a> <br/><br/>	
-	<a href="accueil">Accueil</a> <br/><br/>
-	<a href="#deco">Me deconnecter </a> <br/><br/>
+	<a href="${ctx}/proprio/consulterAnnonces">Consulter mes annonces</a> <br/><br/>
+	<a href="${ctx}/proprio/consulterAnnonces">Modifier une annonce</a> <br/><br/>
+	<a href="${ctx}/proprio/publierAnnonce?numC=${sessionScope.numC}">Publier une annonce</a> <br/><br/>
+	<a href="${ctx}/proprio/consulterAnnonces">Valider un sitter</a> <br/><br/>
+	<a href="${ctx}/proprio/consulterAnnonces">Noter un sitter</a> <br/><br/>	
+	<a href="${ctx}/accueil">Accueil</a> <br/><br/>
+	<a href="${ctx}/deconnexion">Me deconnecter </a> <br/><br/>
 </div> 
 
 <div id="textePrincipal" class="col-8">

@@ -91,10 +91,10 @@
 						<td>${reponse[cpt.index].message}</td>
 						<td><a
 							href="${ctx}/sitter/editReponse?numC=${reponse[cpt.index].key.sitter.numC}&numA=${reponse[cpt.index].key.annonce.numA}"
-							class="btn btn-info">editer</a></td>
+							class="btn btn-info">Editer</a></td>
 						<td><a
 							href="${ctx}/sitter/delete?numC=${reponse[cpt.index].key.sitter.numC}&numA=${reponse[cpt.index].key.annonce.numA}"
-							class="btn btn-warning">supprimer</a></td>
+							class="btn btn-danger">Supprimer</a></td>
 					</tr>
 				</c:forEach>
 		</div>
