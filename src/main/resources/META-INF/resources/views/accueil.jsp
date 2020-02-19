@@ -2,13 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
-
-<head>
-
 <!-- bootstrap -->
 <c:set var="ctx" value="${pageContext.servletContext.contextPath}"></c:set>
 <link rel="stylesheet" href="${ctx}/bootstrap/css/bootstrap.min.css">
@@ -16,16 +13,19 @@
 <script rel="stylesheet" src="${ctx}/bootstrap/js/bootstrap.min.js"></script>
 
 <!-- CSS -->
-  <link rel="stylesheet" type="text/css"
+<link rel="stylesheet" type="text/css"
 	href="${ctx}/style/CSSpetsitting.css">
 
 
 
+<head>
+<title>PetSitting</title>
 
 <meta charset="UTF-8">
-<title>PetSitting</title>
+<title>Insert title here</title>
 </head>
 <body>
+
 	<div id="footer">PETSITTING 2020 AJC Ingénierie - SOPRA</div>
 
 	<div id="entete" class="row">
@@ -60,7 +60,7 @@
 		<div id="textePrincipal" class="col-8">
 
 			<p>
-			<h2>Page Principale</h2>
+			<h2>Accueil</h2>
 			</p>
 
 			Ce site permet de mettre en lien des pet-sitters compétents avec des
@@ -68,9 +68,11 @@
 			différents services comme des promenades, massages ou soins médicaux
 			pour le bien-être de vos animaux. <br /> Nous offrons une
 			optmisation du temps de trajet via la selection des annonces par code
-			postal. <br /> (carte de la france ?) <br /> <br /> <a
-				href="${ctx}/connexion">Connexion</a> <br /> 
-				<br /> <a href="${ctx}/inscription">Inscription</a>
+			postal. <br /> (carte de la france ?) <br /> <br /> 
+			
+			<a href="${ctx}/connexion" class="btn btn-info">Connexion</a> <br /> 
+				<br /> 
+			<a href="${ctx}/inscription" class="btn btn-dark">Inscription</a>
 			<br /> <br /> <br /> <br />
 
 		</div>

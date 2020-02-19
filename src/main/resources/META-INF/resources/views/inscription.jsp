@@ -52,18 +52,15 @@
 		<div id="banderole" class="col-2">
 			<br />
 			<h4 style="font-size: 23; color: white">Menu</h4>
-			<br /> <a href="connexion">Connexion</a> <br /> <br /> <a
-				href="connexion?id=2" >Inscription</a> <br /> <br /> <a
-				href="Main page.html">Accueil</a> <br /> <br /> <a
-				href="Proprio main.html"> Accès cheat Proprio</a> <br /> <br /> <a
-				href="Sitter main.html"> Accès cheat Sitter</a> <br /> <br />
+			<br /> <a href="${ctx}/connexion">Connexion</a> <br /> <br /> <a
+				href="${ctx}/inscription">Inscription</a> <br /> <br /> <a
+				href="${ctx}/accueil">Accueil</a> <br /> <br />
 		</div>
 
 		<div id="textePrincipal" class="col-8">
 
-			<p>
-				<h2>Inscription</h2>
-			</p>
+			<p><h2>Inscription</h2></p>
+		
 		
 		<form:form action="${ctx}/inscription" methode="post" modelAttribute="compte">
 			<form:hidden path="numC" />
@@ -71,12 +68,17 @@
 			<form:hidden path="version" />
 			
 			
+			<h4> Veuillez remplir les champs suivants : </h4>
+			<br/>
+			 Quel type de compte correspond à vos besoins ?
+			<br/><br/>
+			
 			<select name = "type" cssClass="form-control" required="required">
-				<option value="" >Veuillez selectionner le type de compte correspondant à vos besoins !</option>
+				<option value="" >Sélection</option>
 				<option value="sitter" >Vous désirez garder des animaux : Sitter</option>
 				<option value="proprio" >Vous voulez faire garder vos animaux : Propriétaire</option>
 			</select>
-			
+			<br/><br/>
 
 			<div class="form-group">
 				<form:label path="prenom">Prenom :</form:label>
@@ -92,27 +94,27 @@
 			</div>
 			<div class="form-group">
 				<form:label path="mail">Adresse email :</form:label>
-				<form:input path="mail" cssClass="form-control"></form:input>
+				<form:input path="mail" cssClass="form-control" placeholder="exemple@gmail.com"></form:input>
 				<%-- affiche message d'erreur quand binding result déclenché --%>
 				<form:errors path="mail" cssClass="alert alert-danger" element="div"></form:errors>
 			</div>				
 			<div class="form-group">
 				<form:label path="mdpC">Mot de passe :</form:label>
-				<form:input path="mdpC" cssClass="form-control"></form:input>
+				<form:input path="mdpC" cssClass="form-control" placeholder="*****************"></form:input>
 				<%-- affiche message d'erreur quand binding result déclenché --%>
 				<form:errors path="mdpC" cssClass="alert alert-danger" element="div"></form:errors>
 			</div>			
 			<div class="form-group">
 				<form:label path="cp">Code postal :</form:label>
-				<form:input path="cp" cssClass="form-control"></form:input>
+				<form:input path="cp" cssClass="form-control" placeholder="exemple : 75000"></form:input>
 			</div>			
-			<button type="submit" class="btn btn-success">envoyer</button>			
+			<button type="submit" class="btn btn-success">Valider</button>			
 		</form:form>
-	
+	<br/><br/>
 
 		</div>
 
-
+<br/><br/>
 
 	</div>
 </body>
