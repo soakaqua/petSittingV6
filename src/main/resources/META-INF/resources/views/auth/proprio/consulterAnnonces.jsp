@@ -33,12 +33,13 @@
 		<div id="logoEntete" class="col-2">
 			<a href="${ctx}/accueil"> <img height="135" width="130"
 				src="${ctx}/image/logo.jpg" align="left" />
-			</a> 
+			</a>
 		</div>
 
 		<div id="titreEntete" class="col-10">
 			<p>
-			<h1>Bienvenue sur PetSitting</h1>
+
+				<h1>Bienvenue sur PetSitting</h1>
 			</p>
 			<p
 				style="font: bold; font-size: 20; text-align: right; margin-right: 5px">
@@ -49,42 +50,41 @@
 
 	<div id="corps" class="row">
 
-		<div id="banderole" class="col-2">
-	<br/>
-	<h4 style="font-size:23;color:white">Menu</h4>
-	<br/>
-	<a href="proprio/consulterAnnonces">Consulter mes annonces</a> <br/><br/>
-	<!--
-	<a href="proprio/modifierAnnonce">Modifier une annoncee</a> <br/><br/>
-	-->
-	<a href="publierAnnonce">Publier une annonce</a> <br/><br/>
-	<a href="validerSitter">Valider un sitter</a> <br/><br/>
-	<a href="noterS">Noter un sitter</a> <br/><br/>	
-	<a href="accueil">Accueil</a> <br/><br/>
-	<a href="#deco">Me deconnecter </a> <br/><br/>
-</div> 
+		<div id="banderole" class="col-2"><br />
+			<h4 style="font-size:23;color:white">Menu</h4>
+			<br />
+			<a href="proprio/consulterAnnonces">Consulter mes annonces</a> <br /><br />
+			<!--
+			<a href="proprio/modifierAnnonce">Modifier une annoncee</a> <br/><br/>
+			-->
+			<a href="publierAnnonce">Publier une annonce</a> <br /><br />
+			<a href="validerSitter">Valider un sitter</a> <br /><br />
+			<a href="noterS">Noter un sitter</a> <br /><br />	
+			<a href="accueil">Accueil</a> <br /><br />
+			<a href="#deco">Me deconnecter </a> <br /><br />
+		</div> 
 	
 <div id="textePrincipal" class="col-8">
 
 <p> <h2> Propriétaire > Consulter mes annonces </h2> </p> 
-
 <p> <h3> Consulter mes annonces </h3> </p> 
 
 
-Pour créer une nouvelle annonce :<br/><br/>
+Pour créer une nouvelle annonce :<br /><br />
 
-	<a href="${ctx}/proprio/publierAnnonce?numC=${numC}" class="btn btn-success">Nouvelle annonce</a>
-	<br/><br/>	
+	<a href="${ctx}/proprio/publierAnnonce?numC=${numC}"
+				class="btn btn-success">Nouvelle annonce</a>
+	<br /><br />	
 
-	Voici les annonces que vous avez publiées : <br/>
+	Voici les annonces que vous avez publiées : <br />
 	(statut 0 : annonce en cours ; statut 1 : annonce terminée)
-	<br/><br/>
+	<br /><br />
 
 <c:choose>
 	
 	<c:when test="${annonces.isEmpty()}">
 		<div>
-			<br/>
+			<br />
 			<em>Vous n'avez aucune annonce en cours</em>
 		</div>
 	</c:when>
@@ -121,7 +121,7 @@ Pour créer une nouvelle annonce :<br/><br/>
 						
 				</tr>
 				
-				<c:forEach items ="${annonces}" var="a">
+				<c:forEach items="${annonces}" var="a">
 					<tr>
 						<!-- COLONNES -->
 						<td>${a.titre}</td>
@@ -132,7 +132,9 @@ Pour créer une nouvelle annonce :<br/><br/>
 						<td>
 
 						</td>
- 						<td><td><c:if test="${a.annonce_service.contains(1)}"> X </c:if></td></td>
+ 						<td>
+									<td><c:if test="${a.annonce_service.contains(1)}"> X </c:if></td>
+									</td>
  						<td></td>
  						<td></td>
  						<td></td>
@@ -142,12 +144,16 @@ Pour créer une nouvelle annonce :<br/><br/>
 						<!-- BOUTONS -->	
 						
 						<c:choose>
-							<c:when test ="${a.statut == 1 && a.noteS == null}"> 
-								<form action= "${ctx}/proprio/noterAnnonce?numA=${a.numA}&numC=${numC}" method="post" id="form${cpt.index}">									
+							<c:when test="${a.statut == 1 && a.noteS == null}"> 
+								<form
+												action="${ctx}/proprio/noterAnnonce?numA=${a.numA}&numC=${numC}"
+												method="post" id="form${cpt.index}">									
 									<td> 
 									<!-- emplacement select -->
-										<input type="text" id="numA" name="numA" hidden="true" value="${a.numA}">
-										<select required="true" name="noteS" id="noteS" class="mdb-select md-form">
+										<input type="text" id="numA" name="numA" hidden="true"
+													value="${a.numA}">
+										<select required="true" name="noteS" id="noteS"
+													class="mdb-select md-form">
 										  <option value="" selected>0 mauvaise - 5 excellente</option>																
 										  <option value="0">0</option>										
 										  <option value="1">1</option>
@@ -158,11 +164,12 @@ Pour créer une nouvelle annonce :<br/><br/>
 										</select>
 									</td>
 									<td>
-										<button type="submit" form="form${cpt.index}" value="Submit" class="btn btn-primary">Noter</button>
+										<button type="submit" form="form${cpt.index}" value="Submit"
+														class="btn btn-primary">Noter</button>
 									</td>
 								</form>
 							</c:when>
-							<c:when test ="${a.noteS != null}">
+							<c:when test="${a.noteS != null}">
 								<td>
 								${a.noteS}
 								</td>
@@ -172,17 +179,22 @@ Pour créer une nouvelle annonce :<br/><br/>
 									
 						<td>
 							<c:if test="${a.statut == 0}">
-								<a href="${ctx}/proprio/modifierAnnonce?numA=${a.numA}&numC=${numC}" class="btn btn-primary">Modifier l'annonce</a>
+								<a
+												href="${ctx}/proprio/modifierAnnonce?numA=${a.numA}&numC=${numC}"
+												class="btn btn-primary">Modifier l'annonce</a>
 							</c:if>
 						</td>
 						<td>
 							<c:if test="${a.statut == 0}">
-								<a href="${ctx}/proprio/delete?numA=${a.numA}&numC=${numC}" class="btn btn-danger">Supprimer l'annonce</a>
+								<a href="${ctx}/proprio/delete?numA=${a.numA}&numC=${numC}"
+												class="btn btn-danger">Supprimer l'annonce</a>
 							</c:if>
 						</td>	
 						<td>
 							<c:if test="${a.statut == 0}">
-								<a href="${ctx}/proprio/afficherReponses?numA=${a.numA}&numC=${numC}" class="btn btn-secondary">Voir les réponses</a>
+								<a
+												href="${ctx}/proprio/afficherReponses?numA=${a.numA}&numC=${numC}"
+												class="btn btn-secondary">Voir les réponses</a>
 							</c:if>
 						</td>	
 									
@@ -193,9 +205,10 @@ Pour créer une nouvelle annonce :<br/><br/>
 		</div>		
 	</c:otherwise>		
 </c:choose>
-<br/><br/>	
+<br /><br />	
 </div>
-<br/><br/>
-<br/><br/>
+<br /><br />
+<br /><br />
+
 </body>
 </html>

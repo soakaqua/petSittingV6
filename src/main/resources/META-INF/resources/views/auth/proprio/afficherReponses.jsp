@@ -50,25 +50,24 @@
 	<div id="corps" class="row">
 
 		<div id="banderole" class="col-2">
-	<br/>
-	<h4 style="font-size:23;color:white">Menu</h4>
-	<br/>
-	<a href="proprio/consulterAnnonces">Consulter mes annonces</a> <br/><br/>
-	<!--
-	<a href="proprio/modifierAnnonce">Modifier une annoncee</a> <br/><br/>
-	-->
-	<a href="publierAnnonce">Publier une annonce</a> <br/><br/>
-	<a href="validerSitter">Valider un sitter</a> <br/><br/>
-	<a href="noterS">Noter un sitter</a> <br/><br/>	
-	<a href="accueil">Accueil</a> <br/><br/>
-	<a href="#deco">Me deconnecter </a> <br/><br/>
-</div> 
+			<br/>
+			<h4 style="font-size:23;color:white">Menu</h4>
+			<br/>
+			<a href="proprio/consulterAnnonces">Consulter mes annonces</a> <br/><br/>
+			<!--
+			<a href="proprio/modifierAnnonce">Modifier une annoncee</a> <br/><br/>
+			-->
+			<a href="publierAnnonce">Publier une annonce</a> <br/><br/>
+			<a href="validerSitter">Valider un sitter</a> <br/><br/>
+			<a href="noterS">Noter un sitter</a> <br/><br/>	
+			<a href="accueil">Accueil</a> <br/><br/>
+			<a href="#deco">Me deconnecter </a> <br/><br/>
+		</div> 
 
 <div id="textePrincipal" class="col-8">
 
-<p><h2> Propriétaire > Valider un sitter </h2></p> 
-
-<p><h3> Valider un sitter </h3></p> 
+	<p><h2> Propriétaire > Valider un sitter </h2></p> 
+	<p><h3> Valider un sitter </h3></p> 
 
 	Vous voulez valider un sitter pour cette annonce. Voici la liste des réponses à votre annonce :
 	<br/><br/>
