@@ -62,7 +62,8 @@
 						<h4 style="font-size:23;color:white">Menu</h4>
 						<br/>
 						<a  href="${ctx}/proprio/consulterAnnonces?numC=${sessionScope.numC}"> Consulter mes annonces</a> <br /><br />
-						<a href="${ctx}/proprio/publierAnnonce?numC=${sessionScope.numC}">Publier une annonce</a> <br /> <br /> 
+						<a href="${ctx}/proprio/consulterAnnoncesTerminees?numC=${sessionScope.numC}">Consulter l'historique de mes annonces</a> <br/><br/>
+						<a href="${ctx}/proprio/modifierAnnonce?numC=${numC}">Publier une annonce</a> <br/><br/> 
 						<a href="${ctx}/deconnexion">Me déconnecter</a> <br />
 					</div>
 
@@ -73,6 +74,7 @@
 							Bon retour parmi nous. Que souhaitez-vous faire ? <br /> <br />
 						<ul>
 							<li><a href="${ctx}/proprio/consulterAnnonces?numC=${sessionScope.numC}"> Consulter mes annonces</a></li> <br />
+							<li><a href="${ctx}/proprio/consulterAnnoncesTerminees?numC=${sessionScope.numC}"> Consulter l'historique de mes annonces</a> </li><br/>
 							<li><a href="${ctx}/proprio/modifierAnnonce?numC=${sessionScope.numC}">Publier une annonce</a></li>	<br />
 							<li><a href="${ctx}/deconnexion">Me déconnecter</a></li> <br />
 						</ul>
@@ -100,7 +102,7 @@
 						<p>	<h2>Pet-sitter</h2>	</p>
 
 						Bon retour parmi nous. Que souhaitez-vous faire ? <br /> <br />
-
+						<ul>
 							<li><a href="${ctx}/sitter/afficherAnnoncesBySitter">Consulter les annonces auxquelles j'ai postulé</a></li><br />
 							<li><a href="${ctx}/sitter/afficherAnnonces">Consulter toutes les annonces</a></li>	<br />							
 							<li><a href="${ctx}/sitter/historiqueAnnonces">Afficher l'historique de vos petSitting</a></li>	<br />

@@ -69,7 +69,7 @@ public class ProprioController {
 	public String consulterAnnonces(Model model, HttpSession session) {
 		Integer numC = (Integer) session.getAttribute("numC");
 		model.addAttribute("numC", numC);
-		model.addAttribute("annonces", annonceRepository.selectAnnonceByProprio(numC));
+		model.addAttribute("annonces", annonceRepository.selectAnnonceByProprioWhereStatut0(numC));
 		return "auth/proprio/consulterAnnonces";
 	}
 	
@@ -78,7 +78,7 @@ public class ProprioController {
 	public String consulterAnnoncesTerminees(Model model, HttpSession session) {
 		Integer numC = (Integer) session.getAttribute("numC");
 		model.addAttribute("numC", numC);
-		model.addAttribute("annonces", annonceRepository.selectAnnonceByProprio(numC));
+		model.addAttribute("annoncesT", annonceRepository.afficherAnnoncesTerminees(numC));
 		return "auth/proprio/consulterAnnoncesTerminees";
 	}
 	

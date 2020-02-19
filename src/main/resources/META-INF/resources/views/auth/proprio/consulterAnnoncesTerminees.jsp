@@ -54,8 +54,8 @@
 			<h4 style="font-size:23;color:white">Menu</h4>
 			<br />
 			<a href="${ctx}/proprio/consulterAnnonces">Consulter mes annonces</a> <br/><br/>
+			<a href="${ctx}/proprio/consulterAnnoncesTerminees">Consulter l'historique de mes annonces</a> <br/><br/>
 			<a href="${ctx}/proprio/publierAnnonce?numC=${numC}">Publier une annonce</a> <br/><br/>
-			<a href="${ctx}/accueil">Accueil</a> <br/><br/>
 			<a href="${ctx}/deconnexion">Me deconnecter </a> <br/><br/>
 		</div> 
 	
@@ -74,13 +74,13 @@ Pour créer une nouvelle annonce :<br /><br />
 	<br />	
 
  
-	Voici les annonces que vous avez publiées : <br />
-	(statut 0 : annonce en cours ; statut 1 : annonce terminée)
+	Voici les annonces que vous avez publiées :
+
 	<br /><br />
 
 <c:choose>
 	
-	<c:when test="${annonces.isEmpty()}">
+	<c:when test="${annoncesT.isEmpty()}">
 		<div>
 			<br />
 			<em>Vous n'avez aucune annonce en cours</em>
@@ -93,7 +93,6 @@ Pour créer une nouvelle annonce :<br /><br />
 				<tr>
 					<th>Titre</th>
 					<th>Message</th>
-					<th>Statut</th>
 					<th>Services</th>
 						<td></td>
 						<td></td>
@@ -107,7 +106,6 @@ Pour créer une nouvelle annonce :<br /><br />
 				<tr>
 					<th></th>
 					<th></th>
-					<th></th>
 						<td><em>Garde propriétaire</em></td>
 						<td><em>Garde sitter</em></td>
 						<td><em>Soins médicaux</em></td>
@@ -119,47 +117,106 @@ Pour créer une nouvelle annonce :<br /><br />
 						
 				</tr>
 				
-				<c:forEach items="${annonces}" var="a">
+				<c:forEach items="${annoncesT}" var="a">
 					<tr>
 						<!-- COLONNES -->
 						<td>${a.titre}</td>
 						<td>${a.message}</td>
-						<td>${a.statut}</td>
 						
 						
 						<td>
-						<c:set var="contains" value="false" />
-							<c:forEach var="item" items="${a.annonce_service}">
-								<c:forEach var="item" items="${key.service.getNumSer()}">
-								  <c:if test="${item eq 1}">
-								  
-								    <c:set var="contains" value="true" />
-								    
-								  </c:if>
-							  </c:forEach>
+							<c:set var="contains" value="false" />
+							<c:forEach var="as" items="${a.annonce_service}">
+							  <c:if test="${as.key.service.numSer eq 1}">
+							  
+							    <c:set var="contains" value="true" />
+							    
+							  </c:if>
 							</c:forEach>
+							<c:if test="${contains eq true}">X</c:if>
 						</td>
- 						<td></td>
-						<td><c:if test="${a.annonce_service.contains(1)}"> X </c:if></td>		
- 						<td></td>
- 						<td></td>
- 						<td></td>
- 						<td></td>
+						
+ 						<td>
+							<c:set var="contains" value="false" />
+							<c:forEach var="as" items="${a.annonce_service}">
+							  <c:if test="${as.key.service.numSer eq 2}">
+							  
+							    <c:set var="contains" value="true" />
+							    
+							  </c:if>
+							</c:forEach>
+							<c:if test="${contains eq true}">X</c:if>
+						</td>
+						
+						<td>
+							<c:set var="contains" value="false" />
+							<c:forEach var="as" items="${a.annonce_service}">
+							  <c:if test="${as.key.service.numSer eq 3}">
+							  
+							    <c:set var="contains" value="true" />
+							    
+							  </c:if>
+							</c:forEach>
+							<c:if test="${contains eq true}">X</c:if>
+						</td>
+						
+						<td>
+							<c:set var="contains" value="false" />
+							<c:forEach var="as" items="${a.annonce_service}">
+							  <c:if test="${as.key.service.numSer eq 4}">
+							  
+							    <c:set var="contains" value="true" />
+							    
+							  </c:if>
+							</c:forEach>
+							<c:if test="${contains eq true}">X</c:if>
+						</td>
+						
+						<td>
+							<c:set var="contains" value="false" />
+							<c:forEach var="as" items="${a.annonce_service}">
+							  <c:if test="${as.key.service.numSer eq 5}">
+							  
+							    <c:set var="contains" value="true" />
+							    
+							  </c:if>
+							</c:forEach>
+							<c:if test="${contains eq true}">X</c:if>
+						</td>
+						
+						<td>
+							<c:set var="contains" value="false" />
+							<c:forEach var="as" items="${a.annonce_service}">
+							  <c:if test="${as.key.service.numSer eq 6}">
+							  
+							    <c:set var="contains" value="true" />
+							    
+							  </c:if>
+							</c:forEach>
+							<c:if test="${contains eq true}">X</c:if>
+						</td>
+						
+						<td>
+							<c:set var="contains" value="false" />
+							<c:forEach var="as" items="${a.annonce_service}">
+							  <c:if test="${as.key.service.numSer eq 7}">
+							  
+							    <c:set var="contains" value="true" />
+							    
+							  </c:if>
+							</c:forEach>
+							<c:if test="${contains eq true}">X</c:if>
+						</td>
 
 					
 						<!-- BOUTONS -->	
 						
 						<c:choose>
 							<c:when test="${a.statut == 1 && a.noteS == null}"> 
-								<form
-												action="${ctx}/proprio/noterAnnonce?numA=${a.numA}&numC=${numC}"
-												method="post" id="form${cpt.index}">									
-									<td> 
-									<!-- emplacement select -->
-										<input type="text" id="numA" name="numA" hidden="true"
-													value="${a.numA}">
-										<select required="true" name="noteS" id="noteS"
-													class="mdb-select md-form">
+								<form action="${ctx}/proprio/noterAnnonce?numA=${a.numA}&numC=${numC}" method="post" id="form${cpt.index}">									
+									<td>
+										<input type="text" id="numA" name="numA" hidden="true" value="${a.numA}">
+										<select required="true" name="noteS" id="noteS" class="mdb-select md-form">
 										  <option value="" selected>0 mauvaise - 5 excellente</option>																
 										  <option value="0">0</option>										
 										  <option value="1">1</option>
@@ -169,10 +226,9 @@ Pour créer une nouvelle annonce :<br /><br />
 										  <option value="5">5</option>
 										</select>
 									</td>
-									<td>
-										<button type="submit" form="form${cpt.index}" value="Submit"
-														class="btn btn-primary">Noter</button>
-									</td>
+									
+									<td><button type="submit" form="form${cpt.index}" value="Submit" class="btn btn-primary">Noter</button></td>
+									
 								</form>
 							</c:when>
 							<c:when test="${a.noteS != null}">
@@ -190,6 +246,9 @@ Pour créer une nouvelle annonce :<br /><br />
 		</div>		
 	</c:otherwise>		
 </c:choose>
+
+		<p><a href="${ctx}/auth/menu" class="btn btn-info">Retour au menu</a></p>
+
 <br /><br />	
 </div>
 <br /><br />

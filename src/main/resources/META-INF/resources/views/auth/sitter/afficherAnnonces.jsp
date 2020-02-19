@@ -54,11 +54,11 @@
 			<br/>
 			<h4 style="font-size:23;color:white">Menu</h4>
 			<br/>
-
-						<a href="${ctx}/sitter/afficherAnnonces">Consulter toutes les annonces</a><br /><br />
-						<a href="${ctx}/sitter/afficherAnnoncesBySitter">Consulter les annonces auxquelles j'ai postulé</a> <br /><br />
-						<a href="${ctx}/sitter/historiqueAnnonces">Afficher l'historique de vos petSitting</a><br /><br />
-						<a href="${ctx}/deconnexion">Me déconnecter</a>
+			<a href="${ctx}/proprio/consulterAnnonces">Consulter mes annonces</a> <br/><br/>
+			<a href="${ctx}/proprio/consulterAnnoncesTerminees">Consulter l'historique de mes annonces</a> <br/><br/>
+			<a href="${ctx}/proprio/publierAnnonce?numC=${numC}">Publier une annonce</a> <br/><br/>
+			<a href="${ctx}/accueil">Accueil</a> <br/><br/>
+			<a href="${ctx}/deconnexion">Me deconnecter </a> <br/><br/>
 			<br /> <br />
 		</div>
 
