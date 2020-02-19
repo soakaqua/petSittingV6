@@ -64,13 +64,10 @@
 
 		<div id="textePrincipal" class="col-8">
 
-			<p>
-			<h2>Pet-sitter > Consulter mes annonces</h2>
-			</p>
+			<p><h2>Pet-sitter > Consulter mes annonces</h2></p>
 
-			<p>
-			<h3>Consulter mes annonces</h3>
-			</p>
+			<p>	<h3>Consulter mes annonces</h3>	</p>
+
 
 			Voici la liste des annonces auxquelles vous avez postulé : <br /> <br />
 
@@ -101,7 +98,6 @@
 			<a href="${ctx}/auth/menu" class="btn btn-info">Retour au menu</a>
 		</p>
 		</div>
-
 	</div>
 	<br />
 	<br />

@@ -54,8 +54,8 @@
 			<h4 style="font-size:23;color:white">Menu</h4>
 			<br/>
 			<a href="${ctx}/proprio/consulterAnnonces">Consulter mes annonces</a> <br/><br/>
+			<a href="${ctx}/proprio/consulterAnnoncesTerminees">Consulter l'historique de mes annonces</a> <br/><br/>
 			<a href="${ctx}/proprio/publierAnnonce?numC=${numC}">Publier une annonce</a> <br/><br/>
-			<a href="${ctx}/accueil">Accueil</a> <br/><br/>
 			<a href="${ctx}/deconnexion">Me deconnecter </a> <br/><br/>
 		</div> 
 
@@ -104,6 +104,9 @@
 		</div>	
 	</c:otherwise>	
 </c:choose>
+
+<p><a href="${ctx}/auth/menu" class="btn btn-info">Retour au menu</a></p>
+
 	
 </div>
 <br/><br/>

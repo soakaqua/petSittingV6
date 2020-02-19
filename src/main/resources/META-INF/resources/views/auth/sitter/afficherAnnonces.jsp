@@ -51,6 +51,7 @@
 	<div id="corps" class="row">
 
 		<div id="banderole" class="col-2">
+
 			<br />
 			<h4 style="font-size: 23; color: white">Menu</h4>
 			<br /> <a href="${ctx}/sitter/afficherAnnonces">Consulter toutes
@@ -60,7 +61,6 @@
 				href="${ctx}/sitter/historiqueAnnonces">Afficher l'historique de
 				vos petSitting</a><br /> <br /> <a href="${ctx}/deconnexion">Me
 				déconnecter</a> <br /> <br />
-		</div>
 
 		<div id="textePrincipal" class="col-8">
 
@@ -74,7 +74,7 @@
 
 			Voici la liste des annonces des propriétaires : <br /> <br />
 
-			<table class="table">
+			<table class="table" style="text-align: center;">
 				<tr>
 					<th>Titre</th>
 					<th>Message</th>
