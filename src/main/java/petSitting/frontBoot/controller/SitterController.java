@@ -1,5 +1,7 @@
 package petSitting.frontBoot.controller;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -84,9 +86,11 @@ public class SitterController {
 		List<Annonce> lstA = new ArrayList<Annonce>();
 		lstA =  annonceRepository.selectAllWithStatut0();
 		
-		List<Double> lstM = new ArrayList<Double>();
+		List<String> lstM = new ArrayList<String>();
+		DecimalFormat df = new DecimalFormat("#.#");
+		df.setRoundingMode(RoundingMode.CEILING);
 		for(int i =0 ; i< lstA.size(); i++) {
-			lstM.add(annonceService.moyenneProprio(lstA.get(i).getProprio().getNumC())) ;
+			lstM.add(df.format(annonceService.moyenneProprio(lstA.get(i).getProprio().getNumC()))) ;
 		}
 		model.addAttribute("moyenneP", lstM);
 		return "/auth/sitter/afficherAnnonces";

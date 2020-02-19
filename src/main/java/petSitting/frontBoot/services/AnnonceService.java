@@ -1,18 +1,15 @@
 package petSitting.frontBoot.services;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-
-import javax.persistence.Column;
-import javax.persistence.OneToMany;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import petSitting.frontBoot.model.Annonce;
-import petSitting.frontBoot.model.Annonce_Service;
 import petSitting.frontBoot.model.Proprio;
 import petSitting.frontBoot.repositories.AnnonceRepository;
 import petSitting.frontBoot.repositories.CompteRepository;
@@ -75,7 +72,7 @@ public class AnnonceService {
 			}
 		}
 		moyenne = somme / cpt;
-		
+
 		return moyenne;
 		
 	}

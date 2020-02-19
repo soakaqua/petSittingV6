@@ -91,9 +91,9 @@
 						<td>${a.message}</td>
 						
 						<td>
-							<c:if test="${moyenneP[cpt.index]} != null">
-							${moyenneP[cpt.index]}
-						</c:if>
+							<c:if test="${moyenneP[cpt.index] != 'NaN'}">
+								${moyenneP[cpt.index]}
+							</c:if>
 						</td>
 						<td><a
 							href="${ctx}/sitter/postuler?numA=${a.numA}"
