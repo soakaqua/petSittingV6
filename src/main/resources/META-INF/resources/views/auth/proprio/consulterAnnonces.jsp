@@ -62,7 +62,7 @@
 <div id="textePrincipal" class="col-8">
 
 <p> <h2> Propriétaire > Consulter mes annonces </h2> </p> 
-<p> <h3> Consulter mes annonces </h3> </p> 
+<p> <h3> Consulter mes annonces en cours </h3> </p> 
 
 <!-- 
 Pour créer une nouvelle annonce :<br /><br />
