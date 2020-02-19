@@ -106,7 +106,6 @@
 						<li><a href="${ctx}/sitter/afficherAnnoncesBySitter">Consulter les annonces
 								auxquelles j'ai postulé</a></li> <br />
 						<li><a href="${ctx}/sitter/afficherAnnonces">Consulter toutes les annonces</a></li> <br />
-						<li><a href="${ctx}/sitter/postulerAnnonce?numC=${sessionScope.numC}">Postuler à une annonce</a></li> <br />
 						<li><a href="${ctx}/sitter/historiqueAnnonces">Afficher l'historique de vos petSitting</a></li>
 
 						<li><a href="${ctx}/deconnexion">Me déconnecter</a></li> <br /> <br />
@@ -125,8 +124,6 @@
 									auxquelles j'ai postulé</a></li>
 							<br />
 							<li><a href="${ctx}/sitter/afficherAnnonces">Consulter toutes les annonces</a></li>
-							<br />
-							<li><a href="${ctx}/sitter/postulerAnnonce?numC=${sessionScope.numC}">Postuler à une annonce</a></li>
 							<br />
 							<li><a href="${ctx}/sitter/historiqueAnnonces">Afficher l'historique de vos petSitting</a></li>
 							<br />
