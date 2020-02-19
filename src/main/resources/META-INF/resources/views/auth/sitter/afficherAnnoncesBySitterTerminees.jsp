@@ -30,11 +30,17 @@
 
 	<div id="entete" class="row">
 
-		<div id="logoEntete" class="col-2">
-			<a href="${ctx}/accueil"> <img height="135" width="130"
-				src="${ctx}/image/logo.jpg" align="left" />
-			</a> 
-		</div>
+					<div id="banderole" class="col-2">
+						<br/>
+						<h4 style="font-size:23;color:white">Menu</h4>
+						<br/>
+
+						<a href="${ctx}/sitter/afficherAnnoncesBySitter">Consulter les annonces auxquelles j'ai postulé</a> <br /><br />
+						<a href="${ctx}/sitter/afficherAnnonces">Consulter toutes les annonces</a><br /><br />
+						<a href="${ctx}/sitter/historiqueAnnonces">Afficher l'historique de vos petSitting</a><br /><br />
+						<a href="${ctx}/deconnexion">Me déconnecter</a>
+						<br /> <br />
+					</div>
 
 		<div id="titreEntete" class="col-10">
 			<p>
