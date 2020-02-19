@@ -30,7 +30,7 @@
 
 	<div id="entete" class="row">
 
-					
+
 
 		<div id="titreEntete" class="col-10">
 			<p>
@@ -49,10 +49,13 @@
 		<div id="banderole" class="col-2">
 			<br />
 			<h4 style="font-size: 23; color: white">Menu</h4>
-						<a href="${ctx}/sitter/afficherAnnonces">Consulter toutes les annonces</a><br /><br />
-						<a href="${ctx}/sitter/afficherAnnoncesBySitter">Consulter les annonces auxquelles j'ai postulé</a> <br /><br />
-						<a href="${ctx}/sitter/historiqueAnnonces">Afficher l'historique de vos petSitting</a><br /><br />
-						<a href="${ctx}/deconnexion">Me déconnecter</a>
+			<a href="${ctx}/sitter/afficherAnnonces">Consulter toutes les
+				annonces</a><br /> <br /> <a
+				href="${ctx}/sitter/afficherAnnoncesBySitter">Consulter les
+				annonces auxquelles j'ai postulé</a> <br /> <br /> <a
+				href="${ctx}/sitter/historiqueAnnonces">Afficher l'historique de
+				vos petSitting</a><br /> <br /> <a href="${ctx}/deconnexion">Me
+				déconnecter</a>
 
 		</div>
 
@@ -66,7 +69,8 @@
 			<h3>Consulter l'historique de mes annonces</h3>
 			</p>
 
-			Voici la liste des annonce de petsittings que vous avez réalisées : <br /> <br />
+			Voici la liste des annonce de petsittings que vous avez réalisées : <br />
+			<br />
 
 			<table class="table">
 				<tr>
@@ -74,7 +78,7 @@
 					<th>Message</th>
 					<th>Votre réponse</th>
 					<th>Note donnée</th>
-					
+
 				</tr>
 				<c:forEach items="${annonces}" var="annonce" varStatus="cpt">
 					<tr>
@@ -82,43 +86,49 @@
 						<td>${annonce.message}</td>
 						<td>${reponse[cpt.index].message}</td>
 						<c:choose>
-							<c:when test ="${annonce.noteP == null}">
-								<form action= "${ctx}/sitter/noterAnnonce" method="post" id="form${cpt.index}">									
-									<td> 
-									<!-- emplacement select -->
-										<input type="text" id="numA" name="numA" hidden="true" value="${annonce.numA}">
-										<select required="true" name="noteP" id="noteP" class="mdb-select md-form">
-										  <option value="" selected>Noter le propriétaire sur votre prestation (0 très insatisfaisant - 5 très satisfaisant)</option>																
-										  <option value="0">0</option>										
-										  <option value="1">1</option>
-										  <option value="2">2</option>
-										  <option value="3">3</option>
-										  <option value="4">4</option>
-										  <option value="5">5</option>
-										</select>
+							<c:when test="${annonce.noteP == null}">
+								<form action="${ctx}/sitter/noterAnnonce" method="post"
+									id="form${cpt.index}">
+									<td>
+										<!-- emplacement select --> <input type="text" id="numA"
+										name="numA" hidden="true" value="${annonce.numA}"> <select
+										required="true" name="noteP" id="noteP"
+										class="mdb-select md-form">
+											<option value="" selected>Noter le propriétaire sur
+												votre prestation (0 très insatisfaisant - 5 très
+												satisfaisant)</option>
+											<option value="0">0</option>
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+									</select>
 									</td>
 									<td>
-										<button type="submit" form="form${cpt.index}" value="Submit" class="btn btn-primary">Noter</button>
+										<button type="submit" form="form${cpt.index}" value="Submit"
+											class="btn btn-primary">Noter</button>
 									</td>
 								</form>
 							</c:when>
-							<c:when test ="${annonce.noteP != null}">
-								<td>
-								${annonce.noteP}
-								</td>
+							<c:when test="${annonce.noteP != null}">
+								<td>${annonce.noteP}</td>
 							</c:when>
-						
+
 						</c:choose>
-						
+
 					</tr>
 				</c:forEach>
-		
-		</table>
-		<br/><br/>
-		<p><a href="${ctx}/auth/menu"
-							class="btn btn-info">Retour au menu</a>
-		</p>
-		<br/><br/>	<br/>				
+
+			</table>
+			<br /> <br />
+			<p>
+				<a href="${ctx}/auth/menu" class="btn btn-info">Retour au menu</a>
+			</p>
+		</div>
+
+		<br /> <br /> <br />
+	</div>
 </body>
 
 </html>
