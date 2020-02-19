@@ -1,5 +1,7 @@
 package petSitting.frontBoot.controller;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -25,6 +27,7 @@ import petSitting.frontBoot.model.Annonce_Service;
 import petSitting.frontBoot.model.Annonce_ServicePK;
 import petSitting.frontBoot.model.Compte;
 import petSitting.frontBoot.model.Proprio;
+import petSitting.frontBoot.model.Reponse;
 import petSitting.frontBoot.model.Service;
 import petSitting.frontBoot.repositories.AnnonceRepository;
 import petSitting.frontBoot.repositories.Annonce_ServiceRepository;
@@ -178,6 +181,22 @@ public class ProprioController {
 		Integer numC = (Integer) session.getAttribute("numC");
 		model.addAttribute("numC", numC);
 		model.addAttribute("reponses", reponseRepository.selectReponseByNumA(numA));
+		
+		List<Reponse> lstR = new ArrayList<Reponse>();
+		lstR = reponseRepository.selectReponseByNumA(numA);
+		List<String> lstM = new ArrayList<String>();
+		DecimalFormat df = new DecimalFormat("#.#");
+		df.setRoundingMode(RoundingMode.CEILING);
+		
+		for(int i =0 ; i< lstR.size(); i++) {
+			if(Double.isNaN(annonceService.moyenneSitter(lstR.get(i).getKey().getSitter().getNumC())) != true) {
+				lstM.add(df.format(annonceService.moyenneProprio(lstR.get(i).getKey().getSitter().getNumC()))) ;
+			}
+			else {
+				lstM.add("null");
+			}
+		}
+		model.addAttribute("moyenneP", lstM);
 		return "auth/proprio/afficherReponses";
 	}
 	

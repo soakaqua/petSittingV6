@@ -72,9 +72,25 @@ public class AnnonceService {
 			}
 		}
 		moyenne = somme / cpt;
-
 		return moyenne;
-		
 	}
+	
+	//Moyenne Sitter
+	public Double moyenneSitter(Integer numC) {
+		List<Annonce> lstA = new ArrayList<Annonce>();
+		lstA = annonceRepository.selectAnnonceBySitter(numC);
+		Integer cpt = 0;
+		Double somme = 0.0 ;
+		Double moyenne = 0.0 ;
+		for(int i = 0  ; i < lstA.size() ; i++) {
+			if(lstA.get(i).getNoteP() != null) {
+				cpt++;
+				somme = somme + lstA.get(i).getNoteP();
+			}
+		}
+		moyenne = somme / cpt;
+		return moyenne;
+	}
+	
 	
 }
