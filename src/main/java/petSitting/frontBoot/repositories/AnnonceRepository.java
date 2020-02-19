@@ -2,6 +2,8 @@ package petSitting.frontBoot.repositories;
 
 import java.util.List;
 
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
