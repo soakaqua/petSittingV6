@@ -53,15 +53,13 @@
 		<div id="banderole" class="col-2"><br />
 			<h4 style="font-size:23;color:white">Menu</h4>
 			<br />
-			<a href="proprio/consulterAnnonces">Consulter mes annonces</a> <br /><br />
-			<!--
-			<a href="proprio/modifierAnnonce">Modifier une annoncee</a> <br/><br/>
-			-->
-			<a href="publierAnnonce">Publier une annonce</a> <br /><br />
-			<a href="validerSitter">Valider un sitter</a> <br /><br />
-			<a href="noterS">Noter un sitter</a> <br /><br />	
-			<a href="accueil">Accueil</a> <br /><br />
-			<a href="#deco">Me deconnecter </a> <br /><br />
+			<a href="${ctx}/proprio/consulterAnnonces">Consulter mes annonces</a> <br/><br/>
+			<a href="${ctx}/proprio/consulterAnnonces">Modifier une annonce</a> <br/><br/>
+			<a href="${ctx}/proprio/publierAnnonce?numC=${numC}">Publier une annonce</a> <br/><br/>
+			<a href="${ctx}/proprio/consulterAnnonces">Valider un sitter</a> <br/><br/>
+			<a href="${ctx}/proprio/consulterAnnonces">Noter un sitter</a> <br/><br/>	
+			<a href="${ctx}/accueil">Accueil</a> <br/><br/>
+			<a href="${ctx}/deconnexion">Me deconnecter </a> <br/><br/>
 		</div> 
 	
 <div id="textePrincipal" class="col-8">
@@ -69,13 +67,16 @@
 <p> <h2> Propriétaire > Consulter mes annonces </h2> </p> 
 <p> <h3> Consulter mes annonces </h3> </p> 
 
-
+<!-- 
 Pour créer une nouvelle annonce :<br /><br />
 
 	<a href="${ctx}/proprio/publierAnnonce?numC=${numC}"
 				class="btn btn-success">Nouvelle annonce</a>
-	<br /><br />	
+	<br />
+	 -->
+	<br />	
 
+ 
 	Voici les annonces que vous avez publiées : <br />
 	(statut 0 : annonce en cours ; statut 1 : annonce terminée)
 	<br /><br />
@@ -130,11 +131,19 @@ Pour créer une nouvelle annonce :<br /><br />
 						
 						
 						<td>
-
+						<c:set var="contains" value="false" />
+							<c:forEach var="item" items="${a.annonce_service}">
+								<c:forEach var="item" items="${key.service.getNumSer()}">
+								  <c:if test="${item eq 1}">
+								  
+								    <c:set var="contains" value="true" />
+								    
+								  </c:if>
+							  </c:forEach>
+							</c:forEach>
 						</td>
- 						<td>
-									<td><c:if test="${a.annonce_service.contains(1)}"> X </c:if></td>
-									</td>
+ 						<td></td>
+						<td><c:if test="${a.annonce_service.contains(1)}"> X </c:if></td>		
  						<td></td>
  						<td></td>
  						<td></td>
