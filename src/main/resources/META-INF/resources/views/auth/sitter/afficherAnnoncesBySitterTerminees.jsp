@@ -30,7 +30,11 @@
 
 	<div id="entete" class="row">
 
-
+		<div id="logoEntete" class="col-2">
+			<a href="${ctx}/accueil"> <img height="135" width="130"
+				src="${ctx}/image/logo.jpg" align="left" />
+			</a>
+		</div>
 
 		<div id="titreEntete" class="col-10">
 			<p>
