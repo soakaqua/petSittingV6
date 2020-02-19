@@ -30,7 +30,7 @@
 
 	<div id="entete" class="row">
 
-					
+
 
 		<div id="titreEntete" class="col-10">
 			<p>
@@ -49,10 +49,13 @@
 		<div id="banderole" class="col-2">
 			<br />
 			<h4 style="font-size: 23; color: white">Menu</h4>
-						<a href="${ctx}/sitter/afficherAnnonces">Consulter toutes les annonces</a><br /><br />
-						<a href="${ctx}/sitter/afficherAnnoncesBySitter">Consulter les annonces auxquelles j'ai postulé</a> <br /><br />
-						<a href="${ctx}/sitter/historiqueAnnonces">Afficher l'historique de vos petSitting</a><br /><br />
-						<a href="${ctx}/deconnexion">Me déconnecter</a>
+			<a href="${ctx}/sitter/afficherAnnonces">Consulter toutes les
+				annonces</a><br /> <br /> <a
+				href="${ctx}/sitter/afficherAnnoncesBySitter">Consulter les
+				annonces auxquelles j'ai postulé</a> <br /> <br /> <a
+				href="${ctx}/sitter/historiqueAnnonces">Afficher l'historique de
+				vos petSitting</a><br /> <br /> <a href="${ctx}/deconnexion">Me
+				déconnecter</a>
 
 		</div>
 
@@ -66,15 +69,15 @@
 			<h3>Consulter l'historique de mes annonces</h3>
 			</p>
 
-			Voici la liste des annonce de petsittings que vous avez réalisées : <br /> <br />
+			Voici la liste des annonce de petsittings que vous avez réalisées : <br />
+			<br />
 
 			<table class="table" style="text-align: center;">
 				<tr>
 					<th>Titre</th>
 					<th>Message</th>
 					<th>Votre réponse</th>
-					<th>Noter le Propriétaire</th>
-					
+					<th>Note du propriétaire</th>
 				</tr>
 					<th></th>
 					<th></th>
@@ -106,27 +109,29 @@
 										</select>
 									</td>
 									<td>
-										<button type="submit" form="form${cpt.index}" value="Submit" class="btn btn-primary">Noter</button>
+										<button type="submit" form="form${cpt.index}" value="Submit"
+											class="btn btn-primary">Noter</button>
 									</td>
 								</form>
 							</c:when>
-							<c:when test ="${annonce.noteP != null}">
-								<td>
-								${annonce.noteP}
-								</td>
+							<c:when test="${annonce.noteP != null}">
+								<td>${annonce.noteP}</td>
 							</c:when>
-						
+
 						</c:choose>
-						
+
 					</tr>
 				</c:forEach>
-		
-		</table>
-		<br/><br/>
-		<p><a href="${ctx}/auth/menu"
-							class="btn btn-info">Retour au menu</a>
-		</p>
-		<br/><br/>	<br/>				
+
+			</table>
+			<br /> <br />
+			<p>
+				<a href="${ctx}/auth/menu" class="btn btn-info">Retour au menu</a>
+			</p>
+		</div>
+
+		<br /> <br /> <br />
+	</div>
 </body>
 
 </html>

@@ -33,7 +33,7 @@
 		<div id="logoEntete" class="col-2">
 			<a href="${ctx}/accueil"> <img height="135" width="130"
 				src="${ctx}/image/logo.jpg" align="left" />
-			</a> 
+			</a>
 		</div>
 
 		<div id="titreEntete" class="col-10">
@@ -51,15 +51,15 @@
 	<div id="corps" class="row">
 
 		<div id="banderole" class="col-2">
-			<br/>
-			<h4 style="font-size:23;color:white">Menu</h4>
-			<br/>
-
-						<a href="${ctx}/sitter/afficherAnnonces">Consulter toutes les annonces</a><br /><br />
-						<a href="${ctx}/sitter/afficherAnnoncesBySitter">Consulter les annonces auxquelles j'ai postulé</a> <br /><br />
-						<a href="${ctx}/sitter/historiqueAnnonces">Afficher l'historique de vos petSitting</a><br /><br />
-						<a href="${ctx}/deconnexion">Me déconnecter</a>
-			<br /> <br />
+			<br />
+			<h4 style="font-size: 23; color: white">Menu</h4>
+			<br /> <a href="${ctx}/sitter/afficherAnnonces">Consulter toutes
+				les annonces</a><br /> <br /> <a
+				href="${ctx}/sitter/afficherAnnoncesBySitter">Consulter les
+				annonces auxquelles j'ai postulé</a> <br /> <br /> <a
+				href="${ctx}/sitter/historiqueAnnonces">Afficher l'historique de
+				vos petSitting</a><br /> <br /> <a href="${ctx}/deconnexion">Me
+				déconnecter</a> <br /> <br />
 		</div>
 
 		<div id="textePrincipal" class="col-8">
@@ -79,25 +79,31 @@
 					<th>Titre</th>
 					<th>Message</th>
 					<th>Note du propriétaire</th>
-					
+
 				</tr>
 				<c:forEach items="${annonces}" var="a" varStatus="cpt">
 					<tr>
 						<td>${a.titre}</td>
 						<td>${a.message}</td>
-						
-						<td>
-							<c:if test="${moyenneP[cpt.index] != 'null'}">
+
+						<td><c:if test="${moyenneP[cpt.index] != 'null'}">
 								${moyenneP[cpt.index]}
-							</c:if>
-						</td>
-						<td><a
-							href="${ctx}/sitter/postuler?numA=${a.numA}"
+							</c:if></td>
+						<td><a href="${ctx}/sitter/postuler?numA=${a.numA}"
 							class="btn btn-info">Postuler</a></td>
 					</tr>
 				</c:forEach>
-		<br/><br/>
+
+
+			</table>
+			<br /> <br />
+			<p>
+				<a href="${ctx}/auth/menu" class="btn btn-info">Retour au menu</a>
+			</p>
 		</div>
-		<br/><br/><br/>
+	</div>
+	<br />
+	<br />
+	<br />
 </body>
 </html>
