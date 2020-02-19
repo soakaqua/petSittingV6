@@ -53,10 +53,10 @@
 	<br/>
 	<h4 style="font-size:23;color:white">Menu</h4>
 	<br/>
-	<a href="${ctx}/proprio/consulterAnnonces">Consulter mes annonces</a> <br/><br/>
-	<a href="${ctx}/proprio/publierAnnonce?numC=${sessionScope.numC}">Publier une annonce</a> <br/><br/>
-	<a href="${ctx}/accueil">Accueil</a> <br/><br/>
-	<a href="${ctx}/deconnexion">Me deconnecter </a> <br/><br/>
+			<a href="${ctx}/proprio/consulterAnnonces">Consulter mes annonces</a> <br/><br/>
+			<a href="${ctx}/proprio/consulterAnnoncesTerminees">Consulter l'historique de mes annonces</a> <br/><br/>
+			<a href="${ctx}/proprio/publierAnnonce?numC=${numC}">Publier une annonce</a> <br/><br/>
+			<a href="${ctx}/deconnexion">Me deconnecter </a> <br/><br/>
 </div> 
 
 <div id="textePrincipal" class="col-8">
@@ -96,11 +96,12 @@
 			<div class="form-group">			
 		    <fieldset>  
 		    
-			    Selectionnez le(s) service(s) : <br/><br/>
+			    Selectionnez le(s) service(s) : <br/><br/>			        
 			    
 			    <div>
 			    <input class="checkboxServices" type="checkbox" name="checkboxServices" id="1" value="1">
 			    <label for="1"> Garde chez le propriétaire</label>
+			    <span class="glyphicon glyphicon-ok"></span>
 			    </div>
 			      
 			    <div>

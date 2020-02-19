@@ -22,9 +22,9 @@ import javax.persistence.NamedQuery;
 @Table(name="annonce")
 @SequenceGenerator(name="seqAnnonce",sequenceName="seq_annonce",initialValue=100,allocationSize=1) 
 
-
 @NamedQueries
-({@NamedQuery(name="Annonce.selectAnnonceByProprio",query="select distinct a from Annonce a left join fetch a.proprio prop where prop.numC=?1"),
+({@NamedQuery(name="Annonce.selectAnnonceByProprioWhereStatut0",query="select distinct a from Annonce a left join fetch a.proprio prop where a.statut=0 and prop.numC=?1"),	
+@NamedQuery(name="Annonce.selectAnnonceByProprio",query="select distinct a from Annonce a left join fetch a.proprio prop where prop.numC=?1"),
 @NamedQuery(name="Annonce.afficherAnnoncesTerminees",query="select distinct a from Annonce a left join fetch a.proprio prop where a.statut=1 and prop.numC=?1"),
 @NamedQuery(name="Annonce.selectAllWithStatut0",query="select a from Annonce a where a.statut=0"),
 @NamedQuery(name="Annonce.selectAnnonceBySitter",query="select distinct a from Annonce a left join fetch a.reponse rep where rep.key.sitter.numC=?1"),
