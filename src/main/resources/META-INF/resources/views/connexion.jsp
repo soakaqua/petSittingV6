@@ -52,12 +52,14 @@
 		<div id="banderole" class="col-2">
 			<br />
 			<h4 style="font-size: 23; color: white">Menu</h4>
-			<br /> <a href="Main connexion.html">Connexion</a> <br /> <br /> <a
-				href="Main inscription.html">Inscription</a> <br /> <br /> <a
-				href="Main page.html">Accueil</a> <br /> <br />
+			<br /> <a href="${ctx}/connexion">Connexion</a> <br /> <br /> <a
+				href="${ctx}/inscription">Inscription</a> <br /> <br /> <a
+				href="${ctx}/accueil">Accueil</a> <br /> <br />
 		</div>
 
 		<div id="textePrincipal" class="col-8">
+		
+		<p>	<h2>Connexion</h2> </p>
 
 			<div>
 			<c:if test="${param.error!=null}">
@@ -70,21 +72,25 @@
 					value="${_csrf.token}" />
 				<div>
 					<!-- input : doit s'appeler username (pour spring) -->
-					<label for="username">Adresse mail : </label> <input id="username"
-						name="username" class="form-control">
+					<label for="username">Entrez votre mail : </label> <input id="username"
+						name="username" class="form-control" placeholder="exemple@gmail.com">
 
 				</div>
+				<br/>
 				<div>
 					<!-- input : doit s'appeler password (pour spring) -->
-					<label for="password">Mot de passe : </label><input type="password"
-						id="password" name="password" class="form-control">
-				</div>
+					<label for="password">Entrez votre mot de passe : </label><input type="password"
+						id="password" name="password" class="form-control" placeholder="*****************">
+				</div> <br />
 				<div>
-					<button type="submit" class="btn btn-info">envoyer</button>
+					<button type="submit" class="btn btn-success">Valider</button>
 <%-- 					<a href="${ctx}" class="btn btn-link">Retour accueil</a> --%>
 				</div>
+				<br />
+				Pas encore inscrit ? <em>Rejoignez-nous : </em>
+				<br /><br />
 				<div>
-				<a href="${ctx}/inscription" class="btn btn-link">Inscription</a>
+				<a href="${ctx}/inscription" class="btn btn-dark">Inscription</a>
 				</div>
 			</form>
 		</div>

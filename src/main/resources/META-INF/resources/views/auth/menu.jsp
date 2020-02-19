@@ -2,13 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html>
 <html>
-
-<head>
-
 <!-- bootstrap -->
 <c:set var="ctx" value="${pageContext.servletContext.contextPath}"></c:set>
 <link rel="stylesheet" href="${ctx}/bootstrap/css/bootstrap.min.css">
@@ -20,9 +17,12 @@
 	href="${ctx}/style/CSSpetsitting.css">
 
 
-	
-<meta charset="UTF-8">
+
+<head>
 <title>PetSitting</title>
+
+<meta charset="UTF-8">
+<title>Insert title here</title>
 </head>
 <body>
 
@@ -40,7 +40,6 @@
 			<p>
 			<h1>Bienvenue sur PetSitting</h1>
 			</p>
-
 			<p
 				style="font: bold; font-size: 20; text-align: right; margin-right: 5px">
 				Le site de référence pour faire garder vos animaux</p>
@@ -50,25 +49,18 @@
 
 	<div id="corps" class="row">
 
-
-
 		<c:choose>
 			<c:when test="${sessionScope.typeC == 'admin'}">
 				<p>Admin</p>
 			</c:when>
 
 
-
-
-
 			<c:when test="${sessionScope.typeC == 'proprio'}">
-				<div id="corps" class="row">
 
 					<div id="banderole" class="col-2">
-						<br />
-						<h4 style="font-size: 23; color: white">Menu</h4>
-										<c:url var="action" value="/personne/saveEleve"></c:url>
-						
+						<br/>
+						<h4 style="font-size:23;color:white">Menu</h4>
+						<br/>
 						<br /> <a  href="${ctx}/proprio/consulterAnnonces?numC=${sessionScope.numC}"> Consulter mes annonces</a> <br />
 						<br /> <a href="${ctx}/proprio/modifierAnnonce?numC=${sessionScope.numC}">Modifier une annonce</a> <br /> <br />
 						<a href="${ctx}/proprio/publierAnnonce?numC=${sessionScope.numC}">Publier une annonce</a> <br /> <br /> <a
@@ -81,9 +73,7 @@
 
 					<div id="textePrincipal" class="col-8">
 
-						<p>
-						<h2>Propriétaire</h2>
-						</p>
+						<p>	<h2>Propriétaire</h2> </p>
 						<p>
 							Bon retour parmi nous. Que souhaitez-vous faire ? <br /> <br />
 						<ul>
@@ -109,11 +99,10 @@
 
 			<c:when test="${sessionScope.typeC == 'sitter'}">
 
-				<div id="corps" class="row">
-
 					<div id="banderole" class="col-2">
-						<br />
-						<h4 style="font-size: 23; color: white">Menu</h4>
+						<br/>
+						<h4 style="font-size:23;color:white">Menu</h4>
+						<br/>
 						<li><a href="${ctx}/sitter/afficherAnnoncesBySitter">Consulter les annonces
 								auxquelles j'ai postulé</a></li> <br />
 						<li><a href="${ctx}/sitter/afficherAnnonces">Consulter toutes les annonces</a></li> <br />
