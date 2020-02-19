@@ -78,7 +78,7 @@
 
 			Voici la liste des annonces des propriétaires : <br /> <br />
 
-			<table class="table">
+			<table class="table" style="text-align: center;">
 				<tr>
 					<th>Titre</th>
 					<th>Message</th>

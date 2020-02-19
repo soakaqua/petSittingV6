@@ -68,15 +68,11 @@
 
 		<div id="textePrincipal" class="col-8">
 
-			<p>
-			<h2>Pet-sitter > Consulter mes annonces</h2>
-			</p>
+			<p><h2>Pet-sitter > Consulter mes annonces</h2></p>
 
-			<p>
-			<h3>Consulter mes annonces</h3>
-			</p>
+			<p>	<h3>Consulter mes annonces</h3>	</p>
 
-			Voici la liste des annonces auxquelles vous avez postulé : <br /><br/>
+			Voici la liste des annonces auxquelles vous avez postulé :  <br/><br/>
 
 			<table class="table">
 				<tr>
@@ -97,7 +93,7 @@
 							class="btn btn-danger">Supprimer</a></td>
 					</tr>
 				</c:forEach>
-		<br /><br />	
+			</table>
 	</div>
 <br /><br />
 <br /><br />
