@@ -4,8 +4,8 @@
 h1{color:steelblue;text-align:center;}
 h2{color:cornflowerblue;}
 h3{color:dodgerblue;}
-
-	
+h4{color:HotPink;}
+h5{color:LightSlateGray;}	
 body {background-color:gainsboro;margin:10px;-moz-box-sizing: border-box; box-sizing: border-box;}
 
 #entete {margin-left:0px;background-color:white; height:150px}
