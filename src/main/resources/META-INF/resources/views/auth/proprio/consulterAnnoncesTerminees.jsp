@@ -101,6 +101,7 @@ Pour créer une nouvelle annonce :<br /><br />
 						<td></td>
 						<td></td>
 						<td></td>	
+					<th>Noter le Sitter</th>
 				</tr>
 			
 				<tr>
@@ -114,6 +115,7 @@ Pour créer une nouvelle annonce :<br /><br />
 						<td><em>Massage</em></td>
 						<td><em>Toilettage</em></td>
 						<td><em>Alimentation</em></td>
+					<td>sur sa prestation</td>	
 						
 				</tr>
 				
@@ -143,16 +145,50 @@ Pour créer une nouvelle annonce :<br /><br />
  						<td></td>
  						<td></td>
  						<td></td>
-								
-						<td><a href="${ctx}/proprio/modifierAnnonce?numA=${a.numA}&numC=${numC}" class="btn btn-primary">Modifier l'annonce</a></td>
-						<td><a href="${ctx}/proprio/delete?numA=${a.numA}&numC=${numC}"	class="btn btn-danger">Supprimer l'annonce</a></td>
-						<td><a href="${ctx}/proprio/afficherReponses?numA=${a.numA}&numC=${numC}"class="btn btn-secondary">Voir les réponses</a></td>									
+
+					
+						<!-- BOUTONS -->	
+						
+						<c:choose>
+							<c:when test="${a.statut == 1 && a.noteS == null}"> 
+								<form
+												action="${ctx}/proprio/noterAnnonce?numA=${a.numA}&numC=${numC}"
+												method="post" id="form${cpt.index}">									
+									<td> 
+									<!-- emplacement select -->
+										<input type="text" id="numA" name="numA" hidden="true"
+													value="${a.numA}">
+										<select required="true" name="noteS" id="noteS"
+													class="mdb-select md-form">
+										  <option value="" selected>0 mauvaise - 5 excellente</option>																
+										  <option value="0">0</option>										
+										  <option value="1">1</option>
+										  <option value="2">2</option>
+										  <option value="3">3</option>
+										  <option value="4">4</option>
+										  <option value="5">5</option>
+										</select>
+									</td>
+									<td>
+										<button type="submit" form="form${cpt.index}" value="Submit"
+														class="btn btn-primary">Noter</button>
+									</td>
+								</form>
+							</c:when>
+							<c:when test="${a.noteS != null}">
+								<td>
+								${a.noteS}
+								</td>
+							</c:when>
+						
+						</c:choose>
+									
 					</tr>
 					
 				</c:forEach>
 			</table>
 		</div>		
-	</c:otherwise>>		
+	</c:otherwise>		
 </c:choose>
 <br /><br />	
 </div>

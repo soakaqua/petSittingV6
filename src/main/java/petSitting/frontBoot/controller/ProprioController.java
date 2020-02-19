@@ -72,6 +72,16 @@ public class ProprioController {
 		model.addAttribute("annonces", annonceRepository.selectAnnonceByProprio(numC));
 		return "auth/proprio/consulterAnnonces";
 	}
+	
+	
+	@GetMapping("/consulterAnnoncesTerminees")
+	public String consulterAnnoncesTerminees(Model model, HttpSession session) {
+		Integer numC = (Integer) session.getAttribute("numC");
+		model.addAttribute("numC", numC);
+		model.addAttribute("annonces", annonceRepository.selectAnnonceByProprio(numC));
+		return "auth/proprio/consulterAnnoncesTerminees";
+	}
+	
 
 	@PostMapping("noterAnnonce")
 	public String noterAnnonce (@RequestParam(name="numA") Integer numA,@RequestParam(name="noteS") Integer noteS, Model model) {
