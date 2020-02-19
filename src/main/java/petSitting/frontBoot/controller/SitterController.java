@@ -122,7 +122,7 @@ public class SitterController {
 
 	@GetMapping("/sitter/afficherAnnoncesBySitter")
 	public String menuProprio(Model model, HttpSession session) {
-		model.addAttribute("annonces", annonceRepository.selectAnnonceBySitter((Integer) session.getAttribute("numC")));
+		model.addAttribute("annonces", annonceRepository.selectAnnonceBySitterEnCours((Integer) session.getAttribute("numC")));
 		model.addAttribute("reponse", sitterService.afficherReponseBySitterAndAnnonce((Integer) session.getAttribute("numC")));
 		return "/auth/sitter/afficherAnnoncesBySitter" ;	
 	}

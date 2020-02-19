@@ -30,17 +30,7 @@
 
 	<div id="entete" class="row">
 
-					<div id="banderole" class="col-2">
-						<br/>
-						<h4 style="font-size:23;color:white">Menu</h4>
-						<br/>
-
-						<a href="${ctx}/sitter/afficherAnnoncesBySitter">Consulter les annonces auxquelles j'ai postulé</a> <br /><br />
-						<a href="${ctx}/sitter/afficherAnnonces">Consulter toutes les annonces</a><br /><br />
-						<a href="${ctx}/sitter/historiqueAnnonces">Afficher l'historique de vos petSitting</a><br /><br />
-						<a href="${ctx}/deconnexion">Me déconnecter</a>
-						<br /> <br />
-					</div>
+					
 
 		<div id="titreEntete" class="col-10">
 			<p>
@@ -59,16 +49,10 @@
 		<div id="banderole" class="col-2">
 			<br />
 			<h4 style="font-size: 23; color: white">Menu</h4>
-			<br /> <a
-				href="${ctx}/sitter/afficherAnnoncesBySitter">
-				Consulter mes annonces</a> <br /> <br /> <a
-				href="Sitter toutesAnnonces.html">Consulter toutes les annonces
-			</a> <br /> <br /> <a
-				href="${ctx}/sitter/postulerAnnonce?numC=${sessionScope.numC}">Postuler
-				à une annonce</a> <br /> <br /> <a href="Sitter noterP.html">Noter
-				un propriétaire</a> <br /> <br /> <a href="Main page.html">Accueil</a>
-			<br /> <br /> <a href="#deco">Me déconnecter </a> <br /> <br />
-
+						<a href="${ctx}/sitter/afficherAnnonces">Consulter toutes les annonces</a><br /><br />
+						<a href="${ctx}/sitter/afficherAnnoncesBySitter">Consulter les annonces auxquelles j'ai postulé</a> <br /><br />
+						<a href="${ctx}/sitter/historiqueAnnonces">Afficher l'historique de vos petSitting</a><br /><br />
+						<a href="${ctx}/deconnexion">Me déconnecter</a>
 
 		</div>
 
