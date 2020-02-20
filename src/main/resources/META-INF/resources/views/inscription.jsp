@@ -68,7 +68,7 @@
 			<form:hidden path="version" />
 			
 			
-			<h4> Veuillez remplir les champs suivants : </h4>
+			<h3> Veuillez remplir les champs suivants : </h3>
 			<br/>
 			 Quel type de compte correspond à vos besoins ?
 			<br/><br/>
@@ -100,7 +100,7 @@
 			</div>				
 			<div class="form-group">
 				<form:label path="mdpC">Mot de passe :</form:label>
-				<form:input path="mdpC" cssClass="form-control" placeholder="*****************"></form:input>
+				<form:input type="password" path="mdpC" cssClass="form-control" placeholder="*****************"></form:input>
 				<%-- affiche message d'erreur quand binding result déclenché --%>
 				<form:errors path="mdpC" cssClass="alert alert-danger" element="div"></form:errors>
 			</div>			

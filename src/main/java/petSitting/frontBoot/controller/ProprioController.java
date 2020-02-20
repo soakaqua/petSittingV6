@@ -116,27 +116,15 @@ public class ProprioController {
 	private String goEdit(Annonce a, Model model, HttpSession session) {
 		Integer numC = (Integer) session.getAttribute("numC");
 		model.addAttribute("annonce", a);
-		//model.addAttribute("services", serviceRepository.findAll());
-		
-//		if (a.getTitre()!=null) {
-//			return "auth/proprio/modifierAnnonce";
-//		}
-//		else {
-//			return "auth/proprio/publierAnnonce";
-//		}
 		return "auth/proprio/modifierAnnonce";
 		
 	}
 
 	@PostMapping("/save")
-	private String save(@ModelAttribute("annonce") @Valid Annonce annonce, @RequestParam Integer[] checkboxServices,  BindingResult br, Model model, HttpSession session) {
+	private String save(@ModelAttribute("annonce") @Valid Annonce annonce, @RequestParam Integer[] checkboxServices, BindingResult br, Model model, HttpSession session) {
 		Integer numC = (Integer) session.getAttribute("numC");
 		Integer numA = annonce.getNumA();
 		annonce_serviceRepository.supprAnnonceServiceByNumA(numA);
-//		System.out.println(session.getAttribute("numC"));
-//		System.out.println(annonce.getProprio());
-//		System.out.println("Arrays.deepToString(checkboxServices) : "+Arrays.deepToString(checkboxServices));
-//		System.out.println("checkboxServices[0] : "+checkboxServices[0]);
 		if (br.hasErrors()) {
 			return "auth/proprio/modifierAnnonce";
 		} else {
@@ -147,14 +135,9 @@ public class ProprioController {
 				annonce.setStatut(0);						
 
 				Annonce annonceFinale = annonceService.save(annonce, (Proprio) p);
-			
-//--------------------------------------------------------------------------------------------------------------------------------		
 				
 				//Créer une LISTE ORDONNEE qui récupère les services sélectionnés
 				List<Service> listServices = new ArrayList();
-//				System.out.println("serviceRepository.findById(checkboxServices[0]) : "+serviceRepository.findById(checkboxServices[0]));
-//				System.out.println("serviceRepository.findById(checkboxServices[0]) : "+serviceRepository.findById(checkboxServices[0]).get());
-//				System.out.println("serviceRepository.findById(checkboxServices[0]) : "+serviceRepository.findById(checkboxServices[0]).get().getNomSer());
 				for(int i=0; i<checkboxServices.length; i++) {
 					Optional<Service> opt2 = serviceRepository.findById(checkboxServices[i]);
 					Service serviceRecup = null;
@@ -163,8 +146,7 @@ public class ProprioController {
 						listServices.add(serviceRecup);
 					}					
 				}
-				//System.out.println("liste services : "+listServices);
-
+				
 				//Convertir la liste de services en Set Annonce_Service				
 				Set<Annonce_Service> setAnnonceService = new HashSet<Annonce_Service>();
 				Annonce_Service annServ = new Annonce_Service();

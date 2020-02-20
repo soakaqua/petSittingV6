@@ -81,10 +81,7 @@ Pour créer une nouvelle annonce :<br /><br />
 <c:choose>
 	
 	<c:when test="${annoncesT.isEmpty()}">
-		<div>
-			<br />
 			<em>Vous n'avez aucune annonce en cours</em>
-		</div>
 	</c:when>
 
 	<c:otherwise>
@@ -246,7 +243,7 @@ Pour créer une nouvelle annonce :<br /><br />
 		</div>		
 	</c:otherwise>		
 </c:choose>
-
+<br /><br />
 		<p><a href="${ctx}/auth/menu" class="btn btn-info">Retour au menu</a></p>
 
 <br /><br />	
