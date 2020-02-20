@@ -18,11 +18,11 @@ body {background-color:gainsboro;margin:10px;-moz-box-sizing: border-box; box-si
 
 /* Corps */
 
-#textePrincipal {background-color:gainsboro;margin-left:18%;}
+#textePrincipal {background-color:gainsboro;margin-left:18%;padding-right:3%;}
 #pagefilling{z-index:3;background-color:white;min-height:150px;}
 
 a{color:#d3d3d3}
 
-td[colspan="7"] {
+th[colspan="7"] {
     text-align: center;
 }

@@ -59,7 +59,7 @@
 			<a href="${ctx}/deconnexion">Me deconnecter </a> <br/><br/>
 		</div> 
 	
-<div id="textePrincipal" class="col-8">
+<div id="textePrincipal" class="col-10">
 
 <p> <h2> Propriétaire > Consulter mes annonces terminées </h2> </p> 
 <p> <h3> Consulter l'historique de mes annonces </h3> </p> 
@@ -88,15 +88,10 @@ Pour créer une nouvelle annonce :<br /><br />
 		<div>	
 			<table class="table" style="text-align: center;">
 				<tr>
-					<th>Titre</th>
-					<th>Message</th>
-					<th>Services</th>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>	
+					<th style="text-align:center">Titre</th>
+					<th style="text-align:center">Message</th>
+					<th colspan="7" style="text-align:center">Services</th>
+	
 					<th>Noter le Sitter</th>
 				</tr>
 			
@@ -114,7 +109,7 @@ Pour créer une nouvelle annonce :<br /><br />
 						
 				</tr>
 				
-				<c:forEach items="${annoncesT}" var="a">
+				<c:forEach items="${annoncesT}" var="a" varStatus="cpt">
 					<tr>
 						<!-- COLONNES -->
 						<td>${a.titre}</td>

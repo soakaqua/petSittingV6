@@ -78,6 +78,10 @@ public class ProprioController {
 		Integer numC = (Integer) session.getAttribute("numC");
 		model.addAttribute("numC", numC);
 		model.addAttribute("annoncesT", annonceRepository.afficherAnnoncesTerminees(numC));
+		
+		// afficher notes ! 
+		
+		
 		return "auth/proprio/consulterAnnoncesTerminees";
 	}
 
@@ -183,7 +187,7 @@ public class ProprioController {
 
 		for (int i = 0; i < lstR.size(); i++) {
 			if (Double.isNaN(annonceService.moyenneSitter(lstR.get(i).getKey().getSitter().getNumC())) != true) {
-				lstM.add(df.format(annonceService.moyenneSitter(lstR.get(i).getKey().getSitter().getNumC())));
+				lstM.add(df.format(annonceService.moyenneSitter(lstR.get(i).getKey().getSitter().getNumC()))+" / 5");
 			} else {
 				lstM.add("null");
 			}

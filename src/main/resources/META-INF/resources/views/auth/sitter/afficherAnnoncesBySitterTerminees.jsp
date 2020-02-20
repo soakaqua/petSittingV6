@@ -63,7 +63,7 @@
 
 		</div>
 
-		<div id="textePrincipal" class="col-8">
+		<div id="textePrincipal" class="col-10">
 
 			<p>
 			<h2>Pet-sitter > Consulter l'historique de mes annonces</h2>

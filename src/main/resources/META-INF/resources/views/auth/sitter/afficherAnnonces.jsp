@@ -63,7 +63,7 @@
 				déconnecter</a> <br /> <br />
 		</div>
 
-		<div id="textePrincipal" class="col-8">
+		<div id="textePrincipal" class="col-10">
 
 			<p>
 			<h2>Pet-sitter > Consulter les annonces disponibles</h2>
