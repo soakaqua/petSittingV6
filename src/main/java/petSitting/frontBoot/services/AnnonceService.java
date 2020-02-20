@@ -83,9 +83,9 @@ public class AnnonceService {
 		Double somme = 0.0 ;
 		Double moyenne = 0.0 ;
 		for(int i = 0  ; i < lstA.size() ; i++) {
-			if(lstA.get(i).getNoteP() != null) {
+			if(lstA.get(i).getNoteS() != null) {
 				cpt++;
-				somme = somme + lstA.get(i).getNoteP();
+				somme = somme + lstA.get(i).getNoteS();
 			}
 		}
 		moyenne = somme / cpt;
