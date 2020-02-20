@@ -59,7 +59,7 @@
 			<a href="${ctx}/deconnexion">Me deconnecter </a> <br/><br/>
 		</div> 
 	
-<div id="textePrincipal" class="col-8">
+<div id="textePrincipal" class="col-10">
 
 <p> <h2> Propriétaire > Consulter mes annonces </h2> </p> 
 <p> <h3> Consulter mes annonces en cours </h3> </p> 

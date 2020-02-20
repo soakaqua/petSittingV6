@@ -77,16 +77,11 @@
 
 			<table class="table" style="text-align: center;">
 				<tr>
-					<th>Titre</th>
-					<th>Message</th>
-					<th>Services</th>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<th>Note du propriétaire</th>
+					<th style="text-align:center">Titre</th>
+					<th style="text-align:center">Message</th>
+					<th colspan="7" style="text-align:center">Services</th>
+
+					<th style="text-align:center">Note du propriétaire</th>
 					<td></td>
 
 				</tr>
