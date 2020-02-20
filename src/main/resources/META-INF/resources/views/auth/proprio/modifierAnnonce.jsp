@@ -81,7 +81,7 @@
 				<form:input path="titre" placeholder="${titre}" cssClass="form-control"/>
 				<form:errors path="titre" cssClass="alert alert-danger">
 					<div class="alert alert-danger"> Champ obligatoire </div>
-				</form:errors>   
+				</form:errors>
 			</div>
 			
 			<div class="form-group">
@@ -90,7 +90,7 @@
 				<form:textarea path="message" placeholder="${message}" row="5" cols="60" ></form:textarea>
 				<form:errors path="message" cssClass="alert alert-danger">
 					<div class="alert alert-danger"> Champ obligatoire </div>
-				</form:errors>   
+				</form:errors>
 			</div>
 		
 			<div class="form-group">			
@@ -100,13 +100,13 @@
 			    
 			    <div>
 			    <input class="checkboxServices" type="checkbox" name="checkboxServices" id="1" value="1">
-			    <label for="1"> Garde chez le propriétaire - 10€ </label>
+			    <label for="1"> Garde chez le propriétaire - 15€ </label>
 			    <span class="glyphicon glyphicon-ok"></span>
 			    </div>
 			      
 			    <div>
 			    <input class="checkboxServices" type="checkbox" name="checkboxServices" id="2" value="2">
-			    <label for="2"> Garde chez le sitter - 15€ </label>
+			    <label for="2"> Garde chez le sitter - 10€ </label>
 			    </div> 
 			    
 			    <div>

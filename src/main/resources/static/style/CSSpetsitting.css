@@ -8,15 +8,17 @@ h4{color:HotPink;}
 h5{color:LightSlateGray;}	
 body {background-color:gainsboro;margin:10px;-moz-box-sizing: border-box; box-sizing: border-box;}
 
-#entete {margin-left:5px;background-color:white; height:150px}
-#logoEntete {padding-top:10px;display:block;text-align:center}
+#banderole {background-color:#244968;margin-left:15px; height: 100%; z-index: 1; width: 18%; left: 0; position:absolute; height: 1000px}
+
+#entete {margin-left:5px;background-color:white; height:150px;  z-index: 3;}
+#logoEntete {padding-top:10px;display:block;text-align:center; z-index: 2;}
 
 
 #footer {z-index:3;padding-bottom:10px;padding-top:10px;color:white;background-color:steelblue;text-align:center;height:40px;position:fixed;bottom:0;left: 0; right: 0}
 
 /* Corps */
-#banderole {background-color:#244968;margin-left:15px; height: 100%;position: fixed ;  z-index: 1 ; width: 18%; 
-  top: 150; 
-  left: 0;}
+
 #textePrincipal {background-color:gainsboro;margin-left:18%;}
 #pagefilling{z-index:3;background-color:white;min-height:150px;}
+
+a{color:#d3d3d3}

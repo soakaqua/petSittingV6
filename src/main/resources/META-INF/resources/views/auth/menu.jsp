@@ -61,9 +61,9 @@
 						<br/>
 						<h4 style="font-size:23;color:white">Menu</h4>
 						<br/>
-						<a  href="${ctx}/proprio/consulterAnnonces?numC=${sessionScope.numC}"> Consulter mes annonces</a> <br /><br />
+						<a href="${ctx}/proprio/consulterAnnonces?numC=${sessionScope.numC}"> Consulter mes annonces</a> <br /><br />
 						<a href="${ctx}/proprio/consulterAnnoncesTerminees?numC=${sessionScope.numC}">Consulter l'historique de mes annonces</a> <br/><br/>
-						<a href="${ctx}/proprio/modifierAnnonce?numC=${numC}">Publier une annonce</a> <br/><br/> 
+						<a href="${ctx}/proprio/publierAnnonce?numC=${numC}">Publier une annonce</a> <br/><br/> 
 						<a href="${ctx}/deconnexion">Me déconnecter</a> <br />
 					</div>
 
@@ -73,10 +73,10 @@
 						
 							Bon retour parmi nous. Que souhaitez-vous faire ? <br /> <br />
 						<ul>
-							<li><a href="${ctx}/proprio/consulterAnnonces?numC=${sessionScope.numC}"> Consulter mes annonces</a></li> <br />
-							<li><a href="${ctx}/proprio/consulterAnnoncesTerminees?numC=${sessionScope.numC}"> Consulter l'historique de mes annonces</a> </li><br/>
-							<li><a href="${ctx}/proprio/modifierAnnonce?numC=${sessionScope.numC}">Publier une annonce</a></li>	<br />
-							<li><a href="${ctx}/deconnexion">Me déconnecter</a></li> <br />
+							<li><b><a href="${ctx}/proprio/consulterAnnonces?numC=${sessionScope.numC}" style="color:black"> Consulter mes annonces</a></b></li> <br />
+							<li><b><a href="${ctx}/proprio/consulterAnnoncesTerminees?numC=${sessionScope.numC}" style="color:black"> Consulter l'historique de mes annonces</a></b> </li><br/>
+							<li><b><a href="${ctx}/proprio/publierAnnonce?numC=${sessionScope.numC}" style="color:black">Publier une annonce</a></b></li>	<br />
+							<li><b><a href="${ctx}/deconnexion" style="color:black">Me déconnecter</a></b></li> <br />
 						</ul>
 					</div>
 			</c:when>
@@ -102,10 +102,10 @@
 
 						Bon retour parmi nous. Que souhaitez-vous faire ? <br /> <br />
 						<ul>
-							<li><a href="${ctx}/sitter/afficherAnnonces">Consulter toutes les annonces</a></li>	<br />							
-							<li><a href="${ctx}/sitter/afficherAnnoncesBySitter">Consulter les annonces auxquelles j'ai postulé</a></li><br />
-							<li><a href="${ctx}/sitter/historiqueAnnonces">Afficher l'historique de vos petSitting</a></li>	<br />
-							<li><a href="${ctx}/deconnexion">Me déconnecter</a></li><br />
+							<li><b><a href="${ctx}/sitter/afficherAnnonces" style="color:black">Consulter toutes les annonces</a></b></li>	<br />							
+							<li><b><a href="${ctx}/sitter/afficherAnnoncesBySitter" style="color:black">Consulter les annonces auxquelles j'ai postulé</a></b></li><br />
+							<li><b><a href="${ctx}/sitter/historiqueAnnonces" style="color:black">Afficher l'historique de vos petSitting</a></b></li>	<br />
+							<li><b><a href="${ctx}/deconnexion" style="color:black">Me déconnecter</a></b></li><br />
 							<br />
 						</ul>
 

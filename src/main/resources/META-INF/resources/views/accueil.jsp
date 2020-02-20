@@ -52,7 +52,7 @@
 		<div id="banderole" class="col-2">
 			<br />
 			<h4 style="font-size: 23; color: white">Menu</h4><br />
-			<a href="${ctx}/accueil" > Accueil</a> <br /> <br />
+			<a href="${ctx}/accueil"> Accueil</a> <br /> <br />
 			<a href="${ctx}/connexion">Connexion</a> <br /> <br /> 
 			<a href="${ctx}/inscription">Inscription</a> <br /> <br /> 
 		</div>
@@ -65,9 +65,9 @@
 
 			 <h3><em>Tout l'amour dont votre animal a besoin</em></h3>
 			 <br/>
-          <p> Vous ne passez pas autant de temps que vous le voudriez avec votre animal ?</p>
-          <p>  Vous partez en vacances et vous voulez garder votre animal ?</p>
-          <p> Votre animal a besoin des soins médicaux ou de toilettage et vous ne trouvez pas le temps pour le faire ? </p>
+          
+          <p>  Vous partez en vacances et vous voulez faire garder votre animal ?</p>
+          <p> Il a besoin de soins médicaux ou de toilettage, et vous ne trouvez pas le temps pour le faire ? </p>
           <p><b>PetSitting</b>, vous met en contact avec des pet-sitters compétents et qualifiés pour prendre soin de votre compagnon.</p>
 			<br />
 			<a href="${ctx}/connexion" class="btn btn-info">Connexion</a> 

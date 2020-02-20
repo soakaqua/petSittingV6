@@ -63,28 +63,17 @@
 
 <p> <h2> Propriétaire > Consulter mes annonces </h2> </p> 
 <p> <h3> Consulter mes annonces en cours </h3> </p> 
-
-<!-- 
-Pour créer une nouvelle annonce :<br /><br />
-
-	<a href="${ctx}/proprio/publierAnnonce?numC=${numC}"
-				class="btn btn-success">Nouvelle annonce</a>
-	<br />
-	 -->
 	<br />	
 
  
-	Voici les annonces que vous avez publiées : <br />
+	Voici les annonces que vous avez publiées :
 
 	<br /><br />
 
 <c:choose>
 	
 	<c:when test="${annonces.isEmpty()}">
-		<div>
-			<br />
 			<em>Vous n'avez aucune annonce en cours</em>
-		</div>
 	</c:when>
 
 	<c:otherwise>
@@ -216,7 +205,7 @@ Pour créer une nouvelle annonce :<br /><br />
 		</div>		
 	</c:otherwise>	
 </c:choose>
-
+<br /><br />
 <p><a href="${ctx}/auth/menu" class="btn btn-info">Retour au menu</a></p>
 
 <br /><br />	
