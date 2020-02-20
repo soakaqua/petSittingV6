@@ -79,13 +79,116 @@
 				<tr>
 					<th>Titre</th>
 					<th>Message</th>
+					<th>Services</th>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
 					<th>Note du propriétaire</th>
+					<td></td>
 
+				</tr>
+				<tr>
+					<th></th>
+					<th></th>
+						<td><em>Garde propriétaire</em></td>
+						<td><em>Garde sitter</em></td>
+						<td><em>Soins médicaux</em></td>
+						<td><em>Ballade</em></td>
+						<td><em>Massage</em></td>
+						<td><em>Toilettage</em></td>
+						<td><em>Alimentation</em></td>
+						<th></th>
 				</tr>
 				<c:forEach items="${annonces}" var="a" varStatus="cpt">
 					<tr>
 						<td>${a.titre}</td>
 						<td>${a.message}</td>
+						<td>
+							<c:set var="contains" value="false" />
+							<c:forEach var="as" items="${a.annonce_service}">
+							  <c:if test="${as.key.service.numSer eq 1}">
+							  
+							    <c:set var="contains" value="true" />
+							    
+							  </c:if>
+							</c:forEach>
+							<c:if test="${contains eq true}">X</c:if>
+						</td>
+						
+ 						<td>
+							<c:set var="contains" value="false" />
+							<c:forEach var="as" items="${a.annonce_service}">
+							  <c:if test="${as.key.service.numSer eq 2}">
+							  
+							    <c:set var="contains" value="true" />
+							    
+							  </c:if>
+							</c:forEach>
+							<c:if test="${contains eq true}">X</c:if>
+						</td>
+						
+						<td>
+							<c:set var="contains" value="false" />
+							<c:forEach var="as" items="${a.annonce_service}">
+							  <c:if test="${as.key.service.numSer eq 3}">
+							  
+							    <c:set var="contains" value="true" />
+							    
+							  </c:if>
+							</c:forEach>
+							<c:if test="${contains eq true}">X</c:if>
+						</td>
+						
+						<td>
+							<c:set var="contains" value="false" />
+							<c:forEach var="as" items="${a.annonce_service}">
+							  <c:if test="${as.key.service.numSer eq 4}">
+							  
+							    <c:set var="contains" value="true" />
+							    
+							  </c:if>
+							</c:forEach>
+							<c:if test="${contains eq true}">X</c:if>
+						</td>
+						
+						<td>
+							<c:set var="contains" value="false" />
+							<c:forEach var="as" items="${a.annonce_service}">
+							  <c:if test="${as.key.service.numSer eq 5}">
+							  
+							    <c:set var="contains" value="true" />
+							    
+							  </c:if>
+							</c:forEach>
+							<c:if test="${contains eq true}">X</c:if>
+						</td>
+						
+						<td>
+							<c:set var="contains" value="false" />
+							<c:forEach var="as" items="${a.annonce_service}">
+							  <c:if test="${as.key.service.numSer eq 6}">
+							  
+							    <c:set var="contains" value="true" />
+							    
+							  </c:if>
+							</c:forEach>
+							<c:if test="${contains eq true}">X</c:if>
+						</td>
+						
+						<td>
+							<c:set var="contains" value="false" />
+							<c:forEach var="as" items="${a.annonce_service}">
+							  <c:if test="${as.key.service.numSer eq 7}">
+							  
+							    <c:set var="contains" value="true" />
+							    
+							  </c:if>
+							</c:forEach>
+							<c:if test="${contains eq true}">X</c:if>
+						</td>
 
 						<td><c:if test="${moyenneP[cpt.index] != 'null'}">
 								${moyenneP[cpt.index]}
