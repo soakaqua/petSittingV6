@@ -81,14 +81,7 @@
 					<th>Titre</th>
 					<th>Message</th>
 					<th>Votre réponse</th>
-					<th>Note du propriétaire</th>
-				</tr>
-					<th></th>
-					<th></th>
-					<th></th>
-					<td>sur votre échange</td>
-				<tr>
-				
+					<th>Note du propriétaire sur votre échange</th>				
 				</tr>
 				<c:forEach items="${annonces}" var="annonce" varStatus="cpt">
 					<tr>

@@ -91,7 +91,7 @@ public class SitterController {
 		df.setRoundingMode(RoundingMode.CEILING);
 		for(int i =0 ; i< lstA.size(); i++) {
 			if(Double.isNaN(annonceService.moyenneProprio(lstA.get(i).getProprio().getNumC())) != true) {
-				lstM.add(df.format(annonceService.moyenneProprio(lstA.get(i).getProprio().getNumC()))) ;
+				lstM.add(df.format(annonceService.moyenneProprio(lstA.get(i).getProprio().getNumC()))+" / 5") ;
 			}
 			else {
 				lstM.add("null");
