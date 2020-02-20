@@ -99,13 +99,13 @@
 			    Selectionnez le(s) service(s) : <br/><br/>			        
 			    
 			    <div>
-			    <input class="checkboxServices" type="checkbox" name="checkboxServices" id="1" value="1">
+			    <input class="checkboxServices" type="radio" name="checkboxServices" id="1" value="1" checked>
 			    <label for="1"> Garde chez le propriétaire - 15€ </label>
 			    <span class="glyphicon glyphicon-ok"></span>
 			    </div>
 			      
 			    <div>
-			    <input class="checkboxServices" type="checkbox" name="checkboxServices" id="2" value="2">
+			    <input class="checkboxServices" type="radio" name="checkboxServices" id="2" value="2">
 			    <label for="2"> Garde chez le sitter - 10€ </label>
 			    </div> 
 			    
