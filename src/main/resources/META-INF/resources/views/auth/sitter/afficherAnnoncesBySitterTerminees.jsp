@@ -73,8 +73,15 @@
 			<h3>Consulter l'historique de mes annonces</h3>
 			</p>
 
-			Voici la liste des annonce de petsittings que vous avez réalisées : <br />
-			<br />
+			Voici la liste des annonce de petsittings que vous avez réalisées : <br />	<br />
+			
+<c:choose>
+	
+	<c:when test="${annonces.isEmpty()}">
+			<em>Vous n'avez effectué aucune annonce</em>
+	</c:when>
+
+	<c:otherwise>
 
 			<table class="table" style="text-align: center;">
 				<tr>
@@ -120,7 +127,9 @@
 					</tr>
 				</c:forEach>
 
-			</table>
+			</table>	
+	</c:otherwise>		
+</c:choose>
 			<br /> <br />
 			<p>
 				<a href="${ctx}/auth/menu" class="btn btn-info">Retour au menu</a>

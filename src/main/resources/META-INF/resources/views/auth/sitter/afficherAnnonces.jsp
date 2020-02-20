@@ -74,7 +74,14 @@
 			</p>
 
 			Voici la liste des annonces des propriétaires : <br /> <br />
-
+			
+<c:choose>
+	
+	<c:when test="${annonces.isEmpty()}">
+			<em>Il n'y a aucune annonce en cours</em>
+	</c:when>
+			
+	<c:otherwise>
 			<table class="table" style="text-align: center;">
 				<tr>
 					<th style="text-align:center">Titre</th>
@@ -195,10 +202,12 @@
 
 
 			</table>
-			<br /> <br />
-			<p>
-				<a href="${ctx}/auth/menu" class="btn btn-info">Retour au menu</a>
-			</p>
+		</c:otherwise>	
+	</c:choose>
+<br /> <br />
+	<p>
+		<a href="${ctx}/auth/menu" class="btn btn-info">Retour au menu</a>
+	</p>
 		</div>
 	</div>
 	<br />
