@@ -72,11 +72,19 @@
 			</p>
 
 			Voici la liste des annonces auxquelles vous avez postulé : <br /> <br />
+			
+<c:choose>
+	
+	<c:when test="${annonces.isEmpty()}">
+			<em>Vous n'avez postulé à aucune annonce</em>
+	</c:when>
+			
+	<c:otherwise>
 
 			<table class="table">
 				<tr>
-					<th>titre</th>
-					<th>message</th>
+					<th>Titre</th>
+					<th>Message</th>
 				</tr>
 				<tr>
 					<td>${annonce.titre}</td>
@@ -101,18 +109,20 @@
 				</div>
 
 				<div class="form-group">
-					<button type="submit" class="btn btn-success">envoyer</button>
+					<button type="submit" class="btn btn-success">Valider</button>
 
 					<a
 						href="${ctx}/sitter/afficherAnnoncesBySitter?numC=${reponse.key.sitter.numC}"
-						class="btn btn-warning">annuler</a>
+						class="btn btn-warning">Annuler</a>
 				</div>
 
 
 
 			</form:form>
-			<br />
-			<br />
+			<br /><br />
+			
+	</c:otherwise>	
+</c:choose>
 
 			<p>
 				<a href="${ctx}/auth/menu" class="btn btn-info">Retour au menu</a>

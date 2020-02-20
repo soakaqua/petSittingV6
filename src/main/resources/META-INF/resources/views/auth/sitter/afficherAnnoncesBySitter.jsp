@@ -71,6 +71,14 @@
 
 			Voici la liste des annonces auxquelles vous avez postulé : <br /> <br />
 
+
+<c:choose>
+	
+	<c:when test="${annonces.isEmpty()}">
+			<em>Vous n'avez postulé à aucune annonce</em>
+	</c:when>
+			
+	<c:otherwise>
 			<table class="table">
 				<tr>
 					<th>Titre</th>
@@ -90,18 +98,15 @@
 							class="btn btn-danger">Supprimer</a></td>
 					</tr>
 				</c:forEach>
-
 			</table>
-							<br />
-				<br />
-					<p>
+	</c:otherwise>	
+</c:choose>		
+<br /><br />				
+		<p>
 			<a href="${ctx}/auth/menu" class="btn btn-info">Retour au menu</a>
 		</p>
 		</div>
 	</div>
-	<br />
-	<br />
-	<br />
-	<br />
+	<br />	<br /> 	<br />	<br />
 </body>
 </html>
