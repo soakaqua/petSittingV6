@@ -1,9 +1,6 @@
 package petSitting.frontBoot.repositories;
 
 import java.util.List;
-
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,10 +17,8 @@ public interface AnnonceRepository extends JpaRepository<Annonce, Integer> {
 	public List<Annonce> selectAnnonceBySitter(Integer numC);
 	public List<Annonce> selectAnnonceBySitterEnCours(Integer numC);
 	public List<Annonce> selectAllWithStatut0();
-	public List<Annonce> selectAnnonceBySitterTerminee(Integer numC);
-	//public List<Integer> selectNoteSitter(Integer numC);
-	
-	public List<Annonce>findAllByNumA(Integer numA);
+	public List<Annonce> selectAnnonceBySitterTerminee(Integer numC);	
+	public List<Annonce> findAllByNumA(Integer numA);
 	
 	@Transactional
 	public void deleteByNumA(Integer numA);

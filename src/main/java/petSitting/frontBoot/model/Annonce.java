@@ -30,7 +30,6 @@ import javax.persistence.NamedQuery;
 @NamedQuery(name="Annonce.selectAnnonceBySitter",query="select distinct a from Annonce a left join fetch a.reponse rep where rep.key.sitter.numC=?1"),
 @NamedQuery(name="Annonce.selectAnnonceBySitterEnCours",query="select distinct a from Annonce a left join fetch a.reponse rep where rep.key.sitter.numC=?1 and a.statut=0"),
 @NamedQuery(name="Annonce.selectAnnonceBySitterTerminee",query="select distinct a from Annonce a left join fetch a.reponse rep where rep.key.sitter.numC=?1 and a.statut=1")
-//,@NamedQuery(name="Annonce.selectNoteSitter",query="select distinct noteS from Sitter s left join fetch s.annonce ann where ann.key.numC=?1"),
 }) 
 
 public class Annonce {

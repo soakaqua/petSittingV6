@@ -101,6 +101,7 @@
 			</table>
 			
 			<a href="${ctx}/proprio/consulterAnnonces" class="btn btn-warning">Annuler</a>
+			<br/><br/>
 		</div>	
 	</c:otherwise>	
 </c:choose>

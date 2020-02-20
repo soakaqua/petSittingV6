@@ -96,7 +96,7 @@ public class ProprioController {
 		a.setNoteS((double) noteS);
 		annonceRepository.save(a);
 
-		return ("redirect:/proprio/consulterAnnonces");
+		return ("redirect:/proprio/consulterAnnoncesTerminees");
 	}
 
 	@GetMapping("/modifierAnnonce")
@@ -207,6 +207,7 @@ public class ProprioController {
 	@GetMapping("/delete")
 	public ModelAndView delete(@RequestParam(name = "numA") Integer numA, HttpSession session) {
 		Integer numC = (Integer) session.getAttribute("numC");
+		reponseRepository.supprReponseByNumA(numA);
 		annonce_serviceRepository.supprAnnonceServiceByNumA(numA);
 		annonceRepository.deleteByNumA(numA);
 		return new ModelAndView("redirect:/proprio/consulterAnnonces", "numC", numC);
