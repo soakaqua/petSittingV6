@@ -52,16 +52,16 @@ public class ProprioController {
 
 	@Autowired
 	ServiceRepository serviceRepository;
-	
+
 	@Autowired
 	Annonce_ServiceRepository annonce_serviceRepository;
-	
+
 	@Autowired
 	ReponseRepository reponseRepository;
 
 	@Autowired
 	AnnonceService annonceService;
-	
+
 	@Autowired
 	private ProprioService proprioService;
 
@@ -72,8 +72,7 @@ public class ProprioController {
 		model.addAttribute("annonces", annonceRepository.selectAnnonceByProprioWhereStatut0(numC));
 		return "auth/proprio/consulterAnnonces";
 	}
-	
-	
+
 	@GetMapping("/consulterAnnoncesTerminees")
 	public String consulterAnnoncesTerminees(Model model, HttpSession session) {
 		Integer numC = (Integer) session.getAttribute("numC");
@@ -81,21 +80,21 @@ public class ProprioController {
 		model.addAttribute("annoncesT", annonceRepository.afficherAnnoncesTerminees(numC));
 		return "auth/proprio/consulterAnnoncesTerminees";
 	}
-	
 
 	@PostMapping("noterAnnonce")
-	public String noterAnnonce (@RequestParam(name="numA") Integer numA,@RequestParam(name="noteS") Integer noteS, Model model) {
+	public String noterAnnonce(@RequestParam(name = "numA") Integer numA, @RequestParam(name = "noteS") Integer noteS,
+			Model model) {
 		Annonce a = new Annonce();
 		Optional<Annonce> annonceTrouv = annonceRepository.findById(numA);
-		if(annonceTrouv.isPresent()) {
-			a= annonceTrouv.get();
+		if (annonceTrouv.isPresent()) {
+			a = annonceTrouv.get();
 		}
 		a.setNoteS((double) noteS);
 		annonceRepository.save(a);
-		
+
 		return ("redirect:/proprio/consulterAnnonces");
 	}
-	
+
 	@GetMapping("/modifierAnnonce")
 	public String modifierAnnonce(@RequestParam(name = "numA") Integer numA, Model model, HttpSession session) {
 		Integer numC = (Integer) session.getAttribute("numC");
@@ -117,55 +116,57 @@ public class ProprioController {
 		Integer numC = (Integer) session.getAttribute("numC");
 		model.addAttribute("annonce", a);
 		return "auth/proprio/modifierAnnonce";
-		
+
 	}
 
 	@PostMapping("/save")
-	private String save(@ModelAttribute("annonce") @Valid Annonce annonce, @RequestParam Integer[] checkboxServices, BindingResult br, Model model, HttpSession session) {
-		Integer numC = (Integer) session.getAttribute("numC");
-		Integer numA = annonce.getNumA();
-		annonce_serviceRepository.supprAnnonceServiceByNumA(numA);
+	private String save(@ModelAttribute("annonce") @Valid Annonce annonce, BindingResult br,
+			@RequestParam Integer[] checkboxServices, Model model, HttpSession session) {
+
 		if (br.hasErrors()) {
 			return "auth/proprio/modifierAnnonce";
 		} else {
+			Integer numC = (Integer) session.getAttribute("numC");
+			Integer numA = annonce.getNumA();
+			annonce_serviceRepository.supprAnnonceServiceByNumA(numA);
 			Optional<Compte> opt = compteRepository.findById(numC);
 			Compte p = new Proprio();
 			if (opt.isPresent()) {
 				p = opt.get();
-				annonce.setStatut(0);						
+				annonce.setStatut(0);
 
 				Annonce annonceFinale = annonceService.save(annonce, (Proprio) p);
-				
-				//Créer une LISTE ORDONNEE qui récupère les services sélectionnés
+
+				// Créer une LISTE ORDONNEE qui récupère les services sélectionnés
 				List<Service> listServices = new ArrayList();
-				for(int i=0; i<checkboxServices.length; i++) {
+				for (int i = 0; i < checkboxServices.length; i++) {
 					Optional<Service> opt2 = serviceRepository.findById(checkboxServices[i]);
 					Service serviceRecup = null;
 					if (opt2.isPresent()) {
 						serviceRecup = opt2.get();
 						listServices.add(serviceRecup);
-					}					
+					}
 				}
-				
-				//Convertir la liste de services en Set Annonce_Service				
+
+				// Convertir la liste de services en Set Annonce_Service
 				Set<Annonce_Service> setAnnonceService = new HashSet<Annonce_Service>();
 				Annonce_Service annServ = new Annonce_Service();
 				Annonce_ServicePK annServPK = new Annonce_ServicePK();
-				for(int j=0; j<listServices.size();j++) {
-				System.out.println("annonce : "+annonceFinale.getNumA());
+				for (int j = 0; j < listServices.size(); j++) {
+					System.out.println("annonce : " + annonceFinale.getNumA());
 					annServPK.setAnnonce(annonceFinale);
-					annServPK.setService(listServices.get(j)); 
+					annServPK.setService(listServices.get(j));
 					annServ.setKey(annServPK);
-					System.out.println("annServ i: "+annServ);
+					System.out.println("annServ i: " + annServ);
 					setAnnonceService.add(annServ);
 					annonce_serviceRepository.save(annServ);
 				}
-				//Enregistrer le nouveau Set Annonce_Service
+				// Enregistrer le nouveau Set Annonce_Service
 				annonceFinale.setAnnonce_service(setAnnonceService);
 				annonceService.save(annonceFinale, (Proprio) p);
 			}
 			return "redirect:/proprio/consulterAnnonces";
-		}	
+		}
 	}
 
 	@GetMapping("/afficherReponses")
@@ -173,32 +174,32 @@ public class ProprioController {
 		Integer numC = (Integer) session.getAttribute("numC");
 		model.addAttribute("numC", numC);
 		model.addAttribute("reponses", reponseRepository.selectReponseByNumA(numA));
-		
+
 		List<Reponse> lstR = new ArrayList<Reponse>();
 		lstR = reponseRepository.selectReponseByNumA(numA);
 		List<String> lstM = new ArrayList<String>();
 		DecimalFormat df = new DecimalFormat("#.#");
 		df.setRoundingMode(RoundingMode.CEILING);
-		
-		for(int i =0 ; i< lstR.size(); i++) {
-			if(Double.isNaN(annonceService.moyenneSitter(lstR.get(i).getKey().getSitter().getNumC())) != true) {
-				lstM.add(df.format(annonceService.moyenneSitter(lstR.get(i).getKey().getSitter().getNumC()))) ;
-			}
-			else {
+
+		for (int i = 0; i < lstR.size(); i++) {
+			if (Double.isNaN(annonceService.moyenneSitter(lstR.get(i).getKey().getSitter().getNumC())) != true) {
+				lstM.add(df.format(annonceService.moyenneSitter(lstR.get(i).getKey().getSitter().getNumC())));
+			} else {
 				lstM.add("null");
 			}
 		}
 		model.addAttribute("moyenneS", lstM);
 		return "auth/proprio/afficherReponses";
 	}
-	
+
 	@GetMapping("/validerSitter")
-	public String validerSitter(@RequestParam(name = "numA") Integer numA, @RequestParam(name = "numC") Integer numC, Model model, HttpSession session) {
-		//ATTENTION ICI NUMC EST LE NUMERO DU SITTER
+	public String validerSitter(@RequestParam(name = "numA") Integer numA, @RequestParam(name = "numC") Integer numC,
+			Model model, HttpSession session) {
+		// ATTENTION ICI NUMC EST LE NUMERO DU SITTER
 		proprioService.validerSitter(numA, numC);
 		return "redirect:/proprio/consulterAnnonces";
 	}
-	
+
 	@GetMapping("/delete")
 	public ModelAndView delete(@RequestParam(name = "numA") Integer numA, HttpSession session) {
 		Integer numC = (Integer) session.getAttribute("numC");
